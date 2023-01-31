@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.jhta.dao.UsersMapper">
+
+	<!-- 로그인 -->
+	<select id="getUsersAccount" parameterType="String"
+		resultType="UsersDTO">
+		SELECT *
+		FROM users
+		WHERE id = #{id}
+
+		<!-- private String nickname; private String id; private String pw; private 
+			String gender; private String email; private int coupon; private String phone; 
+			private String grade; private String addrs; private String post; private 
+			String field; private String name; private String p_no; -->
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="saveUsers" parameterType="UsersDTO">
+		INSERT INTO users
+		VALUES(#{nickname},#{id},#{pw},#{gender},#{email},3000,#{phone},#{grade},#{addrs},#{post},null,#{name},0)
+	</insert>
+
+	<!-- 아이디 중복확인 -->
+	<select id="isIdCheck" parameterType="String" resultType="boolean">
+		SELECT if(COUNT(1) = 1, 0, 1)
+		FROM users
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 닉네임 중복확인 -->
+	<select id="isNickCheck" parameterType="String" resultType="boolean">
+		SELECT if(COUNT(1) = 1, 0, 1)
+		FROM users
+		WHERE nickname = #{nickname}
+	</select>
+	
+	<!-- 닉네임 중복확인 -->
+	<select id="isPhoneCheck" parameterType="String" resultType="boolean">
+		SELECT if(COUNT(1) = 1, 0, 1)
+		FROM users
+		WHERE phone = #{phone}
+	</select>
+</mapper>
