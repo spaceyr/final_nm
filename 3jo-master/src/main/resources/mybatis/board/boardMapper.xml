@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.jhta.dao.Dao">
+	<select id="getAll" resultType="ProductDTO">
+		select * from product
+	</select>
+	<select id="getOne" parameterType="int" resultType="DeptDTO">
+		select deptno,dname,loc from dept where deptno = #{deptno}
+	</select>
+	
+	<select id="selectOne" parameterType="String" resultType="ProductDTO">
+		select * from product where 1=1 
+		
+			<if test="keyword !=''">
+				and title like CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="from_date !=''">
+				and regdate>=#{from_date}
+			</if>
+			<if test="to_date !=''">
+				AND regdate &lt;= #{to_date}
+			</if>
+			<if test="inspection !='' and inspection == 0">
+				and inspection = 0
+			</if>	
+			<if test="inspection !='' and inspection == 1">
+				and inspection = 1
+			</if>	
+			<if test="inspection !='' and inspection == -1">
+				and inspection = -1
+			</if>	
+	</select>
+	
+	<select id="selectinspection" parameterType="int" resultType="ProductDTO">
+		select * from product where inspection = 0
+		
+				
+	</select>
+	
+	<insert id="insertOne" parameterType="ProductDTO">
+  		insert into product values(0, #{title}, #{contents}, #{regdate}, #{image}, #{detail_image}, #{price}, #{location}, #{person}, #{period}, #{report}, #{hits}, #{cateno}, #{like}, #{level}, #{nickname}, #{inspection} )
+  	</insert>
+</mapper>

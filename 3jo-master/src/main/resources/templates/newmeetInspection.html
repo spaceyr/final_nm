@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <!-- 공통 헤더-->
+    <th:block th:replace="fragments/head :: headFragment"></th:block>
+
+    <body id="page-top">
+        <div id="wrapper">
+            <!-- 사이드바-->
+            <th:block th:replace="fragments/sidebar :: sidebarFragment"></th:block>
+
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+                    <!-- 상단바-->
+                    <th:block th:replace="fragments/topbar :: topbarFragment"></th:block>
+                    <!-- 본문-->
+                    <th:block layout:fragment="content">
+                    	
+                    	<div class="card shadow mb-4">
+                     <div class="card-body">
+                     	
+
+						<div class="container" style="font-size: 20px; font-weight: bold;">
+							미검수뉴밋 목록
+						</div><br>
+						
+						<table class="table table-striped">
+							<tr>
+								<th>번호</th>
+								<th>이름</th>
+								<th>내용</th>
+								<th>작성날짜</th>
+								<th>이미지</th>
+								<th>상세이미지</th>
+								<th>가격</th>
+								<th>위치</th>
+								<th>검수상태</th>
+							</tr>
+							
+							<tr th:each=" dto,state : ${list}">
+								<td th:text="${dto.p_no}"></td>
+								<td th:text="${dto.title}"></td>
+								<td th:text="${dto.contents}"></td>
+								<td th:text="${dto.regdate}"></td>
+								<td th:text="${dto.image}"></td>
+								<td th:text="${dto.detail_image}"></td>
+								<td th:text="${dto.price}"></td>
+								<td th:text="${dto.location}"></td>
+								<td th:text="${dto.inspection}"></td>
+							</tr>
+
+						</table>		
+
+                     </div>
+                </div>
+				</div>
+            <!-- End of Main Content -->
+                    </th:block>
+                </div>
+                <!-- 공통 하단-->
+                <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+            </div>
+        </div>
+
+        <!-- 공통 스크립트-->
+        <th:block th:replace="fragments/script :: scriptFragment"></th:block>
+    </body>
+</html>
+
