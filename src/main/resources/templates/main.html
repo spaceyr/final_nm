@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+       <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <title>NewMeet</title>
+</head>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+
+<body>
+    <main>
+        <div class="banner_container">
+            <div class="banner_slide fade">
+                <a th:href="@{/main}"><img src="../image/banner/banner1.jpg"></a>
+            </div>
+            <div class="banner_slide fade">
+                <a th:href="@{/main}"><img src="../image/banner/banner3.jpg"></a>
+            </div>
+            <div class="banner_slide fade">
+                <a th:href="@{/main}"><img src="../image/banner/banner1.jpg"></a>
+            </div>
+            <div class="banner_slide fade">
+                <a th:href="@{/main}"><img src="../image/banner/banner3.jpg"></a>
+            </div>
+            <div class="banner_slide fade">
+                <a th:href="@{/main}"><img src="../image/banner/banner1.jpg"></a>
+            </div> 
+
+            <a class="banner_prev" onclick="plusSlides(-1)">&#10094;</a> <a class="banner_next"
+                onclick="plusSlides(1)">&#10095;</a>
+            <div class="banner_dot_group">
+                <span class="banner_dot" onclick="currentSlide(1)"></span>
+                <span class="banner_dot" onclick="currentSlide(2)"></span>
+                <span class="banner_dot" onclick="currentSlide(3)"></span>
+                <span class="banner_dot" onclick="currentSlide(4)"></span>
+                <span class="banner_dot" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
+        
+        <section class="category">
+        	<div class="category_menu_group">
+        		<div class="category_menu"><a th:href="@{/main/sportslist(cateno=100)}"><div class="category_menu_img1"></div></a><span>운동</span></div>
+        		<div class="category_menu"><a th:href="@{/main/triplist(cateno=200)}"><div class="category_menu_img2"></div></a><span>여행</span></div>
+        		<div class="category_menu"><a th:href="@{/main/myselflist(cateno=300)}"><div class="category_menu_img3"></div></a><span>자기계발</span></div>
+        		<div class="category_menu"><a th:href="@{/main/artlist(cateno=400)}"><div class="category_menu_img4"></div></a><span>문화생활</span></div>
+        		<div class="category_menu"><a th:href="@{/main/grouplist(cateno=500)}"><div class="category_menu_img5"></div></a><span>모임</span></div>
+        	</div>
+        </section>
+        
+     
+      <th:block layout:fragment="productItems" th:include="@{/main/productItems}"></th:block>
+
+
+    </main>
+   	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+
+</body>
+
+<script>
+    let slideIndex = 1;
+
+    const plusSlides = (n) => {
+        showSlides(slideIndex += n);
+    }
+
+    const currentSlide = (n) => {
+        showSlides(slideIndex = n);
+    }
+
+    const showSlides = (n) => {
+        let i;
+        let slides = document.getElementsByClassName("banner_slide");
+        let dots = document.getElementsByClassName("banner_dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+    showSlides(slideIndex);
+    setInterval(() => showSlides(slideIndex += 1), 4000);
+
+</script>
+
+</html>

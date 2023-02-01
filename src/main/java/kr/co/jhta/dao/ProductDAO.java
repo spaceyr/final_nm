@@ -11,7 +11,7 @@ import kr.co.jhta.dto.ProductDTO;
 /*인터페이스 임플만들필요없이 인터페이스로 바로맵퍼로연결*/
 @Repository
 @Mapper
-public interface Dao {
+public interface ProductDAO {
 	
 	List<ProductDTO> getAll();
 	
@@ -21,4 +21,6 @@ public interface Dao {
 	List<ProductDTO> selectInspection(int inspection);
 	
 	void insertOne(ProductDTO dto);
+	
+	List<ProductDTO> selectOne(int cateno);
 }

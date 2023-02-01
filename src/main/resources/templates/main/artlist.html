@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/productlist.css}" rel="stylesheet" />
+<head>
+<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="menu_bar">
+		<div class="menu_barimg">
+			<i class="fas fa-th-large"></i>
+		</div>
+		<span>문화·예술</span>
+	</div>
+
+	<!-- <section class="product_container" id="productList">
+		<section class="product"></section>
+	</section>
+ -->
+
+
+	<!-- <tr>
+			<th>이미지</th>
+			<th>제목</th>
+			<th>가격</th>
+			<th>♥</th>
+		</tr> -->
+	<div class="product_container">
+		<div class="product_items">
+				<table id="productList">
+					<tr class="product_item" th:each="dto : ${list }">
+						<td class="product_item_img" ><img th:src="@{/image/mainimage/} + ${dto.image}" /></td>
+						<span class="product_title"><td th:text="${dto.title}"></td></span>
+						<span class="product_item_price" ><td th:text="${dto.price}+원"></td></span>
+						<td th:text="${dto.like}"></td>
+						<span class="product_item_info"><td th:text="ONLY">ONLY</td></span>
+						<span class="product_item_info"><td th:text="HOT">HOT</td></span>
+					</tr>
+				</table>
+		</div>
+	</div>
+
+
+	<!-- 	<script th:inline="javascript">
+    /*<![CDATA[*/
+    const productList = /*[[${list}]]*/
+    console.log(productList);
+    
+    productList.forEach((productList) => console.log(productList));
+    
+    for(let index in productList){
+    	document.write(productList[index] + '<br>')
+    }
+
+    const products = [
+   	 {
+   		    image: $('productList.image'),
+   		    title: $('productList.title'),
+   		    price: $('productList.price'),
+   		    only: true,
+   		    hot: true,
+   		  }];
+    
+    const pListSection = document.getElementById('productList');
+	 const productItem = new ProductItem(pListSection);
+	 
+	 	function ProductItem(pListSection) {
+	 		const productList = pListSection.querySelector('.product');
+	 		
+	  		const updateProductFnc = (productItems, title, moreBtnRef) => {
+	  			const moreBtn = moreBtnRef.length>0 ?'<a class="product_more" href='+moreBtnRef+'>전체보기</a>':'';
+	  			 const titleValue = title ? '<div class="product_title"><h2>'+title+'</h2>'+moreBtn+'</div>' : '';
+	  			let onlyValue='';
+	  	  		let hotValue='';
+	  	  		let priceValue = '';
+	  	  		
+	  			const test = productItems.map((item) => {
+	  				onlyValue = item.only ? "<span class='info_only'>ONLY</span>" : '';
+					hotValue = item.hot ? "<span class='info_hot'>HOT</span>" : '' ;
+					priceValue ="<span class='price_current'>" + item.price +"원</span>"
+					 
+		
+			return "<div class='product_item'><a href ='productlist?p_no="+item.p_no+"'><div class='product_item_img'><img src='"+item.image + "'/></div></a> <span class='product_item_name'>" + item.title + "</span> <div class='product_item_price'>" +priceValue + "</div><span class='product_item_like'>" + item.like + "</span><span><div class='product_item_info'>"+ onlyValue + hotValue +"</div></span>"+ "</div>"}).join('');
+	            
+	  	  	return titleValue+ "<div class='product_items'>"+ test + "</div>"; 
+	  	  	  	      };
+	  		
+	  		
+	 		const render = () => {
+	 			productList.innerHTML = updateProductFnc(products, '문화·예술',''); 
+
+	 		}
+	 	 render();
+	}
+    
+    /*]]>*/
+</script> -->
+	<!-- <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block> -->
+</body>
+</html>

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.jhta.dao.Dao;
+import kr.co.jhta.dao.ProductDAO;
 import kr.co.jhta.dto.ProductDTO;
 
 
@@ -13,7 +13,7 @@ import kr.co.jhta.dto.ProductDTO;
 public class ProductService {
 	
 	@Autowired
-	private Dao dao;
+	private ProductDAO dao;
 	
 	public List<ProductDTO> selectAll(){
 		return dao.getAll();
@@ -29,6 +29,11 @@ public class ProductService {
 	
 	public void insertOne(ProductDTO dto) {
 		dao.insertOne(dto);
+	}
+	
+	public List<ProductDTO> selectOne(int cateno) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(cateno);
 	}
 	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){

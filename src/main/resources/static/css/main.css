@@ -1,0 +1,229 @@
+@charset "UTF-8";
+
+:root {
+	--black-color:#242424;
+	--menu-list-gray-color: rgb(73, 73, 73);
+	--menu-border-gray-color:rgba(63, 63, 63, 0.075);
+	--menu-search-gray-color:rgba(63, 63, 63, 0.685);
+	--orange-color: #FFC090;
+	--green-color: #7ec152;
+	--pink-color: rgb(252, 56, 98);
+	--pink-opacity-color: rgba(252, 56, 98,0.884);
+}
+
+body {
+	box-sizing: border-box;
+	width: 900px;
+	margin: 0 auto;
+}
+* {
+padding:0;
+margin:0;
+text-decoration:none;	
+}
+
+/* 이미지 배너 */
+.banner_container {
+  width: 100%;
+  position: relative;
+  margin: auto;
+  height: 330px;
+}
+.banner_container img{
+  width: 100%;
+  height: 300px;
+   object-fit: cover;
+}
+
+.banner_slide {
+  display: none;
+}
+
+.banner_prev, .banner_next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.banner_next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.banner_prev:hover, .banner_next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.banner_dot_group {
+ 	position: absolute;
+ 	bottom: 10%;
+ 	left: 45%
+}
+.banner_dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .banner_dot:hover {
+  background-color: #717171;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* category section */
+.category {
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+.category,.category_menu_group {
+	display: flex;
+	justify-content: center;
+  align-items: center;
+	}
+.category_menu {
+	display: flex;
+	justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right:40px;
+}
+.category_menu:last-child {
+	margin-right:0;
+}
+.category_menu a{
+	width:60px;
+}
+.category_menu div{
+	width:60px;
+	height: 60px;
+	border-radius:50%;
+	    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.category_menu span{
+	margin-top: 10px;
+} 
+.category_menu_img1 {
+background-image: url("../image/test.jpg");
+}
+.category_menu_img2 {
+	background-image: url("../image/test.jpg");
+}
+.category_menu_img3 {
+	background-image: url("../image/test.jpg");
+}
+.category_menu_img4 {
+	background-image: url("../image/test.jpg");
+}
+.category_menu_img5 {
+	background-image: url("../image/test.jpg");
+}
+
+
+/* 상품 section*/
+.product_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product_container h2 {
+  margin-top: 30px;
+	margin-bottom:  30px
+}
+.product_items {
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.product_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 340px;
+}
+.product_title {
+	display: flex;
+	  align-items: center;
+	  	justify-content: space-between;
+}
+.product_title  .product_more {
+	cursor:pointer;
+}
+.product_item_img {
+border-radius: 8px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.product_item_img img {
+  width: 300px;
+  height:300px;
+  object-fit: cover;
+  transition: 0.3s ease-in-out;
+}
+.product_item_img img:hover {
+  transform: scale(1.1);
+}
+.product_items span {
+  display: inline-block;
+}
+.product_item_name {
+	margin: 10px auto 3px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.product_item_price {
+	 display: flex;
+	 flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.product_item_price .price_current{
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.product_item_info {
+	margin-top: 8px;
+	color: #82AAE3;
+	border-radius: 3px;
+	padding: 1px 6px 3px;
+	
+	
+}
+.product_item_info span{
+	margin-left: 0px;
+	margin-right: 6px;
+	border: solid 1px;
+    border-color: #5BC0F8;
+	border-radius: 3px;
+	padding: 1px 6px 3px;
+    font-size: 15px;
+}
+

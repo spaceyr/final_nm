@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/header.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+<body>
+	<section class="top_menu">
+		<ul class="menu_group">
+			<li><a th:href="@{/main}">로그인</a></li>
+			<li><a th:href="@{/main}">회원가입</a></li>
+			<li><a th:href="@{/main}">고객센터</a></li>
+		</ul>
+	</section>
+	
+	<header class="menu">
+		<a th:href="@{/main}" class="logo"><img src="../../image/logo/logo.JPG" /></a>
+		<form name="search" class="search_form"> <!-- method="post" action="search?title="+ title +> -->
+			<div class="menu_search">
+				<span class="menu_search_icon"><i class="fas fa-search"></i></span>
+				<input type="text" id="search_text" name="title" />
+			</div>
+				<button type="button" value="보내기" onclick="search_name()">검색</button>
+		</form>
+		
+		<ul class="menu_user">
+			<li><a th:href="@{/main}"><i class="far fa-heart"></i></a></li>
+			<li><a th:href="@{/main}"><i class="far fa-user"></i></a></li>
+		</div>
+	</header>
+
+		<script>
+			function search_name() {
+				if (document.getElementById("search_text").value == "") {
+					alert("상품명을 입력해주세요.");
+					return false;
+				} else
+					document.search.submit();
+			}
+		</script>
+</body>
+
+</html>
