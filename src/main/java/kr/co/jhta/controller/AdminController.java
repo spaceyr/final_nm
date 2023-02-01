@@ -21,9 +21,12 @@ public class AdminController {
 	@Autowired
 	ProductService service;
 	
-	LocalDate now = LocalDate.now();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    String formatedNow = now.format(formatter);
+	
+	 LocalDate now = LocalDate.now(); 
+	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+	 String formatedNow =  now.format(formatter);
+	 
+	
 	
 	
 	@GetMapping("/host")
