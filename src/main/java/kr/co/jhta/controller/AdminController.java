@@ -47,8 +47,7 @@ public class AdminController {
 	
 	@PostMapping("/newmeetForm")
 	public String newmeetFormOk(@ModelAttribute("dto")ProductDTO dto){
-		
-		
+				
 		String regdate = formatedNow;
 		
 		dto.setRegdate(regdate);
