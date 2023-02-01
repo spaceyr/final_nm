@@ -61,6 +61,11 @@ public class UserService implements UserDetailsService {
 		public boolean isPhoneCheck(String phone) {
 			return userMapper.isPhoneCheck(phone);
 		}
+		
+		//host프로필수정
+		public void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id) {
+			userMapper.hostmodifyOne(nickname,email,phone,field,field,id);
+		}
 	
 	
 	

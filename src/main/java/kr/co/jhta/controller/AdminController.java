@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.service.ProductService;
+import kr.co.jhta.service.UserService;
 
 @Controller
 public class AdminController {
 	
 	@Autowired
 	ProductService service;
+	
+	@Autowired
+	UserService userservice;
 	
 	
 	 LocalDate now = LocalDate.now(); 
@@ -59,6 +63,19 @@ public class AdminController {
 	
 	@GetMapping("/editProfile")
 	public String editProfile(){
+		return "editProfile";
+	}
+	
+	@PostMapping("/editProfile")
+	public String editProfileOk(@RequestParam("nickname")String nickname,
+								@RequestParam("email")String email,
+								@RequestParam("phone")String phone,
+								@RequestParam("field")String field,
+								@RequestParam("profileimage")String profileimage,
+								@RequestParam("id")String id){
+		
+		userservice.hostmodifyOne(nickname, email, phone, field, profileimage,id);
+		
 		return "editProfile";
 	}
 	

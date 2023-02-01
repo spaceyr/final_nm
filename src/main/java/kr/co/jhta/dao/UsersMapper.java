@@ -25,6 +25,8 @@ public interface UsersMapper {
 	
 	//연락처 인증(중복확인)
 	boolean isPhoneCheck(String phone);
+	
+	void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id);
 	 
 
 }

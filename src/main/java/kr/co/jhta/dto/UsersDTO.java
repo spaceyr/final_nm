@@ -29,6 +29,8 @@ public class UsersDTO implements UserDetails{
 	private String field;
 	private String name;
 	private int p_no;
+	private String profileimage;
+	
 	
 	@Override//등급 권한.
 	public Collection<? extends GrantedAuthority> getAuthorities() {

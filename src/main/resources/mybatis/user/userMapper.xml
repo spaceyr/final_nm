@@ -44,4 +44,9 @@
 		FROM users
 		WHERE phone = #{phone}
 	</select>
+	
+	<!-- host프로필변경 -->
+	<update id="hostmodifyOne" parameterType="String">
+  		update users set nickname=#{nickname}, email=#{email}, phone=#{phone}, field=#{field}, profileimage=#{profileimage} where id = #{id}
+  	</update>
 </mapper>
