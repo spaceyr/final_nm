@@ -19,8 +19,8 @@ public class ProductService {
 		return dao.getAll();
 	}
 	
-	public List<ProductDTO> selectOne(String keyword,String from_date,String to_date,String inspection) {
-		return dao.selectOne(keyword,from_date, to_date, inspection);
+	public List<ProductDTO> selectOneMj(String keyword,String from_date,String to_date,String inspection) {
+		return dao.selectOneMj(keyword,from_date, to_date, inspection);
 	}
 	
 	public List<ProductDTO> selectInspection(int inspection) {

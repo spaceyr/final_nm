@@ -78,7 +78,7 @@ public class AdminController {
 			@RequestParam(value = "to_date",required = false)String to_date,
 			@RequestParam(value = "inspection",required = false)String inspection, Model model){
 		
-		List<ProductDTO> list = service.selectOne(keyword,from_date, to_date, inspection);
+		List<ProductDTO> list = service.selectOneMj(keyword,from_date, to_date, inspection);
 		
 		model.addAttribute("list", list);
 		

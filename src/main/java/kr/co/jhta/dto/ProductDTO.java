@@ -1,18 +1,15 @@
 package kr.co.jhta.dto;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class ProductDTO {
-	
 	private int p_no;
 	private String title;
 	private String contents;
@@ -29,4 +26,7 @@ public class ProductDTO {
 	private float like;
 	private int level;
 	private String nickname;
+	private int inspection;
+	
+	
 }
