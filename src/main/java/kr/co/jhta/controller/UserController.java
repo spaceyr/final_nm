@@ -127,8 +127,8 @@ public class UserController {
     	log.info("test");
         //Authentication 객체를 통해 유저 정보를 가져올 수 있다.
         UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();  //userDetail 객체를 가져옴
-        model.addAttribute("info", usersDTO.getId() +"의 "+ usersDTO.getUserName()+ "님");  //유저 아이디
-        return "user_access";
+        model.addAttribute("usersDTO", usersDTO);  //유저 아이디
+        return "/main";
     }
 	
     
