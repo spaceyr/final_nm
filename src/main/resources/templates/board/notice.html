@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap')
+	;
+
+.cs_wrap {
+	margin: 0px auto;
+	/* 화면비율유지*/
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.tabs {
+	display: block;
+	height: 49px;
+	padding: 13px 16px 0;
+	color: green;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	float: left;
+	width: 300px;
+}
+
+.notice {
+	float: left;
+	padding-right: 15px;
+}
+
+.title {
+	margin: 0px auto;
+	font-weight: bolder;
+	width: 1000px;
+	border-bottom: 4px solid #2596be;
+	padding: 20px 0px 36px;
+}
+
+.accordion {
+	margin: 0px auto;
+	height: 1000px;
+	width: 1000px;
+}
+
+.accordion .nm_box {
+	margin-top: 80px;
+	margin-bottom: 50px;
+}
+</style>
+</head>
+</head>
+<body>
+	<div class="cs_wrap">
+		<h4 class="title">newmeet Notice</h4>
+
+		<div class="tab_wrap"></div>
+
+		<div class="accordion" id="accordionExample">
+			<div class="nmcs_box">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseOne"
+							aria-expanded="true" aria-controls="collapseOne">고객센터 운영 시간이 단축</button>
+					</h2>
+					<div id="collapseOne" class="accordion-collapse collapse "
+						aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요.:)<br> 공휴일(1/1) 고객센터 운영 시간이 단축되어 안내드립니다.<br>
+							[고객센터 운영 시간 안내]<br> 2023년 1월 1일(일) : 신정<br> - 채팅 상담 :
+							카카오톡 채널 뉴밋 <br> - 운영 시간 : 오전 10:00 ~ 오후 1:00<br> 주말,
+							공휴일에는 취소 및 결제 문의 등 <br> 일부 문의에 대한 처리가 제한될 수 있는 점 양해 부탁드립니다🙏<br>
+							감사합니다.<br> 프립 고객센터 드림<br>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+							aria-expanded="false" aria-controls="collapseTwo">씨티/우리은행
+							결제 서비스 일시중단 안내 [11.13(일)]</button>
+					</h2>
+					<div id="collapseTwo" class="accordion-collapse collapse"
+						aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요.<br> 프레시킷 담당자입니다.<br> <br> 씨티/우리은행 시스템 작업에
+							따른 결제 서비스 중단 안내드립니다.<br> <br> 작업시간<br> -씨티은행 : 11월
+							13일 (일) 01:00~10:00 체크카드 이용불가, 신용카드 안심클릭 인증 불가 <br>-우리은행 :
+							11월 13일 (일) 02:00~06:00 체크카드 이용불가, 신용카드 이용 가능 <br> <br>
+							*작업 영향에 따라 작업시간이 변동/지연될 수 있습니다. <br> <br> 더욱편리하고 안정적인
+							서비스를 제공하는 프레시킷이 되겠습니다.<br> 감사합니다.
+						</div>
+					</div>
+				</div>
+
+
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseThree"
+							aria-expanded="false" aria-controls="collapseThree">롯데카드
+							서비스 일시중단 안내 [11.06(일) 01:30~15:00]</button>
+					</h2>
+					<div id="collapseThree" class="accordion-collapse collapse"
+						aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							﻿안녕하세요. <br>프레시킷 담당자입니다.<br> <br> 롯데카드 시스템 작업에 따른
+							서비스 중단 안내드립니다.<br> <br> 작업시간 : 2022.11.06(일) 01:30 ~
+							15:00 <br>작업내용 : 롯데카드 시스템 작업에 따른 서비스 일시중단 <br> <br>*
+							작업 시간동안 롯데카드 서비스 일시중단 <br> <br>* 작업 영향에 따라 작업시간이 변동/지연될
+							수 있습니다. <br> <br>더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이 되겠습니다. <br>감사합니다.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingFour">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseFour"
+							aria-expanded="false" aria-controls="collapseThree">주문취소
+							및 배송지 변경 일시 불가 안내 [10/31(월)23:30~03:00]</button>
+					</h2>
+					<div id="collapseFour" class="accordion-collapse collapse"
+						aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요.<br> 프레시킷 담당자입니다.<br> 시스템 작업으로 주문취소 및 배송지 변경이
+							일시적으로 불가하여 안내드립니다.<br> - 일시 : 2022년 10월 31일 (월) 23:30 ~ 11월
+							1일 (화) 03:00 <br> - 내용 : 해당 시간 동안 주문취소, 배송지 및 배송예정일 변경 불가 <br>
+							<br> 작업 종료 후에는 주문취소 및 배송지 변경 가능하여, 새로고침 후 이용 바랍니다. <br>
+							<br> * 서비스 작업 영향에 따라 작업시간은 변동될 수 있습니다. <br> <br>
+							더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이 되겠습니다. <br>감사합니다.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingFive">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseFive"
+							aria-expanded="false" aria-controls="collapseFive">프레시킷
+							이메일 시스템 점검 안내 [10.22(토) 20:00~10.23(일) 06:00]</button>
+					</h2>
+					<div id="collapseFive" class="accordion-collapse collapse"
+						aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요. <br>프레시킷 담당자입니다. <br>보다 나은 서비스 제공을 위해 아래와 같이 이메일
+							시스템 점검이 진행될 예정입니다. <br>해당 점검 시간에는 프레시킷 이메일이 미발송 되오니 고객님의
+							너그러운 양해 부탁 드립니다. <br> <br>- 점검 일시 : 2022.10.22(토) 20:00
+							~ 10.23(일) 06:00<br> - 점검 내용 : 프레시킷 이메일 시스템 점검 <br>- 점검
+							영향 : 시스템 작업 시간 내 이메일 발송 불가 <br> <br>* 서비스 작업 영향에 따라 작업
+							시간은 변동 될 수 있습니다. <br> <br>더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이
+							되겠습니다.<br> 감사합니다.
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<!-- ------------------------------------------------------------------ -->
+			<div class="nmcs_box">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingSix">
+						<button class="accordion-button" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseSix"
+							aria-expanded="true" aria-controls="collapseSix">고객센터 운영 시간이 단축</button>
+					</h2>
+					<div id="collapseSix" class="accordion-collapse collapse "
+						aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요.:)<br> 공휴일(1/1) 고객센터 운영 시간이 단축되어 안내드립니다.<br>
+							[고객센터 운영 시간 안내]<br> 2023년 1월 1일(일) : 신정<br> - 채팅 상담 :
+							카카오톡 채널 뉴밋 <br> - 운영 시간 : 오전 10:00 ~ 오후 1:00<br> 주말,
+							공휴일에는 취소 및 결제 문의 등 <br> 일부 문의에 대한 처리가 제한될 수 있는 점 양해 부탁드립니다🙏<br>
+							감사합니다.<br> 프립 고객센터 드림<br>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingSeven">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseSeven"
+							aria-expanded="false" aria-controls="collapseSeven">씨티/우리은행
+							결제 서비스 일시중단 안내 [11.13(일)]</button>
+					</h2>
+					<div id="collapseSeven" class="accordion-collapse collapse"
+						aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요.<br> 프레시킷 담당자입니다.<br> <br> 씨티/우리은행 시스템 작업에
+							따른 결제 서비스 중단 안내드립니다.<br> <br> 작업시간<br> -씨티은행 : 11월
+							13일 (일) 01:00~10:00 체크카드 이용불가, 신용카드 안심클릭 인증 불가 <br>-우리은행 :
+							11월 13일 (일) 02:00~06:00 체크카드 이용불가, 신용카드 이용 가능 <br> <br>
+							*작업 영향에 따라 작업시간이 변동/지연될 수 있습니다. <br> <br> 더욱편리하고 안정적인
+							서비스를 제공하는 프레시킷이 되겠습니다.<br> 감사합니다.
+						</div>
+					</div>
+				</div>
+
+
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingEight">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseEight"
+							aria-expanded="false" aria-controls="collapseEight">롯데카드
+							서비스 일시중단 안내 [11.06(일) 01:30~15:00]</button>
+					</h2>
+					<div id="collapseEight" class="accordion-collapse collapse"
+						aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							﻿안녕하세요. <br>프레시킷 담당자입니다.<br> <br> 롯데카드 시스템 작업에 따른
+							서비스 중단 안내드립니다.<br> <br> 작업시간 : 2022.11.06(일) 01:30 ~
+							15:00 <br>작업내용 : 롯데카드 시스템 작업에 따른 서비스 일시중단 <br> <br>*
+							작업 시간동안 롯데카드 서비스 일시중단 <br> <br>* 작업 영향에 따라 작업시간이 변동/지연될
+							수 있습니다. <br> <br>더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이 되겠습니다. <br>감사합니다.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingNine">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseNine"
+							aria-expanded="false" aria-controls="collapseNine">주문취소
+							및 배송지 변경 일시 불가 안내 [10/31(월)23:30~03:00]</button>
+					</h2>
+					<div id="collapseNine" class="accordion-collapse collapse"
+						aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요.<br> 프레시킷 담당자입니다.<br> 시스템 작업으로 주문취소 및 배송지 변경이
+							일시적으로 불가하여 안내드립니다.<br> - 일시 : 2022년 10월 31일 (월) 23:30 ~ 11월
+							1일 (화) 03:00 <br> - 내용 : 해당 시간 동안 주문취소, 배송지 및 배송예정일 변경 불가 <br>
+							<br> 작업 종료 후에는 주문취소 및 배송지 변경 가능하여, 새로고침 후 이용 바랍니다. <br>
+							<br> * 서비스 작업 영향에 따라 작업시간은 변동될 수 있습니다. <br> <br>
+							더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이 되겠습니다. <br>감사합니다.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTen">
+						<button class="accordion-button collapsed" type="button"
+							data-bs-toggle="collapse" data-bs-target="#collapseTen"
+							aria-expanded="false" aria-controls="collapseTen">프레시킷
+							이메일 시스템 점검 안내 [10.22(토) 20:00~10.23(일) 06:00]</button>
+					</h2>
+					<div id="collapseTen" class="accordion-collapse collapse"
+						aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							안녕하세요. <br>프레시킷 담당자입니다. <br>보다 나은 서비스 제공을 위해 아래와 같이 이메일
+							시스템 점검이 진행될 예정입니다. <br>해당 점검 시간에는 프레시킷 이메일이 미발송 되오니 고객님의
+							너그러운 양해 부탁 드립니다. <br> <br>- 점검 일시 : 2022.10.22(토) 20:00
+							~ 10.23(일) 06:00<br> - 점검 내용 : 프레시킷 이메일 시스템 점검 <br>- 점검
+							영향 : 시스템 작업 시간 내 이메일 발송 불가 <br> <br>* 서비스 작업 영향에 따라 작업
+							시간은 변동 될 수 있습니다. <br> <br>더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이
+							되겠습니다.<br> 감사합니다.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

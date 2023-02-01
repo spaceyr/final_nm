@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<link th:href="@{/css/write.css}" rel="stylesheet" />
+
+<script type="text/javascript">
+	//단일이미지 미리보기
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('preview').src = e.target.result;
+			};
+			reader.readAsDataURL(input.files[0]);
+		} else {
+			document.getElementById('preview').src = "";
+		}
+	}
+	//평점 기능
+	$(function() {
+		$('input[name=rating]').click(function() {
+			var rating = $(this).val();
+			console.log(rating);
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		<h3>*소중한 후기를 남겨주세요*</h3>
+
+		<form action="/board/write" method="post">
+			<!-- <div class="mb-3">
+			<label for="r_no" class="col-form-label">후기번호</label> <input
+					type="hidden" name="r_no" id="r_no" />
+
+			</div>
+		<!--  <div class="mb-3">
+				<label for="nickname" class="col-form-label">닉네임</label> <input
+					type="hidden" name="nickname" id="nickName" value=""/>
+
+			</div>
+			<div class="mb-3">
+				<label for="title" class="col-form-label">제목</label> <input
+					type="text" name="title" id="title" value=""/>
+			</div> -->
+			<!-- <div class="mb-3">
+				<label for="p_no" class="col-form-label">상품번호</label> <input
+					type="text" name="p_no" id="p_no" value=""/>
+			</div> -->
+
+			<div class="mb-3">
+				<label for="contents" class="col-form-label">내용</label><br>
+				<textarea name="contents" id="contents" cols="50" rows="5"></textarea>
+			</div>
+
+			<label for="rating" class="col-form-label">평점</label>
+			<div class="mb-3" name="rating" id="rating">
+				<fieldset>
+					<input type="radio" name="rating" value="5" id="rate1"><label
+						for="rate1">★</label> <input type="radio" name="rating"
+						value="4" id="rate2"><label for="rate2">★</label> <input
+						type="radio" name="rating" value="3" id="rate3"><label
+						for="rate3">★</label> <input type="radio" name="rating"
+						value="2" id="rate4"><label for="rate4">★</label> <input
+						type="radio" name="rating" value="1" id="rate5" checked><label
+						for="rate5">★</label>
+				</fieldset>
+				  </div>
+			   <div class="mb-3">
+				<label for="review_img" class="col-form-label">사진</label> <input
+					style="display: block;" type="file" name="review_img"
+					id="review_img" onchange="readURL(this);"> <img
+					id="preview" style="width: 150px;" />
+			</div>
+				<div class="mb-3">
+					<a href="review" class="btn btn-outline-primary">목록</a>
+					<button type="submit" class="btn btn-info">작성완료</button>
+				</div>
+		</form>
+	</div>
+</body>
+</html>

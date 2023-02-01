@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.container {
+	width: 50%;
+	height: 100%;
+}
+
+/* 별점 디자인 */
+#rating fieldset {
+	direction: rtl;
+	display: inline-block;
+	border: 0;
+}
+
+#rating fieldset legend {
+	text-align: left;
+}
+
+#rating input[type=radio] {
+	display: none;
+}
+
+#rating label {
+	font-size: 2em;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+}
+
+#rating label:hover {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#rating label:hover ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#rating input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
