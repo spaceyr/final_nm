@@ -1,4 +1,4 @@
-package kr.co.jhta.control;
+package kr.co.jhta.controller;
 
 
 import org.springframework.security.core.Authentication;

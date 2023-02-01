@@ -1,4 +1,4 @@
-package kr.co.jhta.control;
+package kr.co.jhta.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +16,7 @@ import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.service.ProductService;
 
 @Controller
-public class control {
+public class AdminController {
 	
 	@Autowired
 	ProductService service;
