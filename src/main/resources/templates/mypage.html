@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+       <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <title>NewMeet</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</head>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+
+<body>
+    <main>
+		<br />
+		<!-- 상단로그인정보 -->
+		
+		<div class="col-lg-4">
+			<svg class="bd-placeholder-img rounded-circle" width="80" height="80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+				preserveAspectRatio="xMidYMid slice" focusable="false" style="float: left;">
+				<rect width="150%" height="150%" fill="#777"></rect>
+				<image href="image/rabbit.jpeg" height="80" width="80"/>
+			</svg>
+			<h2 class="fw-normal" style="font-size: 30px; padding-left: 110px">로그인ID</h2>
+			<p>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-secondary" href="#" style="font-size: 10px; ">프로필수정 »</a>
+			</p>
+		</div>
+		<br />
+		
+		<div class="container-fluid">
+				
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+
+				</div>
+
+				<div class="card shadow mb-4">
+                     <div class="card-body">
+                     	
+
+								<div class="container">
+					<h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">내 관심뉴밋</h1>
+					<br />
+									<!-- 카드안쪽 -->
+									<section class="product_container" id="productList">
+									<section class="product_best"></section>
+								</section>
+								<script>
+								
+							const bestProducts = [  /* const name1 = value1 [, name2 = value2 [, name3 = value3 ]] */
+								{
+								image: '../image/test.jpg',
+							    title: '뉴밋',
+							    price: 1000,
+							    only: true,
+							    hot: false,
+							  },
+							  {
+								    image: '../image/party.JPG',
+								    title: '뉴밋',
+								    price: 11000,
+								    only: false,
+								    hot: true,
+								  },
+								  {
+									    image: '../image/test.jpg',
+									    title: '뉴밋',
+									    price: 7778,
+									    only: true,
+									    hot: true,
+									  },
+									  {
+										    image: '../image/party.JPG',
+										    title: '뉴밋',
+										    price: 7778,
+										    only: false,
+										    hot: true,
+										  },
+							  
+							];
+							
+							 
+								
+							const pListSection = document.getElementById('productList'); /* pListSection = productList태그에 접근. productList와 일치하는 element객체 반환하거나 일치요소 없으면 null 반환 */
+							 const productItem = new ProductItem(pListSection); /* pLostSection값을 담은 productItem상수  */  /* const는 중복선언 / 값 재할당 불가능 */
+							 
+							 	function ProductItem(pListSection) { /* 매개변수 pListSection 를 가진 함수 ProductItem */
+							 		const bestList = pListSection.querySelector('.product_best'); /* product_best의 값을 담은 bestList 상수 */ /* 함수내에서만 사용가능 */
+							  		const myselfList = pListSection.querySelector('.product_myself');  /* product_myself의 값을 담은 myselfList 상수 */ /* 함수내에서만 사용가능 */
+							  		const sportsList = pListSection.querySelector('.product_sports');  /* product_sports의 값을 담은 sportsList 상수 *//* 함수내에서만 사용가능 */
+							
+							  		const updateProductFnc = (productItems, title, moreBtnRef) => { /* updateProductFnc는 productItems, title, moreBtnRef의 값을 가짐 */
+							  			const moreBtn = moreBtnRef.length>0 ?'<a class="product_more" href='+moreBtnRef+'>전체보기</a>':''; /* 상수 moreBtn은 전체보기 */
+							  			const titleValue = title ? '<div class="product_title"><h2>'+title+'</h2>'+moreBtn+'</div>' : ''; /* 상수 titleValue는 타이틀 + 전체보기 */
+							  			let onlyValue=''; /* let onlyValue는 ''?' */ /* let은 중복선언 불가능 / 값 재할당 가능 */
+							  	  		let hotValue=''; /* let hotValue는 ''?' */
+							  	  		let priceValue = ''; /* let priceValue는 ''?' */
+							  	  		
+							  			const test = productItems.map((item) => {  /* productItems의 배열을 받아 새로운 배열 만들어서 test에 대입 */
+							  				onlyValue = item.only ? "<span class='info_only'>ONLY</span>" : ''; /* item의 only가 참이면 span ONLY 주고, 아니면 공백 */
+											hotValue = item.hot ? "<span class='info_hot'>HOT</span>" : '' ; /* item의 hot이 참이면 span HOT 주고, 아니면 공백 */
+											priceValue ="<span class='price_current'>" + item.price +"원</span>" /* priceValue는 span + item.price + 원 + /span으로 나타냄 */
+											 
+								
+									return "<div class='product_item'><a href ='productlist?p_no="+item.p_no+"'><div class='product_item_img'><img src='"+item.image + "'/></div></a> <span class='product_item_name'>" +
+											item.title + "</span> <div class='product_item_price'>" +priceValue + "</div><span><div class='product_item_info'>"+ onlyValue + 
+											hotValue +"</div></span>"+ "</div>"}).join('');
+							  	  		
+							  	  		/* div class 'product_item' 정의, 아이템 클릭시 링크 'productlist?p_no="+item.p_no 이런식으로 넘김 / div class 'product_item_img' 정의 이미지 주소는 item.image임 */
+							  	  		/* span class 'product_item_name' 은 item.title임, div class 'product_item_price'는 priceValue값임, div class 'product_item_info'는 onlyValue, hotValue값임 */
+							  	  		/* 배열 반환 */
+							            
+							  	  	return titleValue+ "<div class='product_items'>"+ test + "</div>"; 
+							  	  	  	      };   /* 상수 titleValue + 배열 test 반환해줌. 함수 종료 */
+							  		
+							  		
+							 		const render = () => {  /* 호스팅이 지원x라서 맨 아래에 선언해야함 */
+							 			bestList.innerHTML = updateProductFnc(bestProducts, '',''); /* 모임 */ /* bestList내에 포함된 html요소 정의 */
+							 			myselfList.innerHTML = updateProductFnc(myselfProducts, '나를 알아가는 시간','/main/productlist'); /* 자기계발 */ /* myselfList내에 포함된 html요소 정의 */
+							 			sportsList.innerHTML = updateProductFnc(sportsProducts, '같이 운동할까요?','/main/productlist'); /* 운동  */ /* sportsList내에 포함된 html요소 정의 */
+							 		}
+							 	 render();
+							}
+							 	
+							</script>
+								</div>
+
+                     </div>
+                </div>
+		</div>
+		
+		<!-- 내활동탭 -->
+		<!-- <div class="card shadow mb-4">
+                     <div class="card-body" >
+                     	
+
+								<div class="container">
+									<h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">내활동</h1>
+									<br />
+
+								<div class="accordion" id="accordionExample">
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="headingOne">
+											<button class="accordion-button" type="button"
+												data-bs-toggle="collapse" data-bs-target="#collapseOne"
+												aria-expanded="true" aria-controls="collapseOne">
+												결제내역</button>
+										</h2>
+										<div id="collapseOne" class="accordion-collapse collapse show"
+											aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+											<div class="accordion-body">
+												결제내역 table로 가져와서 보여주기
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item">
+										<a href="https://www.frip.co.kr/invite-friends" style="text-decoration: none;"><h2 class="accordion-header" id="headingTwo">
+											<button class="accordion-button collapsed" type="button">
+												친구초대 3000원쿠폰받기</button></a>
+										</h2>
+										<div id="collapseTwo" class="accordion-collapse collapse"
+											aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+											
+										</div>
+									</div>
+									
+								</div>
+								
+							
+
+				</div>
+				</div>
+				</div> -->
+				
+		<hr style="width: 900px;">
+		
+      <article class="blog-post">
+        <h4 class="blog-post-title mb-1" style="color: gray;">내활동</h4><br /><br />
+
+								<div class="accordion" id="accordionExample">
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="headingOne">
+											<button class="accordion-button" type="button"
+												data-bs-toggle="collapse" data-bs-target="#collapseOne"
+												aria-expanded="true" aria-controls="collapseOne" >
+												결제내역</button>
+										</h2>
+										<div id="collapseOne" class="accordion-collapse collapse show"
+											aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+											<div class="accordion-body">
+												결제내역 table로 가져와서 보여주기
+											</div>
+										</div>
+									</div>
+        <hr style="width: 900px;">
+        
+		<h4 class="blog-post-title mb-1" style="color: gray;">내 쿠폰</h4><br /><br />
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			  보유 쿠폰보기🎫
+			</button>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">로그인 id님의 보유쿠폰</h1>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        모달창으로 보유쿠폰 보여주기
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>	
+			<br /><br />
+			<a href="https://www.frip.co.kr/invite-friends" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">친구추천😊3000원 쿠폰 받기</a>
+			
+		<hr style="width: 900px;">
+		
+		<h4 class="blog-post-title mb-1" style="color: gray;">고객센터</h4><br /><br />
+
+
+
+
+
+	</main>
+   	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+
+</body>
+
+
+
+</html>

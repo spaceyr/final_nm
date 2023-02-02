@@ -131,4 +131,9 @@ public class AdminController {
 		
 		return "newmeetInspection";
 	}
+	
+	@GetMapping("/mypage")
+	public String mypage(){
+		return "mypage";
+	}
 }
