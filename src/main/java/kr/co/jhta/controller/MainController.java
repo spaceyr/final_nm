@@ -88,6 +88,16 @@ public class MainController {
 			model.addAttribute("list", list);
 			return "main/grouplist";
 		}
-
+		
+		// 상세 리스트 페이지
+		@GetMapping("/main/productListDetail")
+		public String productDetailList(@RequestParam("contents")String contents, Model model) {
+			
+			List<ProductDTO> list2 = service.selectList(contents);
+			
+			log.info("list2>>>>>>" + list2);
+			model.addAttribute("list2",list2);
+			return "main/productListDetail";
+		}
 	
 }
