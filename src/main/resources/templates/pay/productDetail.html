@@ -45,6 +45,8 @@
 </style>
 
 </head>
+<!-- header -->
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 <body>
 
 <!-- 
@@ -90,7 +92,8 @@
 			<input type="submit" class="btn btn-primary" value="결제완료" />
 		</form>
 			</div>
-			
+	<!-- footer -->
+	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
 	
 </body>
 </html>

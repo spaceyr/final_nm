@@ -3,22 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-	crossorigin="anonymous"></script>
+
 
 </head>
+	<!-- header -->
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 <body>
 	<div class="container">
 	<h3>결제완료</h3>
 	결제완료 안내문구 띄우기
 	</div>
 	<a th:href=@{product?p_no=30001}>참여하기</a>
+	
+	<!-- footer -->
+	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
 </body>
 </html>

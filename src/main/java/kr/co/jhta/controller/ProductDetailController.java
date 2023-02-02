@@ -19,12 +19,12 @@ public class ProductDetailController {
 	@Autowired
 	 ProductDetailService ps;
 	
-	// 상품상세보기 -> '참여하기'버튼 누르면 모달창 띄움
-		@GetMapping("/productDetail")// 주소창
+	
+		@GetMapping("/productDetail")
 		public String product() {
 			//@RequestParam("p_no") int p_no, Model model
 //			ProductDTO dto = ps.selectOne(p_no);
 //			model.addAttribute("dto",dto);
-			return "mn_productDetail";//보여지는 페이지 이동
+			return "mn_productDetail";
 		}
 }

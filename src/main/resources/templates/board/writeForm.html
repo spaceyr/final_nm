@@ -14,7 +14,10 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- header -->
 </head>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 
 <link th:href="@{/css/write.css}" rel="stylesheet" />
 
@@ -94,5 +97,8 @@
 				</div>
 		</form>
 	</div>
+	
+<!-- footer -->
+	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
 </body>
 </html>
