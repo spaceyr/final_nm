@@ -1,5 +1,7 @@
 package kr.co.jhta.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +11,7 @@ import kr.co.jhta.dto.ProductDTO;
 @Repository
 public interface ProductDetailDAO {
 
-	ProductDTO getOne(int p_no);
+	List<ProductDTO> getOne(int p_no);
 
 	
 }
