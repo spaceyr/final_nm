@@ -150,17 +150,21 @@ background-image: url("../image/test.jpg");
   flex-direction: column;
   align-items: center;
 }
+.product_container.product_cont2 {
+	margin-top: 40px;
+}
 .product_container h2 {
-  margin-top: 30px;
+  margin-top: 40px;
 	margin-bottom:  30px
 }
 .product_items {
-  width: 60%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 .product_item {
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -182,8 +186,8 @@ border-radius: 8px;
   overflow: hidden;
 }
 .product_item_img img {
-  width: 300px;
-  height:300px;
+  width: 250px;
+  height:250px;
   object-fit: cover;
   transition: 0.3s ease-in-out;
 }
@@ -194,9 +198,15 @@ border-radius: 8px;
   display: inline-block;
 }
 .product_item_name {
+	padding: 0 5px 8px;
 	margin: 10px auto 3px;
-	font-size: 18px;
 	font-weight: bold;
+		overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  display:inline-block;
+  width: 200px;
+  font-size: 15px;
 }
 .product_item_price {
 	 display: flex;
@@ -213,11 +223,22 @@ border-radius: 8px;
 	margin-top: 8px;
 	color: #82AAE3;
 	border-radius: 3px;
-	padding: 1px 6px 3px;
+	padding: 5px 6px 3px;
 	
 	
 }
-.product_item_info span{
+.info_hot {
+	margin-left: 0px;
+	margin-right: 6px;
+	color: #FD8A8A;
+	border: solid 1px;
+    border-color: #FD8A8A;
+    border-radius: 3px;
+    padding: 1px 6px 3px;
+    font-size: 15px;
+}
+
+.info_only{
 	margin-left: 0px;
 	margin-right: 6px;
 	border: solid 1px;
@@ -225,5 +246,50 @@ border-radius: 8px;
 	border-radius: 3px;
 	padding: 1px 6px 3px;
     font-size: 15px;
+}
+.menu_bar .chevron{
+	font-size:16px;
+}
+.menu_bar ul{
+	list-style: none;
+	display: flex;
+}
+.menu_bar .menu_title {
+	display:inline;
+}
+.menu_bar .title_group{
+	margin-top: 8px;
+	 margin-bottom:20px; 
+	 height: 0px;
+	 opacity:0;
+	 transition: .2s ease-in-out;
+}
+.menu_bar .title_group span{
+		font-size: 17px;
+		border:none;
+}
+
+.menu_bar ul li{
+	color:#4975cc;
+	font-weight: 700;
+	font-size: 14px;
+	margin-right: 13px;
+	border: 1px solid #4f78cc79;
+	border-radius: 4px;
+	padding: 3px 8px;
+}
+.menu_bar .title_group ulspan.active_menu{
+	color: #4975cc;
+	background-color: transparent;
+	
+}
+.menu_bar ul li.active_menu{
+	background-color: #4975cc;
+	color: #fff;
+	background-color: #4975cc;
+}
+
+.menu_bar ul li:last-child{
+	margin-right: 0;
 }
 

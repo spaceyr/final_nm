@@ -36,6 +36,11 @@ public class ProductService {
 		return dao.selectOne(cateno);
 	}
 	
+	public List<ProductDTO> selectList(String contents) {
+		// TODO Auto-generated method stub
+		return dao.selectList(contents);
+	}
+	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){
 		StartEnd se = new StartEnd(startNo, endNo);
 		return dao.readAll(se);

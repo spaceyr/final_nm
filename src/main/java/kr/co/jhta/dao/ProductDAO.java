@@ -22,4 +22,6 @@ public interface ProductDAO {
 	void insertOne(ProductDTO dto);
 	
 	List<ProductDTO> selectOne(int cateno);
+	
+	List<ProductDTO> selectList(String contents);
 }

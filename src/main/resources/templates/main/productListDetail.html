@@ -9,30 +9,24 @@
 </head>
 <body>
 	<div class="menu_bar">
-	<h2 class="menu_title">자기계발 <span class="chevron"></span></h2>
+	<h2 class="menu_title">카테고리 <span class="chevron"></span></h2>
 
 	<ul class="title_group menu_up">
 		<li><a th:href="@{/main/sportslist(cateno=100)}">운동</a></li>
 		<li><a th:href="@{/main/triplist(cateno=200)}">여행</a></li>
-		<li class="active_menu">자기계발</li>
+		<li><a th:href="@{/main/myselflist(cateno=300)}">자기계발</a></li>
 		<li><a th:href="@{/main/artlist(cateno=400)}">문화생활</a></li>
 		<li><a th:href="@{/main/grouplist(cateno=500)}">모임</a></li>
 	</ul>
 		
 	<ul>
-		<li class="active_menu">전체</li>
-		<li><a th:href="@{/main/productListDetail(contents=심리상담)}">심리·상담</a></li>
-		<li><a th:href="@{/main/productListDetail(contents=투잡)}">투잡</a></li>
-		<li><a th:href="@{/main/productListDetail(contents=재테크)}">재테크</a></li>
-		<li><a th:href="@{/main/productListDetail(contents=어학)}">어학</a></li>
-		<li><a th:href="@{/main/productListDetail(contents=자기기타)}">기타</a></li>
+		<li class="active_menu" ></li>
 	</ul>
 	</div>
 	<br>
 <div class="product_container product_cont2">
 		<div class="product_items" >
-				
-			<div class="product_item" th:each="dto : ${list }">
+			<div class="product_item" th:each="dto : ${list2 }">
 				<a>
 					<div class="product_item_img">
 						<a th:href="@{/main/productDetail(p_no=${dto.p_no})}"><img th:src="@{/image/mainimage/} + ${dto.image}"></a>

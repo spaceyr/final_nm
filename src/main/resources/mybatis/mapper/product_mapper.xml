@@ -9,5 +9,12 @@
   		FROM product
   		WHERE cateno = #{cateno}
   	</select>
+  	
+  	
+  	 <select id="selectList" resultType="ProductDTO" parameterType="String">
+  	 	SELECT *
+  	 	FROM product
+  	 	WHERE contents = #{contents}
+  	 </select>
   
   </mapper>
