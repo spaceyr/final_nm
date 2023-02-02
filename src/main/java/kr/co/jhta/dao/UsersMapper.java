@@ -26,7 +26,18 @@ public interface UsersMapper {
 	//연락처 인증(중복확인)
 	boolean isPhoneCheck(String phone);
 	
-	void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id);
-	 
+	//아이디 찾기
+	String findById(String name, String phone);
+	
+	//임시 비밀번호를 위한 아이디 이메일 db검사
+	UsersDTO searchPw(UsersDTO dto);
+	
+	//업데이트
+	void updatePw(UsersDTO dto);
 
+	//소셜로그인 이메일확인
+	UsersDTO getMemberFindByEmail(String email);
+
+	
+	void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id);
 }

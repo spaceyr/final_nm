@@ -312,6 +312,9 @@ form .signin__btn:hover {
 											$("form").attr("action", "/login_proc");
 											$("form").attr("method", "post");
 										});
+						
+						
+						
 
 					});
 </script>
@@ -341,7 +344,9 @@ form .signin__btn:hover {
 					name="password" class="input" id="pw" />
 			</div>
 			
-
+			<div>
+   			<p style="color: red; font-size:12px; margin-left: 30px;" th:text="${fail}"></p>
+			</div>
 			<!-- Find id and pw -->
 
 			<div class="find">
@@ -357,13 +362,16 @@ form .signin__btn:hover {
 		<div class="separator">
 			<p>OR</p>
 		</div>
-		<!-- google button -->
-		<button class="naver__btn">
-			<i class="xi-naver"></i> 네이버로 로그인
+		<!-- button -->
+		<button class="naver__btn"  >
+		
+			<a th:href="@{oauth2/authorization/naver}" style="text-decoration: none; color: white;"><i class="xi-naver" ></i> 네이버로 로그인</a>
 		</button>
-		<!-- google button -->
-		<button class="kakao__btn">
-			<i class="xi-kakaotalk"></i> 카카오로 로그인
+
+		<!-- button -->
+		
+		<button class="kakao__btn" id="loginKakao" >
+			<a th:href="@{oauth2/authorization/kakao}" style="text-decoration: none; color: white;"><i class="xi-kakaotalk"></i> 카카오로 로그인</a>
 		</button>
 	</div>
 

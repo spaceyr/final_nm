@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -38,32 +38,59 @@
 		}
 	</style>
 	
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		function idSearch() {
-			var name = document.getElementById("customername").value;
-			var phone = document.getElementById("customerphone").value;
-			var regphone = /^[0-9]+/g;
+			var name = document.getElementById("name").value;
+			var phone = document.getElementById("phone").value; 
+			var regname = /^[가-힣]+$/;
+			var regphone = /^\d{3}-\d{3,4}-\d{4}$/;
 
 			if (name.length < 1) {
 				alert("이름을 입력해주세요");
 				return;
 			}
-
-			if (phone.length != 11) {
-				alert("연락처를 정확하게 입력해주세요");
-				return;
-			}
-			if (!regphone.test(phone)) {
-				alert("연락처는 숫자만 입력 가능합니다.");
+			if (!regname.test(name)) {
+				alert("이름은 한글로 입력하세요.");
 				phone = "";
 
 				return;
 			}
 
-			frm.method = "get";
-			frm.action = "fkFindIdCheck.jsp";
-			frm.submit();
+			if (phone.length != 13) {
+				alert("연락처를 확인해주세요");
+				return;
+			}
+			if (!regphone.test(phone)) {
+				alert("연락처를 확인해주세요.");
+				phone = "";
+
+				return;
+			}
+		
+			var sendData="name="+name+'&phone='+phone;
+			
+			
+			$.ajax({
+				
+				url : "/user/findId",
+				method : "post",
+				data : sendData,
+				dataType : "text",
+				success : function(text) {
+					console.log(text)
+					if (text != null) {
+						var text 
+						alert("찾고자 하신 아이디는 <"+text+">입니다.")
+					} else {
+						$("#errorid").html("해당정보가 없습니다.");
+					}
+				},
+				error : function(xhr) {
+					alert("에러코드 = " + xhr.status);
+				}
+			});
+		
 		}
 	</script>
 </head>
@@ -71,7 +98,6 @@
 <body>
 
 	<div style="margin-bottom: 130px; margin-top: 100px;">
-		<form action="" name="frm">
 			<div style="width: 50%; margin: auto; position: relative; top: 100;">
 				<div style="margin: auto;">
 					<p style="font-weight: bold; font-size: 45px; text-align: center; color: #5b90f0;">아이디 찾기</p>
@@ -79,20 +105,20 @@
 				<div class="mb-3" style="margin: auto; position: relative; left: 120px;">
 					<label for="exampleFormControlInput1" class="form-label">
 						이름</label> <input type="text" class="form-control border border-2 rounded-start" value=""
-						name="customername" id="customername" placeholder="이름을 입력하세요."
+						name="name" id="name" placeholder="이름을 입력하세요."
 						style="width: 70%; padding-top:15px; padding-bottom:15px;">
 				</div>
 				<div class="mb-3" style="margin: auto; position: relative; left: 120px;">
 					<label for="exampleFormControlTextarea1" class="form-label">연락처</label>
-					<input type="text" class="form-control border border-2 rounded-start" maxlength="11" value=""
-						id="customerphone" name="customerphone" placeholder="연락처를 입력하세요."
+					<input type="text" class="form-control border border-2 rounded-start" maxlength="13" value=""
+						id="phone" name="phone" placeholder="연락처를 입력하세요."
 						style="width: 70%; padding-top:15px; padding-bottom:15px;"></text>
 				</div>
+				<span id="errorId" style="color: red"></span>
 				<br>
-				<button type="button" onclick="idSearch();" style="width: 70%; padding-top:15px; padding-bottom:20px; margin-left: 122px; ">
+				<button type="button" th:onclick="idSearch();" style="width: 70%; padding-top:15px; padding-bottom:20px; margin-left: 122px; ">
 					확인</button>
 			</div>
-		</form>
 	</div>
 
 </body>

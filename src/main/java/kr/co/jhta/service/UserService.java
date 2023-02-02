@@ -1,8 +1,17 @@
 package kr.co.jhta.service;
 
 
+import java.util.Map;
+
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailAuthenticationException;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailParseException;
+import org.springframework.mail.MailSendException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,7 +28,7 @@ public class UserService implements UserDetailsService {
 
 	
 	private final UsersMapper userMapper; //매퍼 받아와서
-
+	private final JavaMailSender javaMailSender;
 	
 
 	@Override
@@ -35,6 +44,13 @@ public class UserService implements UserDetailsService {
         
         return usersDTO;
     }
+	
+	//소셜로그인
+	public UsersDTO getMemberByEmail(String email) {
+		return userMapper.getMemberFindByEmail(email);
+	}
+	
+	
 	
 	
 	  @Transactional//회원가입쪽 
@@ -62,13 +78,25 @@ public class UserService implements UserDetailsService {
 			return userMapper.isPhoneCheck(phone);
 		}
 		
-		//host프로필수정
-		public void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id) {
-			userMapper.hostmodifyOne(nickname,email,phone,field,field,id);
+		//아이디 찾기
+		public String findId(String name, String phone) {
+			return userMapper.findById(name, phone);
 		}
 	
-	
-	
+		//회원 비밀번호 아이디 디비 검사
+		public UsersDTO searchPwd(UsersDTO dto) {
+			return userMapper.searchPw(dto);
+		}
+		
+		//임시 비밀번호 발급
+		public void updatePwd(UsersDTO dto) {
+			userMapper.updatePw(dto);
+		}
+		
+		//host프로필수정
+				public void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id) {
+					userMapper.hostmodifyOne(nickname,email,phone,field,field,id);
+				}
 	
 	
 	

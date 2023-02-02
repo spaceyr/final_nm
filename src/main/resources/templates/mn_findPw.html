@@ -40,64 +40,48 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	$("#checkEmail").click(function () {
-        let userEmail = $("#userEmail").val();
-        let userName = $("#userName").val();
-
-        $.ajax({
-            type: "GET",
-            url: "/check/findPw",
-            data: {
-                "userEmail": userEmail,
-                "userName": userName
-            },
-            success: function (res) {
-                if (res['check']) {
-                    swal("발송 완료!", "입력하신 이메일로 임시비밀번호가 발송되었습니다.", "success").then((OK) => {
-                        if(OK) {
-                            $.ajax({
-                                type: "POST",
-                                url: "/check/findPw/sendEmail",
-                                data: {
-                                    "userEmail": userEmail,
-                                    "userName": userName
-                                }
-                            })
-                            window.location = "/login";
-                        }
-
-
-                    }
-                )
-                    $('#checkMsg').html('<p style="color:darkblue"></p>');
-                } else {
-                    $('#checkMsg').html('<p style="color:red">일치하는 정보가 없습니다.</p>');
-                }
-            }
-        })
-    })
+	$(function(){
+		$("#checkEmail").on("click",function(){
+			let id=$("input[name='id']").val();
+			let email=$("input[name='email']").val();
+			$.ajax({
+				url:"/finduserpwd",
+				dataType:'json',
+				data:{"id":id,"email":email},
+				success:function(data){
+					if(data==true){
+						alert("임시 비밀번호가 발급되었습니다.메일함을 확인해 주세요");
+						console.log(data);
+					}else{
+						alert("아이디 또는 이메일을 정확하게 입력해 주세요");
+						console.log(data);
+				}
+		   	}
+		});
+	});
+});
 	</script>
 </head>
 
 <body>
 
 	<div style="margin-bottom: 130px; margin-top: 100px;">
-		<form action="" name="frm">
+		<form action="/finduserpwd" method="post">
 			<div style="width: 50%; margin: auto; position: relative; top: 100;">
 				<div style="margin: auto;">
 					<p style="font-weight: bold; font-size: 45px; text-align: center; color: #5b90f0;">비밀번호 찾기</p>
 				</div>
 				<div class="mb-3" style="margin: auto; position: relative; left: 120px;">
 					<label for="exampleFormControlInput1" class="form-label">
-						이름</label> <input type="text" class="form-control border border-2 rounded-start" value=""
-						name="userName" id="userName" placeholder="이름을 입력하세요."
+						아이디</label> <input type="text" class="form-control border border-2 rounded-start" value=""
+						name="id" id="id" placeholder="아이디를 입력하세요."
 						style="width: 70%; padding-top:15px; padding-bottom:15px;">
 				</div>
 				<div class="mb-3" style="margin: auto; position: relative; left: 120px;">
 					<label for="exampleFormControlTextarea1" class="form-label">이메일</label>
-					<input type="text" class="form-control border border-2 rounded-start" maxlength="11" value=""
-						id="userEmail" name="userEmail" placeholder="회원님이 등록한 이메일을 입력하세요."
-						style="width: 70%; padding-top:15px; padding-bottom:15px;"></text>
+					<input type="text" class="form-control border border-2 rounded-start" value=""
+						id="email" name="email" placeholder="회원님이 등록한 이메일을 입력하세요."
+						style="width: 70%; padding-top:15px; padding-bottom:15px;">
 				</div>
 				<br>
 				<button type="button" id="checkEmail" style="width: 70%; padding-top:15px; padding-bottom:20px; margin-left: 122px; ">
