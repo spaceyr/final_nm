@@ -99,5 +99,7 @@ public class MainController {
 			model.addAttribute("list2",list2);
 			return "main/productListDetail";
 		}
+		
+		//상세상품페이지
 	
 }

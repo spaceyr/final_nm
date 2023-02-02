@@ -38,10 +38,7 @@ public class UserController {
 	private final EmailService emailService; 
 	private final UserService userService;
 	
-	@GetMapping("/")
-    public String root() {
-        return "redirect:/login";
-    }
+	
 
       
      

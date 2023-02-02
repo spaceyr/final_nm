@@ -23,8 +23,8 @@ public class ProductDetailController {
 		@GetMapping("/productDetail")
 		public String product() {
 			//@RequestParam("p_no") int p_no, Model model
-//			ProductDTO dto = ps.selectOne(p_no);
-//			model.addAttribute("dto",dto);
+			//ProductDTO dto = ps.selectOne(p_no);
+			//model.addAttribute("dto",dto);
 			return "mn_productDetail";
 		}
 }
