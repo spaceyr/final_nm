@@ -72,5 +72,6 @@
   		SELECT *
   		FROM users
   		WHERE email = #{email}
+  		AND nickname = #{nickname}
   	</select>
 </mapper>

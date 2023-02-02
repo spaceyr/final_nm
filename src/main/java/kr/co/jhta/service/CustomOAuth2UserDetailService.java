@@ -75,7 +75,7 @@ public class CustomOAuth2UserDetailService extends DefaultOAuth2UserService{
 
 	private void saveMember(String email, String name, String nickname,String mobile, String gender) {
 		// 기존에 등록되어 있는 회원인지 확인후
-		UsersDTO dto = userService.getMemberByEmail(email);
+		UsersDTO dto = userService.getMemberByEmail(email,nickname);
 		log.info("멤버 : " + dto);
 		log.info(">>>>>>>>>>>>>"+nickname);
 		if(dto==null) {

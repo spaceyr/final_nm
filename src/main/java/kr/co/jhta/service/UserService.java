@@ -46,8 +46,8 @@ public class UserService implements UserDetailsService {
     }
 	
 	//소셜로그인
-	public UsersDTO getMemberByEmail(String email) {
-		return userMapper.getMemberFindByEmail(email);
+	public UsersDTO getMemberByEmail(String email,String nickname) {
+		return userMapper.getMemberFindByEmail(email,nickname);
 	}
 	
 	
