@@ -7,7 +7,7 @@ import kr.co.jhta.dto.ProductDTO;
 
 @Mapper
 @Repository
-public interface PayDAO {
+public interface ProductDetailDAO {
 
 	ProductDTO getOne(int p_no);
 

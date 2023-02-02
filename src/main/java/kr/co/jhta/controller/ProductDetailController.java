@@ -13,25 +13,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/pay")
-public class PayController {
+@RequestMapping("/product")
+public class ProductDetailController {
 	
 	@Autowired
 	 ProductDetailService ps;
-
-// 상품상세보기 -> '참여하기'버튼 누르면 모달창 띄움
-	@GetMapping("/product")// 주소창
-	public String product(@RequestParam("p_no") int p_no, Model model) {
-		ProductDTO dto = ps.selectOne(p_no);
-		model.addAttribute("dto",dto);
-		return "pay/productDetail";//보여지는 페이지 이동
-	}
 	
-// '결제완료' 버튼 누르면 결제 완료 페이지로 넘어감
-	@GetMapping("/order")
-	public String payForm() {
-		return "pay/payForm";
-	}
-	
-	
-} 
+	// 상품상세보기 -> '참여하기'버튼 누르면 모달창 띄움
+		@GetMapping("/productDetail")// 주소창
+		public String product() {
+			//@RequestParam("p_no") int p_no, Model model
+//			ProductDTO dto = ps.selectOne(p_no);
+//			model.addAttribute("dto",dto);
+			return "mn_productDetail";//보여지는 페이지 이동
+		}
+}
