@@ -147,7 +147,7 @@ public class UserController {
         
         model.addAttribute("usersDTO",usersDTO);
         session.setAttribute("usersDTO", usersDTO);
-        return "user_access";
+        return "main";
     }
     
 	/*
