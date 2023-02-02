@@ -36,7 +36,7 @@ public interface UsersMapper {
 	void updatePw(UsersDTO dto);
 
 	//소셜로그인 이메일확인
-	UsersDTO getMemberFindByEmail(String email);
+	UsersDTO getMemberFindByEmail(String email,String nickname);
 
 	
 	void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id);

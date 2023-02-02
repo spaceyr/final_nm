@@ -51,6 +51,7 @@
 				success:function(data){
 					if(data==true){
 						alert("임시 비밀번호가 발급되었습니다.메일함을 확인해 주세요");
+						location.href="/login"
 						console.log(data);
 					}else{
 						alert("아이디 또는 이메일을 정확하게 입력해 주세요");
