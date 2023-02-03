@@ -12,6 +12,8 @@ import kr.co.jhta.dto.ProductDTO;
 @Service
 public class ProductService {
 	
+	int count;
+	
 	@Autowired
 	private ProductDAO dao;
 	
@@ -39,6 +41,28 @@ public class ProductService {
 	public List<ProductDTO> selectList(String contents) {
 		// TODO Auto-generated method stub
 		return dao.selectList(contents);
+	}
+	
+	//유저당 상품개수조회
+	public int countProduct(String nickname) {
+
+		return dao.countProduct(nickname);
+	}
+	//유저당 상품조회수조회
+	public int countProductReview(String nickname) {
+
+		return dao.countProductReview(nickname);
+	}
+	//유저당 상품신고수조회
+	public int countProductReport(String nickname) {
+		
+		return dao.countProductReport(nickname);
+	}
+	
+	//유저당 상품평점조회
+	public float countProductLike(String nickname) {
+		
+		return dao.countProductLike(nickname);
 	}
 	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){
