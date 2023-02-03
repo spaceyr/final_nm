@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="menu_bar">
+	<h2 class="menu_title">카테고리 <span class="chevron"></span></h2>
+
+	<ul class="title_group menu_up">
+		<li><a th:href="@{/main/sportslist(cateno=100)}">운동</a></li>
+		<li><a th:href="@{/main/triplist(cateno=200)}">여행</a></li>
+		<li><a th:href="@{/main/myselflist(cateno=300)}">자기계발</a></li>
+		<li><a th:href="@{/main/artlist(cateno=400)}">문화생활</a></li>
+		<li><a th:href="@{/main/grouplist(cateno=500)}">모임</a></li>
+	</ul>
+		
+	</div>
+	<ul>
+		<h3 class="search_message" >찾으시는 뉴밋이 맞나요?</h3>
+	</ul>
+	
+	<br>
+<div class="product_container product_cont2">
+		<div class="product_items" >
+			<div class="product_item" th:each="dto : ${list3 }">
+				<a>
+					<div class="product_item_img">
+						<a th:href="@{/product/productDetail(p_no=${dto.p_no})}"><img th:src="@{/image/mainimage/} + ${dto.image}"></a>
+					</div>
+				</a>
+				<span class="product_item_name" th:text="${dto.title}"></span>
+				<div class="product_item_price"  th:text="${dto.price}+원">	
+				</div>
+				<p>&#128151; <span class="product_item_like" th:text="${dto.like}"></span></p>
+				<span>
+					<div class="product_item_info">
+						<span class="info_only">ONLY</span>
+						<span class="info_hot">HOT</span>
+					</div>
+				</span>
+			</div>
+
+		</div>
+	</div>
+	<br>
+	<br>
+	<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+	<script>
+	const title = document.querySelector('.menu_title');
+	const titleMenu = document.querySelector('.title_group');
+	const chevron = document.querySelector('.chevron');
+	const fas = document.querySelector('.fas');
+	chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+	
+	title.addEventListener('click', (e) => {
+		if(titleMenu.classList.contains('menu_up')) {
+			chevron.innerHTML = '<i class="fas fa-chevron-up"></i>';
+			titleMenu.style.height = '30px';
+			titleMenu.style.opacity = '1';
+			titleMenu.classList.remove('menu_up');
+			titleMenu.classList.add('menu_down');
+		} else {
+			chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+		titleMenu.style.height = '0px';
+			titleMenu.style.opacity = '0';
+			titleMenu.classList.remove('menu_down');
+			titleMenu.classList.add('menu_up');
+		}
+		
+	});
+	</script>
+</body>
+</html>

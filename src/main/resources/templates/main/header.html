@@ -23,7 +23,7 @@
 	
 	<header class="menu">
 		<a th:href="@{/main}" class="logo"><img src="../../image/logo/logo.JPG" /></a>
-		<form name="search" class="search_form"> <!-- method="post" action="search?title="+ title +> -->
+		<form name="search" class="search_form" action="/main/searchOk" method="get"> <!-- method="post" action="search?title="+ title +> -->
 			<div class="menu_search">
 				<span class="menu_search_icon"><i class="fas fa-search"></i></span>
 				<input type="text" id="search_text" name="title" placeholder="원하시는 뉴밋을 검색해보세요!"/>
