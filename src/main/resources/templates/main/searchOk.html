@@ -19,17 +19,18 @@
 		<li><a th:href="@{/main/grouplist(cateno=500)}">모임</a></li>
 	</ul>
 		
-	<!-- <ul>
-		<li class="active_menu" ></li>
-	</ul> -->
 	</div>
+	<ul>
+		<h3 class="search_message" >찾으시는 뉴밋이 맞나요?</h3>
+	</ul>
+	
 	<br>
 <div class="product_container product_cont2">
 		<div class="product_items" >
 			<div class="product_item" th:each="dto : ${list3 }">
 				<a>
 					<div class="product_item_img">
-						<a th:href="@{/main/productDetail(p_no=${dto.p_no})}"><img th:src="@{/image/mainimage/} + ${dto.image}"></a>
+						<a th:href="@{/product/productDetail(p_no=${dto.p_no})}"><img th:src="@{/image/mainimage/} + ${dto.image}"></a>
 					</div>
 				</a>
 				<span class="product_item_name" th:text="${dto.title}"></span>

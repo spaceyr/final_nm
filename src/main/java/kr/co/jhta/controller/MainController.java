@@ -100,6 +100,15 @@ public class MainController {
 			return "main/productListDetail";
 		}
 		
-		//상세상품페이지
+		// 검색 페이지
+		@GetMapping("/main/searchOk")
+		public String searchOk(@RequestParam("title")String title, Model model) {
+			
+			List<ProductDTO> list3 = service.searchList(title);
+			log.info("list3>>>>>>>>>>" + list3);
+			model.addAttribute("list3",list3);
+			return "main/searchOk";
+		} 
+		
 	
 }

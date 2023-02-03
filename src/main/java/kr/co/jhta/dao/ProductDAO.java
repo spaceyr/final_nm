@@ -24,4 +24,6 @@ public interface ProductDAO {
 	List<ProductDTO> selectOne(int cateno);
 	
 	List<ProductDTO> selectList(String contents);
+
+	List<ProductDTO> searchList(String title);
 }

@@ -41,6 +41,10 @@ public class ProductService {
 		return dao.selectList(contents);
 	}
 	
+	public List<ProductDTO> searchList(String title){
+		return dao.searchList(title);
+	}
+	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){
 		StartEnd se = new StartEnd(startNo, endNo);
 		return dao.readAll(se);
