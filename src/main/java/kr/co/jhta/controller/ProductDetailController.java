@@ -1,5 +1,7 @@
 package kr.co.jhta.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +23,12 @@ public class ProductDetailController {
 	
 	
 		@GetMapping("/productDetail")
-		public String product() {
-			//@RequestParam("p_no") int p_no, Model model
-			//ProductDTO dto = ps.selectOne(p_no);
-			//model.addAttribute("dto",dto);
+		public String product(@RequestParam("p_no")int p_no, Model model) {
+			
+			List<ProductDTO> list = ps.selectOne(p_no);
+
+			
+			model.addAttribute("list",list);
 			return "mn_productDetail";
 		}
 }

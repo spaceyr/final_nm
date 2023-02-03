@@ -279,7 +279,7 @@ form .signin__btn:hover {
 							signin_btn.text("회원가입");
 							$("form").removeAttr("method");
 							$("form").attr("action", "/auth1");
-
+							$("#loginError").hide();
 						});
 
 						//----------- sign in ---------------------
@@ -345,7 +345,7 @@ form .signin__btn:hover {
 			</div>
 			
 			<div>
-   			<p style="color: red; font-size:12px; margin-left: 30px;" th:text="${fail}"></p>
+   			<p id="loginError" style="color: red; font-size:12px; margin-left: 30px;" th:text="${fail}"></p>
 			</div>
 			<!-- Find id and pw -->
 

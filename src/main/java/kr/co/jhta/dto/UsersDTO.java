@@ -44,6 +44,7 @@ public class UsersDTO implements UserDetails{
 	private String addrs;		
 	private String post; 	
 	private String field;
+	private String profileimage;
 	
 	@NotBlank(message = "이름을 입력해주세요")
 	private String name;

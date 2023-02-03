@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +40,6 @@ public class UserController {
 	private final UserService userService;
 	
 	
-
       
      
      //로그인 페이지
@@ -139,12 +139,24 @@ public class UserController {
     	log.info("test");
     	HttpSession session = request.getSession();
         //Authentication 객체를 통해 유저 정보를 가져올 수 있다.
+    	Object obj = (Object)authentication.getPrincipal();
+        if(obj instanceof UsersDTO) {
+        	
         UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();  //userDetail 객체를 가져옴
         System.out.println("로그인부분 usersDTO : "+usersDTO);
         
         model.addAttribute("usersDTO",usersDTO);
         session.setAttribute("usersDTO", usersDTO);
         return "main";
+        }else {
+        	DefaultOAuth2User usersDTO = (DefaultOAuth2User) authentication.getPrincipal();  //userDetail 객체를 가져옴
+            System.out.println("로그인부분 usersDTO : "+usersDTO);
+            
+            model.addAttribute("usersDTO",usersDTO);
+            session.setAttribute("usersDTO", usersDTO);
+            return "main";
+        }
+        
     }
     
 	/*
@@ -207,11 +219,12 @@ public class UserController {
 			MailUtil mail=new MailUtil(); //메일 전송하기
 			mail.sendEmail(dto1);
 			
-			userService.updatePwd(dto1);
 			
 			String securePw = encoder.encode(dto1.getPw());//회원 비밀번호를 암호화하면 vo객체에 다시 저장
 			dto1.setPw(securePw);
 				
+			userService.updatePwd(dto1);
+
 			result="true";
 			
 

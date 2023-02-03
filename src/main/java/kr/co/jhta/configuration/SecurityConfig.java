@@ -46,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logoutUrl("/logout") // 로그아웃 처리 URL, default: /logout, 원칙적으로 post 방식만 지원
                 .logoutSuccessUrl("/login")// 로그아웃 성공 후 이동페이지
                 .deleteCookies("JSESSIONID") // 로그아웃 후 쿠키 삭제
+                .invalidateHttpSession(true) //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ확인해보기
+                .clearAuthentication(true)
             .and()	
             .formLogin() //form 로그인기능 작동할때
                 .loginPage("/login")
@@ -55,7 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                // .failureHandler(customeFailureHandler)
                 .and()
                 .oauth2Login().loginPage("/login")//csrf()올리고 여기부터 3줄 추가
-    			.userInfoEndpoint()
+                .defaultSuccessUrl("/user_access")
+                .userInfoEndpoint()
     			.userService(userDetailService);
                 
             		//로그인 창 
