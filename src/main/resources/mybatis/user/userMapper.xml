@@ -21,7 +21,7 @@
 	<!-- 회원가입 -->
 	<insert id="saveUsers" parameterType="UsersDTO">
 		INSERT INTO users
-		VALUES(#{nickname},#{id},#{pw},#{gender},#{email},3000,#{phone},#{grade},#{addrs},#{post},null,#{name},0,null)
+		VALUES(#{nickname},#{id},#{pw},#{gender},#{email},3000,#{phone},#{grade},#{addrs},#{post},null,#{name},0,#{profileimage})
 	</insert>
 
 	<!-- 아이디 중복확인 -->

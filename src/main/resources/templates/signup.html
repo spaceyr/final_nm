@@ -455,6 +455,7 @@ $(function(){
 					if(data == true){
 						alert("확인됐습니다.");
 						$('#userphone').attr('readonly',true);
+						$('#joinbtn').prop('disabled', false);
 					}else {
 						alert("이미 존재하는 연락처입니다 ");
 						$('#joinbtn').prop('disabled', true);

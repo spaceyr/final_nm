@@ -131,58 +131,77 @@
 
 
 	</script>
+
+	
 </head>
+	
 
 <body>
 
 	<h1><td th:text="${list}"></td></h1>
-	<div id="container">
+	<div th:each="dto : ${list }">
+	<div id="container" >
 
 		<div id="1pg" style="margin-top:100px;"></div>
-		<div style="margin-left:200px; float:left;">
-			<div><img src="cat1.jpg" style="width: 500px; height:500px;" /></div>
+		<div style="margin-left:100px; float:left;">
+			<div><img th:src="@{/image/mainimage/}+${dto.image}" style="width: 400px; height:500px;" /></div>
 
 		</div>
 
-	 <div style=" float:right; margin-right:150px;" class="shadow p-3 mb-5 bg-body rounded">
+
+		
+
+	 <div style="float:right; margin:auto; margin-right:100px; height: 500px;" class="shadow p-3 mb-5 bg-body rounded">
+
 			<form action="" name="frm">
 
-				<h2 class="pname_big" style="color: #5b90f0;">뉴밋상품</h2>
-				<table class="table table-hover" style="width:500px;">
+				<h3 class="pname_big" style="color: #5b90f0;" th:text="${dto.title}"></h3>
+				<hr />
+				<table class="table table-hover" style="width:700px;">
 
 					<tr>
 
-						<td style="width:150px; font-size: 25px;">50,000원</td>
-						<td class="price_td"><input type="hidden" name="pno" value="" /></td>
+						<td style="width:150px; font-size: 20px;" th:text="|${dto.price}원|"></td>
+						<!-- 누르면 리뷰창으로 옮기는 컨트롤러 인자담아서 
+						<a th:hrf="@{/mypage?userNum={num}}"></a> // 파라미터 넘길경우 -->
+						<a th:hrf="@{/login}"><td th:text="|이 상품은 ${dto.nickname}님이 주관합니다!|"></td></a>
 					</tr>
-					<hr />
+
 
 
 
 				</table>
+
+				<img th:src="@{/image/}+wannatrip.jpg" style="width: 500px; position:absolute; right: 220px;" alt="" />
+				
+				
+
 				<br>
 				<br>
 				<br>
 				<br>
 				<br>
 				<br>
-				<br>
-				<br>
+<!-- 결제하기페이지 이동 -->
+				<span th:each="dto:${list}">
+					<a th:href="@{pay(p_no=${dto.p_no})}" class="btn btn-outline-info">참여하기</a>
+				</span>
 				<br>
 				<br>
 				<br>
 				<hr />
-				<div style="margin-top: 40px;">
+				
 
-					땡땡땡 호스트님 주관
+
+					
 
 			</form>
-		</div> 
+		 
 
 	</div>
-	</div>
+	
 
-
+</div>
 
 
 
@@ -208,7 +227,7 @@
 		</div>
 		<div></div>
 		<div class="row" style="width: 70%; margin: auto; margin-top: 50px; margin-bottom: 50px;">
-				<img src="hostintro.jpg" alt="">
+				<img th:src="@{/image/}+hostintro.jpg" alt="">
 		</div>
 		
 		<div class="row">
@@ -220,7 +239,7 @@
 			</div>
 		</div>
 		<div style="text-align: center; margin-top: 50px; margin-bottom: 25px;">
-			<img src="" alt="" id="rdc" style="border: 0; width: 1000px;" />
+			<img th:src="@{/image/detailimage/}+${dto.detail_image}" alt="" id="rdc" style="border: 0; width: 1000px;" />
 		</div>
 		<hr>
 	<div>
@@ -230,7 +249,7 @@
 		</div>
 		
 
-			<img src="seoul.png" alt="" style="width:700px; margin-left: 260px; margin-top: 20px; margin-bottom: 20px;" >
+			<img src="" alt="" style="width:700px; margin-left: 260px; margin-top: 20px; margin-bottom: 20px;" >
 		
 
 	</div>
@@ -245,7 +264,7 @@
 		  </h2>
 		  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 			<div class="accordion-body" style="color: grey;">
-			  호스트에게 궁금한 점이 있으신가요? ......링크통일불가 .. 이것도 페이지 따로?
+			  호스트에게 궁금한 점이 있으신가요? <a th:hrf="@{/login}" >이 곳을 클릭해주세요. </a>
 			</div>
 		  </div>
 		</div>
@@ -297,9 +316,21 @@
 		
 	</div>
 	</div>
-
-	
+</div>
 	
 </body>
-
+<script th:inline="javascript">
+/*<![CDATA[*/
+	
+		$(function (){
+			var list = /*[[${list}]];*/
+			console.log(list);
+			$("#info").on("click",function () {
+				$("#rdc").attr("src","");
+			
+				
+			});
+		});
+		/*]]>*/
+	</script>
 </html>

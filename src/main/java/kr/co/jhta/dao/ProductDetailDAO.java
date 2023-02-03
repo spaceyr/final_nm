@@ -13,5 +13,7 @@ public interface ProductDetailDAO {
 
 	List<ProductDTO> getOne(int p_no);
 
+	ProductDTO payOne(int p_no);
+
 	
 }

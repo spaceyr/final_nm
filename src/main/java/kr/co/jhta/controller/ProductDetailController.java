@@ -26,8 +26,17 @@ public class ProductDetailController {
 		public String product(@RequestParam("p_no")int p_no, Model model) {
 			
 			List<ProductDTO> list = ps.selectOne(p_no);
+
 			
 			model.addAttribute("list",list);
 			return "mn_productDetail";
+		}
+		
+		@GetMapping("/pay")// 주소창
+		public String pay(@RequestParam("p_no")int p_no, Model model) {
+			List<ProductDTO> list = ps.selectOne(p_no);
+			
+			model.addAttribute("list",list);
+			return "pay/payDetail";//보여지는 페이지 이동
 		}
 }
