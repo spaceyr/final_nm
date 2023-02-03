@@ -21,7 +21,6 @@ public class PayController {
 	@Autowired
 	 ProductDetailService ps;
 
-// 상품상세보기 -> '참여하기'버튼 누르면 모달창 띄움
 	@GetMapping("/product")// 주소창
 	public String product(@RequestParam("p_no") int p_no, Model model) {
 		List<ProductDTO> dto = ps.selectOne(p_no);
@@ -29,11 +28,22 @@ public class PayController {
 		return "pay/productDetail";//보여지는 페이지 이동
 	}
 	
-// '결제완료' 버튼 누르면 결제 완료 페이지로 넘어감
+//'결제완료' 이동
 	@GetMapping("/order")
 	public String payForm() {
 		return "pay/payForm";
 	}
+//결제완료 페이지에서 '마이페이지' 이동
+	@GetMapping("/mypage")
+	public String myPage() {
+		return "mypage";
+	}
+	@GetMapping("test")
+	public String test() {
+		return "pay/test";
+	}
+	
+	
 	
 	
 } 

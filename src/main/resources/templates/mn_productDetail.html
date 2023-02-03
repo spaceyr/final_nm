@@ -131,7 +131,9 @@
 
 
 	</script>
+	
 </head>
+	
 
 <body>
 
@@ -155,7 +157,8 @@
 						<td style="width:150px; font-size: 25px;">50,000원</td>
 						<td class="price_td"><input type="hidden" name="pno" value="" /></td>
 					</tr>
-					<hr />
+						
+					<hr/>
 
 
 
@@ -166,8 +169,10 @@
 				<br>
 				<br>
 				<br>
-				<br>
-				<br>
+<!-- 결제하기페이지 이동 -->
+				<span th:each="dto:${list}">
+					<a th:href="@{pay(p_no=${dto.p_no})}" class="btn btn-outline-info">참여하기</a>
+				</span>
 				<br>
 				<br>
 				<br>
