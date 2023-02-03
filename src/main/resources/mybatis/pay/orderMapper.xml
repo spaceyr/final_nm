@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.co.jhta.dao.PayDAO">
+  	<insert id="payAddOne" parameterType="PayDTO">
+		INSERT INTO orders(nickname, p_no, price, pay_method, pay_date, pay_status)
+		VALUES (#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1)
+	</insert>
+  </mapper>
