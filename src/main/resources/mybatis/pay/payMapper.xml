@@ -9,4 +9,9 @@
 		FROM product
 		WHERE p_no = #{p_no}
 	</select>
+	<select id="payOne" parameterType="int" resultType="ProductDTO">
+		SELECT *
+		FROM product
+		WHERE p_no = #{p_no}
+	</select>
 </mapper>

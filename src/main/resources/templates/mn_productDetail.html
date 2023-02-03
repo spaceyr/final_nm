@@ -86,8 +86,55 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
+	<script type="text/javascript">
+		$(function () {
+			$("#info").on("click", function () {
+				$("#rdc").attr("src", "nigimori1.jpg");
+			})
+			
+
+			$("#buy").on("click", function () { // 주문하기
+
+				var frm = document.frm;
+				if ($("#countnum").val() == 0) {
+					alert("수량을 선택해주세요.");
+				} else {
+					document.frm.action = "../order/order.jsp";
+					document.frm.method = "get";
+					document.frm.submit();
+				}
+			})
+		});
+
+		
+
+		function plus_num() {
+
+			var number = ($("#countnum").attr('value'));
+			if (number == 9) {     // 숫자가 9라면 0으로 만든다.
+				$("#countnum").attr('value', '0'); //초기화 : 0 
+			} else {
+				var plus_num = parseInt(number) + 1; //숫자화해서 1을 추가한다(역순카운트일경우 -1)
+				$("#countnum").attr('value', plus_num);
+			}
+		}
+
+		function minus_num() {
+			var number = ($("#countnum").attr('value'));
+			if (number == 0) {     // 숫자가 9라면 0으로 만든다.
+				$("#countnum").attr('value', '0'); //초기화 : 0
+			} else {
+				var minus_num = parseInt(number) - 1; //숫자화해서 1을 추가한다(역순카운트일경우 -1)
+				$("#countnum").attr('value', minus_num);
+			}
+		}
+
+
+	</script>
+
 	
 </head>
+	
 
 <body>
 
@@ -119,14 +166,32 @@
 						<a th:hrf="@{/mypage?userNum={num}}"></a> // 파라미터 넘길경우 -->
 						<a th:hrf="@{/login}"><td th:text="|이 상품은 ${dto.nickname}님이 주관합니다!|"></td></a>
 					</tr>
-					
+
 
 
 
 				</table>
+
 				<img th:src="@{/image/}+wannatrip.jpg" style="width: 500px; position:absolute; right: 220px;" alt="" />
 				
 				
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+<!-- 결제하기페이지 이동 -->
+				<span th:each="dto:${list}">
+					<a th:href="@{pay(p_no=${dto.p_no})}" class="btn btn-outline-info">참여하기</a>
+				</span>
+				<br>
+				<br>
+				<br>
+				<hr />
+				
+
 
 					
 
