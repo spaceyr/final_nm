@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -62,6 +62,7 @@
 	});
 });
 	</script>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 </head>
 
 <body>
@@ -90,5 +91,5 @@
 			</div>
 		</form>
 	</div>
-
+<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
 </body>
