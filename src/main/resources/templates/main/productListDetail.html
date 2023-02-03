@@ -26,7 +26,7 @@
 	<br>
 <div class="product_container product_cont2">
 		<div class="product_items" >
-			<div class="product_item" th:each="dto : ${list3 }">
+			<div class="product_item" th:each="dto : ${list2 }">
 				<a>
 					<div class="product_item_img">
 						<a th:href="@{/main/productDetail(p_no=${dto.p_no})}"><img th:src="@{/image/mainimage/} + ${dto.image}"></a>
