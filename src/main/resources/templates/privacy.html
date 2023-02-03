@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -20,6 +20,7 @@
 			font-size: smaller;
 		}
 	</style>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 </head>
 <body>
 <div class="container">
@@ -180,5 +181,6 @@
 <br>본 개인정보처리방침은 2022년 7월 1일부터 시행됩니다.
 </p>
 </div>
+<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
 </body>
 </html>

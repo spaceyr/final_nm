@@ -66,7 +66,7 @@ text-decoration:none;
 .banner_dot_group {
  	position: absolute;
  	bottom: 10%;
- 	left: 45%
+ 	left: 44%
 }
 .banner_dot {
   cursor: pointer;
@@ -109,6 +109,7 @@ text-decoration:none;
   align-items: center;
   flex-direction: column;
   margin-right:40px;
+  
 }
 .category_menu:last-child {
 	margin-right:0;
@@ -120,27 +121,37 @@ text-decoration:none;
 	width:60px;
 	height: 60px;
 	border-radius:50%;
-	    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+	background-position: center;
+    background-repeat: no-repeat;   
+    
 }
 .category_menu span{
-	margin-top: 10px;
+	margin-top: 12px;
+	font-size: 15px;
 } 
 .category_menu_img1 {
-background-image: url("../image/test.jpg");
+   background-image: url("../image/sport.png");
+   background-size: 40px;
+   background-position: top 2px;
 }
 .category_menu_img2 {
-	background-image: url("../image/test.jpg");
+	background-image: url("../image/travel.png");
+	background-size: 45px;
 }
 .category_menu_img3 {
-	background-image: url("../image/test.jpg");
+	background-image: url("../image/book.png");
+	background-size: 40px;
+	background-position: top 2px;
 }
 .category_menu_img4 {
-	background-image: url("../image/test.jpg");
+	background-image: url("../image/art.png");
+	background-size: 40px;
+	background-position: top 2px;
 }
 .category_menu_img5 {
-	background-image: url("../image/test.jpg");
+	background-image: url("../image/meet.png");
+	background-size: 60px;
+	background-position: top 2px;
 }
 
 
@@ -198,7 +209,7 @@ border-radius: 8px;
   display: inline-block;
 }
 .product_item_name {
-	padding: 0 5px 8px;
+	padding: 0 5px 10px;
 	margin: 10px auto 3px;
 	font-weight: bold;
 		overflow: hidden;
@@ -206,9 +217,10 @@ border-radius: 8px;
   white-space: wrap;
   display:inline-block;
   width: 200px;
-  font-size: 15px;
+  font-size: 14px;
 }
 .product_item_price {
+	margin-top:6px;
 	 display: flex;
 	 flex-direction: row;
   justify-content: center;
@@ -217,6 +229,15 @@ border-radius: 8px;
 .product_item_price .price_current{
 	font-size: 15px;
 	font-weight: 500;
+}
+
+.product_item_like .like_current{
+	font-size: 15px;
+	font-weight: 500;
+	display: flex;
+	 flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .product_item_info {
@@ -291,5 +312,9 @@ border-radius: 8px;
 
 .menu_bar ul li:last-child{
 	margin-right: 0;
+}
+
+.search_message{
+	color: #5b90f0;
 }
 
