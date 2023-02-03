@@ -24,4 +24,13 @@ public interface ProductDAO {
 	List<ProductDTO> selectOne(int cateno);
 	
 	List<ProductDTO> selectList(String contents);
+	
+	//	상품개수조회
+	public int countProduct(String nickname);
+	//상품 조회수조회
+	public int countProductReview(String nickname);
+	//상품 신고수조회
+	public int countProductReport(String nickname);
+	//상품 평점조회
+	public float countProductLike(String nickname);
 }

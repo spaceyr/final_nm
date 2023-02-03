@@ -41,4 +41,21 @@
 	<insert id="insertOne" parameterType="ProductDTO">
   		insert into product values(0, #{title}, #{contents}, #{regdate}, #{image}, #{detail_image}, #{price}, #{location}, #{person}, #{period}, #{report}, #{hits}, #{cateno}, #{like}, #{level}, #{nickname}, #{inspection} )
   	</insert>
+  	
+	<!-- 유저당 상품개수조회 -->
+	<select id="countProduct" resultType="int" parameterType="String">
+		SELECT count(*) FROM product P INNER JOIN users U ON P.nickname=U.nickname where P.nickname = #{nickname}
+	</select>
+	<!-- 유저당 상품조회수조회 -->
+	<select id="countProductReview" resultType="int" parameterType="String">
+		select sum(P.hits) FROM product P INNER JOIN users U ON P.nickname=U.nickname where P.nickname = #{nickname}
+	</select>
+	<!-- 유저당 상품신고수조회 -->
+	<select id="countProductReport" resultType="int" parameterType="String">
+		select sum(P.report) FROM product P INNER JOIN users U ON P.nickname=U.nickname where P.nickname = #{nickname}
+	</select>
+	<!-- 유저당 상품평점조회 -->
+	<select id="countProductLike" resultType="float" parameterType="String">
+		select AVG(P.like) FROM product P INNER JOIN users U ON P.nickname=U.nickname where P.nickname = #{nickname}
+	</select>
 </mapper>

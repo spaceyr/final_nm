@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jhta.dto.ProductDTO;
+import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.service.ProductService;
 import kr.co.jhta.service.UserService;
 
@@ -25,6 +30,8 @@ public class AdminController {
 	@Autowired
 	UserService userservice;
 	
+	UsersDTO usersDTO;
+	
 	
 	 LocalDate now = LocalDate.now(); 
 	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
@@ -34,8 +41,36 @@ public class AdminController {
 	
 	
 	@GetMapping("/host")
-	public String host(){
+	public String host(Authentication authentication,HttpServletRequest request,Model model){
+		//로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		
+		if(authentication.getPrincipal() != null) {
+		
+		model.addAttribute("usersDTO",usersDTO);
+        session.setAttribute("usersDTO", usersDTO);
+        
+        //상품개수 전달
+        int productCount = service.countProduct(usersDTO.getNickname());
+        model.addAttribute("productCount",productCount);
+        
+        //상품조회수 전달
+        int countProductReview = service.countProductReview(usersDTO.getNickname());
+        model.addAttribute("countProductReview",countProductReview);
+        
+        //상품신고수 전달
+        int countProductReport = service.countProductReport(usersDTO.getNickname());
+        model.addAttribute("countProductReport",countProductReport);
+        
+        //상품평점 전달
+        float countProductLike = service.countProductLike(usersDTO.getNickname());
+        model.addAttribute("countProductLike",countProductLike);
+        
 		return "/host";
+		}
+			return "/login";
+		
 	}
 	
 	
