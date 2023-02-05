@@ -109,17 +109,17 @@ label {
 					
 					<label for="nickname" class="col-form-label">닉네임(호스트명)</label><br> 
 					<input class="form-control" type="text" th:value="${dto.nickname}"
-						name="nickname" id="nickname" disabled="disabled"></input><br>
+						name="nickname" id="nickname" ></input><br>
 					
 					<label for="title" class="col-form-label">상품명</label><br> <input
 						class="form-control" type="hidden" th:text="${dto.title}"
-						name="title" id="title" disabled="disabled"></input> <br>
+						name="title" id="title" ></input> <br>
 					<br>
 
 					<div class="mb-3">
 						<label for="price" class="col-form-label">가격</label><br> <input
 							class="form-control" type="text" th:value="${dto.price}"
-							name="price" id="price" disabled="disabled"></input> <br> <br>
+							name="price" id="price"></input> <br> <br>
 							
 							
 						<button id="coupon" type="button" class="btn btn-light"
@@ -131,7 +131,7 @@ label {
 					<h5>총 결제금액</h5>
 					<div class="coupon_use" id="coupon_use">
 						<input class="form-control" type="text"
-							th:value="${dto.price}-3000" disabled="disabled"></input><br>
+							th:value="${dto.price}-3000" ></input><br>
 					</div>
 
 				</div>
