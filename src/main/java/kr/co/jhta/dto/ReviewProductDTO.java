@@ -7,17 +7,18 @@ import lombok.Data;
 @Data
 public class ReviewProductDTO {
 
-	private int p_no;
+	private int r_no;//리뷰번호
+	private int p_no;//상품번호
 
-	private int r_no;
-//로그인시 닉네임 가져와야함
-	private String nickname;
+	
+//로그인시 닉네임 가져와야함???
+	private String nickname;//닉네임
 
-	private String title;
-	private String contents;
-	private String rating;
-	private Date regdate;
-	private String image;
+	private String contents;//내용
+	private String rating;//평점
+	private Date regdate;//등록날짜
+	private String title;//상품명
+	private int hits;//도움
 	
 
 }

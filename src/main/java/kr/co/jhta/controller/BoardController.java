@@ -4,7 +4,11 @@ package kr.co.jhta.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.jhta.dto.ReviewDTO;
 import kr.co.jhta.dto.ReviewProductDTO;
 import kr.co.jhta.dto.StarContentDTO;
+import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.dto.util.PageUtil;
 import kr.co.jhta.service.ReviewService;
+import kr.co.jhta.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -28,6 +34,8 @@ public class BoardController {
 
 	@Autowired
 	ReviewService rs;
+	
+
 	
 //	@GetMapping("/review")
 //	public void review(Model model,@ModelAttribute("dto2") StarContentDTO dto2 ) {
@@ -45,26 +53,12 @@ public class BoardController {
 //		System.out.println(">>>>>>review.html");
 //	}
 //	
-//	@GetMapping("/write")
-//	public String writeForm() {
-//		
-////		  log.info(ccc.getOriginalFilename()); // 경로명 없이 파일 이름과 파일 확장자
-////		  log.info(ccc.getSize());
-////		  log.info(ccc.getContentType()); // image/jpeg
-//		return "/board/writeForm";
-//	}
-//	
-//	@PostMapping("/write")
-//	public String writeOk(@ModelAttribute("dto") StarContentDTO dto2) {
-//		//내용 파라미터값 db저장
-//				rs.addReviewOne(dto2);
-//		return "redirect:/board/review";
-//	}
-	
+
 	
 	@GetMapping("/review")//주소창 이름
 	public String list(Model model, @ModelAttribute("dto3") ReviewDTO dto3,
 			@RequestParam(name = "cp", defaultValue = "1") int currentPage) {
+
 //		List<ReviewProductDTO> list = rs.getAllReview();
 //		model.addAttribute("list",list);	
 //		System.out.println("list: "+list );

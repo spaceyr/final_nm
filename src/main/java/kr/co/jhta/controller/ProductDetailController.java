@@ -48,11 +48,17 @@ public class ProductDetailController {
 			return "pay/payDetail";//보여지는 페이지 이동
 		}
 	
-// 결제페이지에서 결제완료 누르면 마이페이지로 이동
+// 결제페이지에서 결제완료 누르면 마이페이지로 이동 -> 결제내역 확인하기
 		@PostMapping("/mypage") 
-		public String payOk(@ModelAttribute("dto2") PayDTO dto2) {
+		public String payOk(Model model,
+							@ModelAttribute("dto2") PayDTO dto2,
+							@ModelAttribute("pdto") PayDTO pdto) {
 			
 			System.out.println(dto2.getNickname());
+			
+			List<PayDTO> list = payservice.getPayAll();
+			model.addAttribute("list",list);
+			System.out.println("list:"+list);
 			
 			payservice.payAddOne(dto2);
 			return "/mypage";

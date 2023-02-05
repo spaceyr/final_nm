@@ -31,14 +31,14 @@
 
 		<h1 th:text="${'후기'}"></h1>
 		<table class="table">
-			<!--<tr th:each="dto: ${list}">
+			<tr th:each="dto: ${list}">
 				 <td >
 				<span th:text="${dto.r_no}"></span><br>
 				<span th:text="${dto.nickname}"></span><br>
 				<span th:text="${dto.regdate}"></span><br>
 				<span th:text="${dto.contents}"></span><br>
 				<span th:text="${dto.title}"></span><br>
-				</td>  -->
+				</td>  
 			<tr th:each="dto3: ${list3}">
 				<td><span th:text="${dto3.r_no}"></span><br> 
 				

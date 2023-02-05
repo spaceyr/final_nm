@@ -14,7 +14,19 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.info_only {
+    margin-left: 0px;
+    margin-right: 6px;
+    border: solid 1px;
+    border-color: #5BC0F8;
+    border-radius: 3px;
+    padding: 1px 6px 3px;
+    font-size: 15px;
+    
+}
 
+</style>
 <!-- header -->
 </head>
 	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
@@ -45,7 +57,7 @@
 </head>
 <body>
 	<div class="container">
-		<h3>*소중한 후기를 남겨주세요*</h3>
+		
 
 		<form action="/board/write" method="post">
 			<!-- <div class="mb-3">
@@ -68,11 +80,11 @@
 			</div> -->
 
 			<div class="mb-3">
-				<label for="contents" class="col-form-label">내용</label><br>
+				<label for="contents" class="info_only">★newmeet 참여는 어떠셨나요?</label><br><br>
 				<textarea name="contents" id="contents" cols="50" rows="5"></textarea>
 			</div>
 
-			<label for="rating" class="col-form-label">평점</label>
+			<label for="rating" class="info_only">★평점을 남겨주세요</label>
 			<div class="mb-3" name="rating" id="rating">
 				<fieldset>
 					<input type="radio" name="rating" value="5" id="rate1"><label
@@ -85,12 +97,12 @@
 						for="rate5">★</label>
 				</fieldset>
 				  </div>
-			   <div class="mb-3">
+			  <!--  <div class="mb-3">
 				<label for="review_img" class="col-form-label">사진</label> <input
 					style="display: block;" type="file" name="review_img"
 					id="review_img" onchange="readURL(this);"> <img
 					id="preview" style="width: 150px;" />
-			</div>
+			</div> -->
 				<div class="mb-3">
 					<a href="review" class="btn btn-outline-primary">목록</a>
 					<button type="submit" class="btn btn-info">작성완료</button>

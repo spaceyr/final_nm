@@ -4,21 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.co.jhta.dao.ReviewDAO">
-	<!-- <select id="getAll" resultType="ReviewProductDTO">
+	 <select id="getAll" resultType="ReviewProductDTO">
 		SELECT r.p_no, r.rating, r.regdate , r.image, r.contents, p.nickname, p.title
 		FROM review as r
 			INNER JOIN product as p
 			ON r.p_no = p.p_no
 			ORDER BY r_no desc
-	</select>
-	<insert id="insertReviewOne" parameterType="StarContentDTO" useGeneratedKeys="true" keyProperty="r_no">
-	 	INSERT INTO review (r_no, contents, p_no)
-	 	VALUES (#{r_no},#{contents},#{p_no})
-	</insert> 
-	<select id="showStarCon" resultType="StarContentDTO">
-		SELECT contents
-		FROM review
-	</select>	  -->
+	</select> 
+	
+	
 	<select id="getAllR" resultType="ReviewProductDTO">
 		SELECT r.r_no, r.regdate, r.contents, p.nickname, p.title
 		FROM review as r
@@ -26,16 +20,18 @@
 			ON r.p_no = p.p_no
 			ORDER BY r_no desc
 	</select>
+	
+
 	<insert id="addS" parameterType="StarContentDTO" >
 		INSERT INTO review (contents, regdate, rating)
 		VALUES (#{contents}, date_format(now(),'%Y-%m-%d'), #{rating})
 	</insert>
-	
+
+<!-- 한페이지당 게시물 10개씩 -->
 	<select id="getTotal" resultType="int">
 			SELECT COUNT(*)
 			FROM review
 	</select>
-	
 	<select id="showR" parameterType="StartEnd" resultType="ReviewDTO" >
 		SELECT  r_no,r.rating, r.regdate, r.image, r.contents, r.p_no
 			FROM (SELECT r_no, rating, date_format(now(), '%Y-%m-%d') regdate, image, contents, p_no

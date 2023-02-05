@@ -8,6 +8,7 @@ import lombok.Data;
 public class PayDTO {
 
 	private String nickname;
+	private String title;
 	private int p_no;
 	private Date pay_date;
 	private String pay_method;

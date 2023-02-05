@@ -176,6 +176,27 @@
 		
       <article class="blog-post">
         <h4 class="blog-post-title mb-1" style="color: gray;">내활동</h4><br /><br />
+        
+<!-- 리뷰작성 관리하기 -->
+        <a th:href="@{/board/write}" class="btn btn-outline-primary">후기 작성</a>
+        
+     
+        <table class="table">
+        <tr>
+        	<td>상품명</td>
+        	<td>결제일</td>
+        	<td>결제수단</td>
+        </tr>
+       <tr th:each="pdto: ${list}">
+        <td th:text="${pdto.title}"></td>
+        <td th:text="${pdto.pay_date}"></td>
+        <td th:text="${pdto.pay_method}"></td> 
+       
+       	
+       
+       </table>
+     
+        
 								<div class="accordion" id="accordionExample">
 									<div class="accordion-item">
 										<h2 class="accordion-header" id="headingOne">
@@ -192,6 +213,7 @@
 												<!-- 상품 환불 기능??? -->
 											</div>
 										</div>
+										
 									</div>
         <hr style="width: 900px;">
         

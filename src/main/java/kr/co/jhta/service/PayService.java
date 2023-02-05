@@ -1,5 +1,9 @@
 package kr.co.jhta.service;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +20,13 @@ public class PayService {
 		dao.payAddOne(dto2);	
 		//dao.testAdd(dto);
 	}
+
+	public List<PayDTO> getPayAll() {
+		return dao.getPayAll();
+	}
+
+	
+
+	
 
 }

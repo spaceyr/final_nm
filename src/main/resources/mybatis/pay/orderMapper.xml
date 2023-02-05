@@ -8,4 +8,11 @@
 		INSERT INTO orders(nickname, p_no, price, pay_method, pay_date, pay_status)
 		VALUES (#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1)
 	</insert>
+	<select id="getPayAll" resultType="PayDTO">
+		SELECT * 
+		FROM orders as o
+			INNER JOIN product as p
+			ON o.p_no = p.p_no
+			ORDER BY pay_no desc
+	</select>
   </mapper>
