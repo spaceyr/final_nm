@@ -15,6 +15,8 @@ public interface PayDAO {
 
 	List<PayDTO> getPayAll();
 
+	void deletePay(int pay_no);
+
 
 
 }

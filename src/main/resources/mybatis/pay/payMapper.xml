@@ -14,6 +14,10 @@
 		FROM product
 		WHERE p_no = #{p_no}
 	</select>
+	<delete id="deletePay" parameterType="int" >
+		DELETE FROM orders
+  		WHERE pay_no = #{pay_no}
+	</delete>
 </mapper>
 
 	

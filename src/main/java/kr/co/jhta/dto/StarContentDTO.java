@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StarContentDTO {
 
-	//private int r_no;
+	private int r_no;
 	private String contents;
 	private Date regdate;
 	private int rating;
-	//private int p_no;
+	private int p_no;
 
 
 }

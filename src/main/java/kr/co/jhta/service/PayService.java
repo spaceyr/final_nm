@@ -25,6 +25,10 @@ public class PayService {
 		return dao.getPayAll();
 	}
 
+	public void deletePay(int pay_no) {
+		dao.deletePay(pay_no);
+	}
+
 	
 
 	

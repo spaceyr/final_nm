@@ -168,7 +168,9 @@
 
 						
 						
-						<td style="font-size: 20px;" th:text="|이 상품은 ${dto.nickname}님이 주관합니다!|"></td>
+						<!-- <td style="font-size: 20px;" th:text="|이 상품은 ${dto.nickname}님이 주관합니다!|"></td> -->
+						<td><a th:href="@{board/review(nickname=${dto.nickname})}" th:text="|host:  ${dto.nickname} |"></a></td>
+						
 					</tr>
 
 					

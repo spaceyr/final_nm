@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.jhta.dao.ReviewDAO;
+import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.ReviewDTO;
 import kr.co.jhta.dto.ReviewProductDTO;
 import kr.co.jhta.dto.StarContentDTO;
@@ -35,6 +36,12 @@ public class ReviewService {
 
 	public int getTotal() {
 		return dao.getTotal();
+	}
+
+	//리뷰작성시 상품번호 넘겨받기
+	public List<ProductDTO> getOne(int p_no) {
+		
+		return dao.getOne(p_no);
 	}
 	
 //	public List<ReviewProductDTO> getAllReview() {

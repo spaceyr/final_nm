@@ -15,4 +15,8 @@
 			ON o.p_no = p.p_no
 			ORDER BY pay_no desc
 	</select>
+	<delete id="deletePay" parameterType="int">
+		DELETE FROM orders
+  		WHERE pay_no = #{pay_no}
+	</delete>
   </mapper>

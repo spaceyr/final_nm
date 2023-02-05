@@ -20,9 +20,11 @@ public class ProductDetailService {
 	}
 
 	public ProductDTO payOne(int p_no) {
-		// TODO Auto-generated method stub
+		
 		return dao.payOne(p_no);
 	}
+
+	
 
 	
 }

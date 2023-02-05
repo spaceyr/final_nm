@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.ReviewDTO;
 import kr.co.jhta.dto.ReviewProductDTO;
 import kr.co.jhta.dto.StarContentDTO;
@@ -26,5 +27,7 @@ public interface ReviewDAO {
 	List<ReviewDTO> showR(StartEnd se);
 
 	int getTotal();
+
+	List<ProductDTO> getOne(int p_no);
 
 }

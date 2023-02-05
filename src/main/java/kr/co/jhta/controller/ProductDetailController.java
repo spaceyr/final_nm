@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jhta.dto.PayDTO;
@@ -62,5 +61,12 @@ public class ProductDetailController {
 			
 			payservice.payAddOne(dto2);
 			return "/mypage";
+		}
+		
+// 상품 환불
+		@GetMapping("product/pay/delete")
+		public String deleteOk(@RequestParam("pay_no") int pay_no) {
+			payservice.deletePay(pay_no);
+			return "redirect:/main";
 		}
 }

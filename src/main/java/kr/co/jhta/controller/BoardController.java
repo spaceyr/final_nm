@@ -1,14 +1,10 @@
 package kr.co.jhta.controller;
 
-
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,23 +13,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.ReviewDTO;
-import kr.co.jhta.dto.ReviewProductDTO;
 import kr.co.jhta.dto.StarContentDTO;
-import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.dto.util.PageUtil;
+import kr.co.jhta.service.ProductDetailService;
 import kr.co.jhta.service.ReviewService;
-import kr.co.jhta.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @Controller
-@RequestMapping("/board")
+
 public class BoardController {
 
 	@Autowired
 	ReviewService rs;
+	
+	@Autowired
+	ProductDetailService ps;
 	
 
 	
@@ -55,7 +53,7 @@ public class BoardController {
 //	
 
 	
-	@GetMapping("/review")//주소창 이름
+	@GetMapping("board/review")//주소창 이름
 	public String list(Model model, @ModelAttribute("dto3") ReviewDTO dto3,
 			@RequestParam(name = "cp", defaultValue = "1") int currentPage) {
 
@@ -77,23 +75,38 @@ public class BoardController {
 		return "board/review";
 	}
 
-//리뷰 작성
-	@GetMapping("/write")
-	public String writeForm() {
+//리뷰 작성시 p_no값 넘겨받음
+	@GetMapping("board/write")
+	public String writeForm(@RequestParam("p_no") int p_no, Model model) {
+		List<ProductDTO> list = ps.selectOne(p_no);
+		model.addAttribute("list",list);
+		
+		System.out.println("list_리뷰작성:" +list);
 		return "board/writeForm";
 	}
 	
-	@PostMapping("/write")
+	@PostMapping("board/write")
 	public String writeOk(@ModelAttribute("dto2") StarContentDTO dto2) {
 	System.out.println(dto2.getRating());
 		rs.addStar(dto2);
 		log.info(">>>>>>>>>>" + dto2);
-		return "redirect:/board/review";
+		return "/main";
 	}
 
 // 공지사항
-	@GetMapping("/notice")
+	@GetMapping("board/notice")
 	public String notice() {
 		return "board/notice";
 	}
+	
+//호스트 리뷰 조회
+//	@GetMapping("product/host") {
+//		public String host(Model model, @ModelAttribute("dto3") ReviewDTO dto3) {
+//			
+//			List <ReviewDTO> hlist = 
+//			return "product/host";
+//		}
+//		
+//	}
+
 }

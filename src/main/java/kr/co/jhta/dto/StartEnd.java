@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class StartEnd {
 	private int startNo;
 	private int endNo;
+	
 
 }

@@ -19,7 +19,11 @@
 </head>
 <style>
 .container {
-	width: 50%;
+	width: 70%;
+}
+
+.star {
+	color: #5b90f0;
 }
 </style>
 <body>
@@ -33,26 +37,27 @@
 		<table class="table">
 			<tr th:each="dto: ${list}">
 				 <td >
-				<span th:text="${dto.r_no}"></span><br>
 				<span th:text="${dto.nickname}"></span><br>
 				<span th:text="${dto.regdate}"></span><br>
 				<span th:text="${dto.contents}"></span><br>
 				<span th:text="${dto.title}"></span><br>
 				</td>  
+			</tr>
+			
+			
 			<tr th:each="dto3: ${list3}">
-				<td><span th:text="${dto3.r_no}"></span><br> 
+				<td><span th:text="${dto3.nickname}"></span><br> 
 				
 				<div th:switch="${dto3.rating}">
-  						<span th:case="'1'">★</span>
-  						<span th:case="'2'">★★</span>
-  						<span th:case="'3'">★★★</span>
-  						<span th:case="'4'">★★★★</span>
-  						<span th:case="'5'">★★★★★</span>
-				</div>	 
+  						<span th:case="'1'" class="star">★</span>
+  						<span th:case="'2'" class="star">★★</span>
+  						<span th:case="'3'" class="star">★★★</span>
+  						<span th:case="'4'" class="star">★★★★</span>
+  						<span th:case="'5'" class="star">★★★★★</span>
 					  <span th:text="${dto3.regdate}"></span><br> 
-					  <span th:text="${dto3.image}"></span><br> 
+				</div>	 
 					  <span th:text="${dto3.contents}"></span><br>
-					  <span th:text="${dto3.p_no}"></span><br></td>
+					  <span th:text="${dto3.title}"></span><br></td>
 					  
 			<tr>
 				<td colspan="4">

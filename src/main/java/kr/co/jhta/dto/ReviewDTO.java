@@ -14,9 +14,13 @@ import lombok.NoArgsConstructor;
 public class ReviewDTO {
 
 	private int r_no;
+	private int p_no;
+
+	private String nickname;
+
+	private String contents;
 	private String rating;
 	private Date regdate;
-	private String image;
-	private String contents;
-	private int p_no;
+
+	private String title;
 }
