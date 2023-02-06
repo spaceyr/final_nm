@@ -37,65 +37,15 @@
                             <div class="card shadow mb-4">
                                 
                                 <div class="card-body">
-                                    <div style="font-size: 40px; font-weight: bold;">안녕하세요! <br>(로그인아이디)님!</div>
+                                    <div style="font-size: 40px; font-weight: bold;">안녕하세요! <br><td th:text="${usersDTO.nickname}"></td>님!</div>
                                     <br />
-                                    <a href="https://frip.notion.site/94c1339b75e2437a9f6cff8e41c006e9" class="btn btn-outline-info" tabindex="-1" role="button" aria-disabled="true">호스트메뉴얼😎</a>
-                                    <a href="#" class="btn btn-outline-info" tabindex="-1" role="button" aria-disabled="true">나도 슈퍼호스트!</a>
+                                    <!-- 관리자버튼 --> 
+                                    <!-- <a href="https://frip.notion.site/94c1339b75e2437a9f6cff8e41c006e9" class="btn btn-outline-info" tabindex="-1" role="button" aria-disabled="true">호스트메뉴얼😎</a>
+                                    <a href="#" class="btn btn-outline-info" tabindex="-1" role="button" aria-disabled="true">나도 슈퍼호스트!</a> -->
                                 </div>
                             </div>
 
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            진행 뉴밋
-                                            <div class="text-white-50 small">테이블로 호스트당 게시물수 보여주기</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            전체 결제건수
-                                            <div class="text-white-50 small">호스트당 게시물 판매수</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            전체 후기수
-                                            <div class="text-white-50 small">호스트당 전체후기수</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            신고건수
-                                            <div class="text-white-50 small">신고수 보여주기</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            취소건수
-                                            <div class="text-white-50 small">취소건수 보여주기</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            평균평점
-                                            <div class="text-white-50 small">호스트당 게시물 평균평점</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
+                            
 
                         </div>
 

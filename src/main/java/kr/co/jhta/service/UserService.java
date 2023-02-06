@@ -97,10 +97,11 @@ public class UserService implements UserDetailsService {
 			userMapper.updatePw(dto);
 		}
 		
-		//host프로필수정
-				public void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id) {
-					userMapper.hostmodifyOne(nickname,email,phone,field,field,id);
-				}
+		// host프로필수정
+		public void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,
+				String id) {
+			userMapper.hostmodifyOne(nickname, email, phone, field, field, id);
+		}
 	
 				public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
 					String api_key = "NCSEYKCY2U4XSLJF";

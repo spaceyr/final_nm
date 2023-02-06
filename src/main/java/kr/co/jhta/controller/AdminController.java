@@ -153,18 +153,58 @@ public class AdminController {
 	}
 	
 	@GetMapping("/manage")
-	public String manage(){
+	public String manage(Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+
+		
+
+		
+		
 		return "manage";
 	}
 	
 	@GetMapping("/newmeetInspection")
-	public String newmeetInspection(Model model){
+	public String newmeetInspection(Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
 		
-		List<ProductDTO> list = service.selectAll();
+		
+		List<ProductDTO> list = service.selectInsepection();
 		
 		model.addAttribute("list", list);
 		
 		return "newmeetInspection";
+	}
+	
+	@PostMapping("/newmeetInspection")
+	public String newmeetInspectionOk(@RequestParam("inspection")int inspection,
+									  @RequestParam("p_no")int p_no,
+										Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
+		/* 검수안된거 객체전달 */
+		List<ProductDTO> list = service.selectInsepection();
+		
+		model.addAttribute("list", list);
+		
+		//검수수정
+		service.inspectionmodifyOne(p_no, inspection);
+		
+		return "redirect:/newmeetInspection";
 	}
 	
 	@GetMapping("/mypage")
