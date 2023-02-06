@@ -40,8 +40,18 @@
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script>
+	
+	
+	
+	
+	
 	$(function(){
 	$('#next').hide();
+	$('#userEmail').focus().keydown(function(){
+		if(event.keyCode===13){
+			event.preventDefault();
+		}
+	})
 // 이메일 인증번호
 $('#checkEmail').on('click',function() {
    $.ajax({

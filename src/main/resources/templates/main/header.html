@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="icon" th:href="@{/image/logo/favicon.ico}">
+       <title>NewMeet</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../css/header.css" />
@@ -14,8 +16,8 @@
 <body>
 	<section class="top_menu">
 		<ul class="menu_group">
-			<li><a th:href="@{/main}">로그인</a></li>
-			<li><a th:href="@{/main}">회원가입</a></li>
+			<li><a th:href="@{/login}">로그인</a></li>
+			<li><a th:href="@{/auth1?username=&password=}">회원가입</a></li>
 			<li><a th:href="@{/main}">고객센터</a></li>
 			<li><a th:href="@{/host}">호스트센터</a></li>
 		</ul>
@@ -23,7 +25,7 @@
 
 	
 	<header class="menu">
-		<a th:href="@{/main}" class="logo"><img src="../../image/logo/logo.JPG" /></a>
+		<a th:href="@{/main}" class="logo"><img src="../../image/logo/new.gif" /></a>
 		<form name="search" class="search_form" action="/main/searchOk" method="get"> <!-- method="post" action="search?title="+ title +> -->
 			<div class="menu_search">
 				<span class="menu_search_icon"><i class="fas fa-search"></i></span>
