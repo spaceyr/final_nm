@@ -33,7 +33,7 @@
 					</div>
 				</a>
 				<span class="product_item_name" th:text="${dto.title}"></span>
-				<div class="product_item_price"  th:text="${dto.price}+원">	
+				<div class="product_item_price"  th:text="${#numbers.formatInteger(dto.price, 3, 'COMMA')}+원">	
 				</div>
 				<p>&#128151; <span class="product_item_like" th:text="${dto.like}"></span></p>
 				<span>

@@ -200,7 +200,7 @@
 				</div>
 				</div>
 				</div> -->
-				
+		
 		<hr style="width: 900px;">
 		
       <article class="blog-post">
@@ -226,7 +226,7 @@
 			<span th:case="0" class="btn btn-outline-danger btn-sm" th:text="결제대기"></span>
 			<span th:case="1" >
 				<a th:href="@{/board/write(p_no=${pdto.p_no})}" th:text="후기작성" class="btn btn-outline-info btn-sm"></a>
-				<a th:href="@{/product/pay/delete(pay_no=${pdto.pay_no})}" th:text="환불" class="btn btn-outline-warning btn-sm"></a>
+				<a th:href="@{/product/pay/delete(pay_no=${pdto.pay_no})}" th:text="환불" class="btn btn-outline-warning btn-sm" onclick="refund()"></a>
 	</span>
 
        </table>
@@ -365,12 +365,7 @@
 			titleMenu.classList.remove('menu_down');
 			titleMenu.classList.add('menu_up');
 		}
-		
 	});
 	</script>
-
 </body>
-
-
-
 </html>
