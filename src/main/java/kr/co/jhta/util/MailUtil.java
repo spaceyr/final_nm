@@ -28,12 +28,14 @@ public class MailUtil {
 		String subject="NewMeet에서 발송하는 임시 비밀번호입니다"; //메일 제목
 		String msg="";
 		
-		msg +="<div align='lift'";
-		msg +="<h3>";
+		msg +="<div style='margin:20px;'>";
+		msg +="<br>";
+		msg +="<h3 style='color:#5b90f0;'>";
 		msg +=dto.getId() + "님의 임시 비밀번호입니다. <br>로그인 후 비밀번호를 변경해 주세요</h3>";
-		msg +="<p>임시 비밀번호:";
-		msg +=dto.getPw() + "</p></div>";
-		
+		msg +="<br>";
+		msg +="<p><strong>임시 비밀번호:";
+		msg +=dto.getPw() + "</string></p></div>";
+		 
 		//email전송
 		String mailRecipient=dto.getEmail();//받는 사람 이메일 주소
 		try {

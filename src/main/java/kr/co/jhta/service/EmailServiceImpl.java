@@ -25,19 +25,17 @@ public class EmailServiceImpl implements EmailService{
         MimeMessage  message = emailSender.createMimeMessage();
  
         message.addRecipients(RecipientType.TO, to);//보내는 대상
-        message.setSubject("이메일 인증 테스트");//제목
+        message.setSubject("뉴밋 회원가입 인증 번호입니다!!!");//제목
  
         String msgg="";
         msgg+= "<div style='margin:20px;'>";
-        msgg+= "<h1> 뉴밋 회원가입 인증번호입니다. </h1>";
         msgg+= "<br>";
         msgg+= "<p style='color:red'>아래 코드를 전체 복사해서 입력해주세요.<p>";
         msgg+= "<br>";
-        msgg+= "<div align='center' style='border:1px solid black; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;'>";
         msgg+= "<h3 style='color:#5b90f0;'>회원가입 인증 코드입니다.</h3>";
         msgg+= "<div style='font-size:130%'>";
-        msgg+= "CODE : <strong>";
-        msgg+= ePw+"</strong><div><br/> ";
+        msgg+= "인증코드 : <strong>";
+        msgg+= ePw+"</strong><br/></div>";
         msgg+= "</div>";
         message.setText(msgg, "utf-8", "html");//내용
         message.setFrom(new InternetAddress("hisutdyway@gmail.com","newmeet"));//보내는 사람

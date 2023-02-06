@@ -109,19 +109,28 @@ public class UserController {
    	}
    	
    	//연락처 중복확인
-   	@PostMapping("/user/phonecheck")
-   	@ResponseBody
-   	public boolean isPhoneCheck(@RequestParam(value = "userphone") String userphone) {
-   	 
-   		log.info("연락처 인증 클릭시 요청받은 userphone 값: {}", userphone);
-   		
-   		boolean result = userService.isPhoneCheck(userphone);
-   		log.info("연락처중복체크 여부: {}", result);
-   		
-   		return result;
-   	}
+//   	@PostMapping("/user/phonecheck")
+//   	@ResponseBody
+//   	public boolean isPhoneCheck(@RequestParam(value = "userphone") String userphone) {
+//   	 
+//   		log.info("연락처 인증 클릭시 요청받은 userphone 값: {}", userphone);
+//   		
+//   		boolean result = userService.isPhoneCheck(userphone);
+//   		log.info("연락처중복체크 여부: {}", result);
+//   		
+//   		return result;
+//   	}
    	
-   	
+  
+  	@RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
+  	@ResponseBody
+  	public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
+  		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
+
+  		userService.certifiedPhoneNumber(userPhoneNumber,randomNumber);
+  		
+  		return Integer.toString(randomNumber);
+  	}
   
 
     //로그인 실패
