@@ -3,8 +3,11 @@ package kr.co.jhta.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.ReviewDTO;
 import kr.co.jhta.dto.StarContentDTO;
+import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.dto.util.PageUtil;
 import kr.co.jhta.service.ProductDetailService;
 import kr.co.jhta.service.ReviewService;
@@ -50,8 +54,16 @@ public class BoardController {
 
 	@GetMapping("board/review") // 주소창 이름
 	public String list(Model model, @ModelAttribute("dto3") ReviewDTO dto3,
-			@RequestParam(name = "cp", defaultValue = "1") int currentPage) {
+			@RequestParam(name = "cp", defaultValue = "1") int currentPage,
+			Authentication authentication,HttpServletRequest request
+			) {
 
+		//로그인객체전달
+				HttpSession session = request.getSession();
+				UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+						
+				model.addAttribute("usersDTO",usersDTO);
+				session.setAttribute("usersDTO", usersDTO);
 //		List<ReviewProductDTO> list = rs.getAllReview();
 //		model.addAttribute("list",list);	
 //		System.out.println("list: "+list );
