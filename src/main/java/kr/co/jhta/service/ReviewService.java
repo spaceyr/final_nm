@@ -38,33 +38,16 @@ public class ReviewService {
 		return dao.getTotal();
 	}
 
-	//리뷰작성시 상품번호 넘겨받기
+//리뷰작성시 상품번호 넘겨받기
 	public List<ProductDTO> getOne(int p_no) {
 		
 		return dao.getOne(p_no);
 	}
-	
-//	public List<ReviewProductDTO> getAllReview() {
-//		return dao.getAll();
-//	}
-//
-//
-//	public void addReviewOne(StarContentDTO dto) {
-//		dao.insertReviewOne(dto);
-//	}
-//
-//
-//	public StarContentDTO showSC(StarContentDTO dto2) {
-//		
-//		return dao.showStar(dto2);
-//	}
-//
-//
-//	public List<StarContentDTO> showPra() {
-//		
-//		return dao.showStarCon();
-//	}
-//
+
+//호스트별 리뷰 조회	
+	public List<ReviewDTO> selectHost(String nickname) {	
+		return dao.selectHost(nickname);
+	}
 
 
 }

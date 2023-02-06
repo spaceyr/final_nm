@@ -2,7 +2,11 @@ package kr.co.jhta.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
+import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.service.PayService;
 import kr.co.jhta.service.ProductDetailService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,13 +32,10 @@ public class ProductDetailController {
 	@Autowired
 	 ProductDetailService ps;
 	
-	
+// 상품상세페이지
 		@GetMapping("product/productDetail")
 		public String product(@RequestParam("p_no")int p_no, Model model) {
-			
 			List<ProductDTO> list = ps.selectOne(p_no);
-
-			
 			model.addAttribute("list",list);
 			return "mn_productDetail";
 		}
@@ -41,6 +43,7 @@ public class ProductDetailController {
 // 상품상세보기에서 참여하기 누르면 결제페이지로 이동
 		@GetMapping("product/pay")// 주소창
 		public String pay(@RequestParam("p_no")int p_no, Model model) {
+			
 			List<ProductDTO> list = ps.selectOne(p_no);
 			
 			model.addAttribute("list",list);
@@ -52,6 +55,13 @@ public class ProductDetailController {
 		public String payOk(Model model,
 							@ModelAttribute("dto2") PayDTO dto2,
 							@ModelAttribute("pdto") PayDTO pdto) {
+			//로그인객체전달
+//			HttpSession session = request.getSession();
+//			UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+//					
+//			model.addAttribute("usersDTO",usersDTO);
+//			session.setAttribute("usersDTO", usersDTO);
+			
 			
 			System.out.println(dto2.getNickname());
 			
@@ -62,6 +72,7 @@ public class ProductDetailController {
 			payservice.payAddOne(dto2);
 			return "/mypage";
 		}
+		
 		
 // 상품 환불
 		@GetMapping("product/pay/delete")

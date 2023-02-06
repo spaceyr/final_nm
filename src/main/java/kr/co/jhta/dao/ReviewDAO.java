@@ -17,10 +17,6 @@ import kr.co.jhta.dto.StartEnd;
 public interface ReviewDAO {
 
 	List<ReviewProductDTO> getAllR();
-//	List<ReviewProductDTO> getAll();
-//	void insertReviewOne(StarContentDTO dto);
-//	StarContentDTO showStar(StarContentDTO dto2);
-//	List<StarContentDTO> showStarCon();
 
 	void addS(StarContentDTO dto2);
 
@@ -29,5 +25,8 @@ public interface ReviewDAO {
 	int getTotal();
 
 	List<ProductDTO> getOne(int p_no);
+
+//호스트별 리뷰 조회
+	List<ReviewDTO> selectHost(String nickname);
 
 }

@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jhta.dto.ProductDTO;
@@ -21,7 +20,6 @@ import kr.co.jhta.service.ProductDetailService;
 import kr.co.jhta.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @Controller
 
@@ -29,12 +27,10 @@ public class BoardController {
 
 	@Autowired
 	ReviewService rs;
-	
+
 	@Autowired
 	ProductDetailService ps;
-	
 
-	
 //	@GetMapping("/review")
 //	public void review(Model model,@ModelAttribute("dto2") StarContentDTO dto2 ) {
 //	
@@ -52,25 +48,24 @@ public class BoardController {
 //	}
 //	
 
-	
-	@GetMapping("board/review")//주소창 이름
+	@GetMapping("board/review") // 주소창 이름
 	public String list(Model model, @ModelAttribute("dto3") ReviewDTO dto3,
 			@RequestParam(name = "cp", defaultValue = "1") int currentPage) {
 
 //		List<ReviewProductDTO> list = rs.getAllReview();
 //		model.addAttribute("list",list);	
 //		System.out.println("list: "+list );
-		
+
 //리뷰 전체 조회
 		int totalNumber = rs.getTotal();
-		
+
 		int recordPerPage = 10;
-		Map <String,Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
-		int startNo = (int)map.get("startNo");
-		int endNo = (int)map.get("endNo");
+		Map<String, Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
+		int startNo = (int) map.get("startNo");
+		int endNo = (int) map.get("endNo");
 //									닉네임, 상품명 테이블 조인해야함.
 		List<ReviewDTO> list3 = rs.getRd(startNo, endNo);
-		model.addAttribute("list3",list3);
+		model.addAttribute("list3", list3);
 		model.addAttribute("map", map);
 		return "board/review";
 	}
@@ -79,15 +74,16 @@ public class BoardController {
 	@GetMapping("board/write")
 	public String writeForm(@RequestParam("p_no") int p_no, Model model) {
 		List<ProductDTO> list = ps.selectOne(p_no);
-		model.addAttribute("list",list);
-		
-		System.out.println("list_리뷰작성:" +list);
+		model.addAttribute("list", list);
+
+		System.out.println("list_리뷰작성:" + list);
 		return "board/writeForm";
 	}
-	
+
+//리뷰 작성완료시 db에 저장
 	@PostMapping("board/write")
 	public String writeOk(@ModelAttribute("dto2") StarContentDTO dto2) {
-	System.out.println(dto2.getRating());
+		System.out.println(dto2.getRating());
 		rs.addStar(dto2);
 		log.info(">>>>>>>>>>" + dto2);
 		return "/main";
@@ -98,15 +94,14 @@ public class BoardController {
 	public String notice() {
 		return "board/notice";
 	}
+
 	
-//호스트 리뷰 조회
-//	@GetMapping("product/host") {
-//		public String host(Model model, @ModelAttribute("dto3") ReviewDTO dto3) {
-//			
-//			List <ReviewDTO> hlist = 
-//			return "product/host";
-//		}
-//		
-//	}
+//호스트별 리뷰 조회
+//	  @GetMapping("product/host") public String host(Model
+//	  model, @RequestParam("nickname")String nickname) { 
+//		  List<ReviewDTO> host =  rs.selectHost(nickname); model.addAttribute("host",host);
+//	  return "board/review";
+//	  }
+	
 
 }

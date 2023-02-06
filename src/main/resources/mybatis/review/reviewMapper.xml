@@ -51,13 +51,15 @@
 			limit #{startNo}, 10
 	</select>
 	
+	
+	
 <!-- 호스트 리뷰 조회 -->	
-	<select id="host" parameterType="int" resultType="ReviewDTO">
+	<select id="selectHost" parameterType="string" resultType="ReviewDTO">
 		SELECT  r_no,r.rating, r.regdate, r.contents, r.p_no, p.nickname, p.title
 		FROM review as r
 			INNER JOIN product as p
 			ON r.p_no = p.p_no
-			WHERE nickname=#{nickname}
+			WHERE nickname like concat ('%',#{nickname},'%')
 			ORDER BY r_no desc
 	</select>
 </mapper>
