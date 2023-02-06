@@ -27,7 +27,7 @@
                      	
 
 						<div class="container" style="font-size: 20px; font-weight: bold;">
-							미검수뉴밋 목록
+							검수반려 뉴밋 목록
 						</div><br>
 						
 									<!-- 카드안쪽 -->
@@ -49,18 +49,15 @@
 									</p>
 									<span>
 										<div class="product_item_info">
-											<form action="/newmeetInspection" method="post" >
+											<!-- <form action="/newmeetInspection" method="post" >
 													<select class="form-select"
 														aria-label="Default select example" th:name="inspection"  >
 														<option value="0">검수통과</option>
 														<option value="-1">검수반려</option>
 													</select>
 													<input type="hidden" th:value="${dto.p_no}" name="p_no">
-													<input type="hidden" th:value="${dto.nickname}" name="nickname">
-													<br />
-														<input style="display:inline;width: 125px;" type="text" class="form-control form-control-sm" placeholder="반려시 입력)사유" name="message">
-														<button style="display:inline;" type="submit" class="btn btn-secondary" >확인</button>
-											</form>
+													<button type="submit" class="btn btn-secondary" >확인</button>
+											</form> -->
 										</div>
 									</span>
 								</div>
@@ -133,22 +130,6 @@
 	});
 	</script>
 	
-    <!-- <script>
-    $(document).ready(function(){
-    	alert($("span:nth-child(6) > div > select").val());
-	    $('form').on('submit', function() {
-	    	var inspection=document.getElementById("inspection");
-	    	inspection1=parseInt(inspection.value);
-	    	alert(inspection);
-	    	console.log(inspection);
-	    	
-	    	
-			
-		});
-	    $("#btn").on("click",function(){
-	    	console.log("s");
-	    })
-    });
-	</script>  -->
+    
 </body>
 </html>

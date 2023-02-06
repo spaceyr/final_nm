@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
+import kr.co.jhta.dto.Rejected_messageDTO;
 import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.service.PayService;
 import kr.co.jhta.service.ProductService;
@@ -173,6 +174,23 @@ public class AdminController {
 		return "manage";
 	}
 	
+	@GetMapping("/newmeetReject")
+	public String newmeetReject(Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
+		
+		List<ProductDTO> list = service.rejectInsepection();
+		
+		model.addAttribute("list", list);
+		
+		return "newmeetReject";
+	}
+	
 	@GetMapping("/newmeetInspection")
 	public String newmeetInspection(Authentication authentication,HttpServletRequest request,Model model){
 		// 로그인객체전달
@@ -192,7 +210,7 @@ public class AdminController {
 	
 	@PostMapping("/newmeetInspection")
 	public String newmeetInspectionOk(@RequestParam("inspection")int inspection,
-									  @RequestParam("p_no")int p_no,
+									  @ModelAttribute("dto")Rejected_messageDTO dto,
 										Authentication authentication,HttpServletRequest request,Model model){
 		// 로그인객체전달
 		HttpSession session = request.getSession();
@@ -206,8 +224,13 @@ public class AdminController {
 		
 		model.addAttribute("list", list);
 		
-		//검수수정
-		service.inspectionmodifyOne(p_no, inspection);
+		if(inspection == 0) {
+			service.inspectionmodifyOne(dto);
+		}else if(inspection == -1) {
+			service.rejectmodifyOne(dto);
+			service.rejectinsertOne(dto);
+		}
+		
 		
 		return "redirect:/newmeetInspection";
 	}

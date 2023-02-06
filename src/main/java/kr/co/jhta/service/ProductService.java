@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.jhta.dao.ProductDAO;
 import kr.co.jhta.dto.ProductDTO;
+import kr.co.jhta.dto.Rejected_messageDTO;
 
 
 @Service
@@ -20,9 +21,13 @@ public class ProductService {
 	public List<ProductDTO> selectAll(){
 		return dao.getAll();
 	}
-	
+	//검수안한것만
 	public List<ProductDTO> selectInsepection(){
 		return dao.selectInsepection();
+	}
+	//검수반려만
+	public List<ProductDTO> rejectInsepection(){
+		return dao.rejectInsepection();
 	}
 	
 	public List<ProductDTO> selectOneMj(String keyword,String from_date,String to_date,String inspection) {
@@ -82,8 +87,18 @@ public class ProductService {
 	}
 	
 	//검수확인 수정
-	public void inspectionmodifyOne(int p_no,int inspection) {
-		dao.inspectionmodifyOne(p_no, inspection);
+	public void inspectionmodifyOne(Rejected_messageDTO dto) {
+		dao.inspectionmodifyOne(dto);
+	}
+	
+	//검수반려 수정
+	public void rejectmodifyOne(Rejected_messageDTO dto) {
+		dao.rejectmodifyOne(dto);
+	}
+	
+	//반려테이블 추가
+	public void rejectinsertOne(Rejected_messageDTO dto) {
+		dao.rejectinsertOne(dto);
 	}
 	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){
