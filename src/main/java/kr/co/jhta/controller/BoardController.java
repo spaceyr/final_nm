@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-
 public class BoardController {
 
 	@Autowired
@@ -115,5 +114,5 @@ public class BoardController {
 //	  return "board/review";
 //	  }
 	
-
+	
 }

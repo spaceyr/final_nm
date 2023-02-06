@@ -52,40 +52,50 @@ public class ProductDetailController {
 			
 			model.addAttribute("list",list);
 			return "pay/payDetail";//보여지는 페이지 이동
+				
 		}
-	
+		
+		
 // 결제페이지에서 결제완료 누르면 마이페이지로 이동 -> 결제내역 확인하기
 		@PostMapping("/mypage") 
 		public String payOk(Model model,
 							@ModelAttribute("dto2") PayDTO dto2,
 							@ModelAttribute("pdto") PayDTO pdto,
-							Authentication authentication,HttpServletRequest request) {
+							Authentication authentication,HttpServletRequest request
+							) {
+
+			
+			
 			//로그인객체전달
+			if(authentication != null) {
 			HttpSession session = request.getSession();
 			UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
 					
 			model.addAttribute("usersDTO",usersDTO);
 			session.setAttribute("usersDTO", usersDTO);
 			
-			
-			System.out.println(dto2.getNickname());
-			
 			List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());
 			model.addAttribute("list", list);
-			
+
+			//결제내역전달
 			List<PayDTO> list2 = payservice.getPayAll();
 			model.addAttribute("list2",list2);
 			System.out.println("list2:"+list2);
 			
 			payservice.payAddOne(dto2);
 			return "/mypage";
+			}else {
+				return "/login";
+			}
 		}
-		
-		
-// 상품 환불
+	
+//상품 환불
 		@GetMapping("product/pay/delete")
 		public String deleteOk(@RequestParam("pay_no") int pay_no) {
 			payservice.deletePay(pay_no);
 			return "redirect:/main";
 		}
+		
+
+		
 }
