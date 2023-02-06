@@ -71,6 +71,12 @@ public class ProductService {
 
 	}
 	
+	//찜한상품만가져오기
+	public List<ProductDTO> selectOneJjim(String nickname) {
+
+		return dao.selectOneJjim(nickname);
+	}
+	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){
 		StartEnd se = new StartEnd(startNo, endNo);
 		return dao.readAll(se);

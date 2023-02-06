@@ -20,7 +20,9 @@
 				<rect width="150%" height="150%" fill="#777"></rect>
 				<image href="image/rabbit.jpeg" height="80" width="80"/>
 			</svg>
-			<h2 class="fw-normal" style="font-size: 30px; padding-left: 110px">로그인ID</h2>
+			<h2 class="fw-normal" style="font-size: 30px; padding-left: 110px">
+				<div th:text="${usersDTO.nickname}"></div>
+			</h2>
 			<p>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-secondary" href="#" style="font-size: 10px; ">프로필수정 »</a>
 			</p>
@@ -41,11 +43,38 @@
 								<div class="container">
 					<h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">내 관심뉴밋</h1>
 					<br />
+					
+					
 									<!-- 카드안쪽 -->
-									<section class="product_container" id="productList">
+						<div class="product_container product_cont2">
+							<div class="product_items">
+
+								<div class="product_item" th:each="dto : ${list }">
+									<a>
+										<div class="product_item_img">
+											<a th:href="@{/product/productDetail(p_no=${dto.p_no})}"><img
+												th:src="@{/image/mainimage/} + ${dto.image}"></a>
+										</div>
+									</a> <span class="product_item_name" th:text="${dto.title}"></span>
+									<div class="product_item_price" th:text="${dto.price}+원">
+									</div>
+									<p>
+										&#128151; <span class="product_item_like"
+											th:text="${dto.like}"></span>
+									</p>
+									<span>
+										<div class="product_item_info">
+											<span class="info_only">ONLY</span> <span class="info_hot">HOT</span>
+										</div>
+									</span>
+								</div>
+
+							</div>
+						</div>
+						<!-- <section class="product_container" id="productList">
 									<section class="product_best"></section>
-								</section>
-								<script>
+								</section> -->
+								<!-- <script>
 								
 							const bestProducts = [  /* const name1 = value1 [, name2 = value2 [, name3 = value3 ]] */
 								{
@@ -122,7 +151,7 @@
 							 	 render();
 							}
 							 	
-							</script>
+							</script> -->
 								</div>
 
                      </div>
@@ -315,6 +344,30 @@
 
 	</main>
    	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+	<script>
+	const title = document.querySelector('.menu_title');
+	const titleMenu = document.querySelector('.title_group');
+	const chevron = document.querySelector('.chevron');
+	const fas = document.querySelector('.fas');
+	chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+	
+	title.addEventListener('click', (e) => {
+		if(titleMenu.classList.contains('menu_up')) {
+			chevron.innerHTML = '<i class="fas fa-chevron-up"></i>';
+			titleMenu.style.height = '30px';
+			titleMenu.style.opacity = '1';
+			titleMenu.classList.remove('menu_up');
+			titleMenu.classList.add('menu_down');
+		} else {
+			chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+		titleMenu.style.height = '0px';
+			titleMenu.style.opacity = '0';
+			titleMenu.classList.remove('menu_down');
+			titleMenu.classList.add('menu_up');
+		}
+		
+	});
+	</script>
 
 </body>
 

@@ -168,7 +168,17 @@ public class AdminController {
 	}
 	
 	@GetMapping("/mypage")
-	public String mypage(){
+	public String mypage(Authentication authentication,HttpServletRequest request,Model model){
+		//로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+				
+		model.addAttribute("usersDTO",usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
+		//찜한상품만 가져오기
+		List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());
+		model.addAttribute("list", list);
 		return "mypage";
 	}
 }
