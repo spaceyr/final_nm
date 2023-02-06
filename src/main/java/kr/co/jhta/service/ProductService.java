@@ -43,6 +43,7 @@ public class ProductService {
 		return dao.selectList(contents);
 	}
 	
+
 	//유저당 상품개수조회
 	public int countProduct(String nickname) {
 
@@ -63,6 +64,11 @@ public class ProductService {
 	public float countProductLike(String nickname) {
 		
 		return dao.countProductLike(nickname);
+	}
+
+	public List<ProductDTO> searchList(String title){
+		return dao.searchList(title);
+
 	}
 	
 	//찜한상품만가져오기

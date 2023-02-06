@@ -15,3 +15,5 @@
 		WHERE p_no = #{p_no}
 	</select>
 </mapper>
+
+	

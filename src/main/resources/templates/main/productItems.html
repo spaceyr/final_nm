@@ -16,6 +16,7 @@ const bestProducts = [  /* const name1 = value1 [, name2 = value2 [, name3 = val
 	image: '../image/mainimage/psy3.jpg',
     title: '이색 취미 타로 카드 배우기 (개인 레슨) (대면 가능)',
     price: 150000,
+    like: 3.0,
     only: true,
     hot: true,
     p_no:30011
@@ -24,6 +25,7 @@ const bestProducts = [  /* const name1 = value1 [, name2 = value2 [, name3 = val
 	    image: '../image/mainimage/drawing_m1.jpg',
 	    title: '2030 미술과 함께 만나는 시간',
 	    price: 40000,
+	    like: 4.0,
 	    only: true,
 	    hot: true,
 	    p_no:40001
@@ -32,6 +34,7 @@ const bestProducts = [  /* const name1 = value1 [, name2 = value2 [, name3 = val
 		    image: '../image/mainimage/meet03.jpg',
 		    title: '[두근두근시그널]검증된 직장인들의 와인 파티(1:1대화/게임)',
 		    price: 40000,
+		    like: 5.0,
 		    only: true,
 		    hot: true,
 		    p_no:50003
@@ -40,6 +43,7 @@ const bestProducts = [  /* const name1 = value1 [, name2 = value2 [, name3 = val
 			    image: '../image/mainimage/study2.jpg',
 			    title: '[30일] 반보스터디_의지박약러도, 한 달만에 토익 졸업',
 			    price: 6000,
+			    like: 4.0,
 			    only: true,
 			    hot: true,
 			    p_no:50006
@@ -52,6 +56,7 @@ const myselfProducts = [
 		    image: '../image/mainimage/money2.jpg',
 		    title: '(서울)김대리의 100배 주식 스터디 모임',
 		    price: 10000,
+		    like: 4.0,
 		    only: true,
 		    hot: true,
 		    p_no:30006
@@ -60,6 +65,7 @@ const myselfProducts = [
 			    image: '../image/mainimage/etc1.jpg',
 			    title: '[서울/북바인딩] 마시면서 나만의 다이어리 만들기',
 			    price: 35000,
+			    like: 5.0,
 			    only: true,
 			    hot: false,
 			    p_no:30017
@@ -68,6 +74,7 @@ const myselfProducts = [
 				    image: '../image/mainimage/lang3.jpg',
 				    title: '[말 못하던 유학생 AL 성공기] 오픽 한 달 만에 끝내기',
 				    price: 360000,
+				    like: 3.0,
 				    only: true,
 				    hot: true,
 				    p_no:30003
@@ -76,6 +83,7 @@ const myselfProducts = [
 					    image: '../image/mainimage/job3.jpg',
 					    title: '블로그 마케팅 : 나만의 브랜드로 수익 창출 나도 할 수 있다! (예약 가능)',
 					    price: 70000,
+					    like: 3.0,
 					    only: false,
 					    hot: true,
 					    p_no:30015
@@ -88,6 +96,7 @@ const sportsProducts = [
 		    image: '../image/mainimage/sports02.jpg',
 		    title: '충무로 클라이밍 원데이 클래스',
 		    price: 53000,
+		    like: 5.0,
 		    only: true,
 		    hot: true,
 		    p_no:10002
@@ -96,6 +105,7 @@ const sportsProducts = [
 			    image: '../image/mainimage/sports05.jpg',
 			    title: '[강남/삼성]나도 골린이! 역대급 가성비 골프 그룹레슨',
 			    price: 70000,
+			    like: 5.0,
 			    only: true,
 			    hot: false,
 			    p_no:10005
@@ -104,6 +114,7 @@ const sportsProducts = [
 				    image: '../image/mainimage/sports17.jpg',
 				    title: '당구 4구 초보 탈출하고 모임, 회식 인싸 되자',
 				    price: 50000,
+				    like: 4.0,
 				    only: true,
 				    hot: true,
 				    p_no:10017
@@ -112,6 +123,7 @@ const sportsProducts = [
 					    image: '../image/mainimage/sports16.jpg',
 					    title: '[한강/이색데이트] 한강 카약 체험  카약 프로그램',
 					    price: 20000,
+					    like: 5.0,
 					    only: false,
 					    hot: true,
 					    p_no:10016
@@ -134,17 +146,18 @@ const pListSection = document.getElementById('productList'); /* pListSection = p
   			let onlyValue=''; /* let onlyValue는 ''?' */ /* let은 중복선언 불가능 / 값 재할당 가능 */
   	  		let hotValue=''; /* let hotValue는 ''?' */
   	  		let priceValue = ''; /* let priceValue는 ''?' */
+  	  		let likeValue = '';
   	  		
   	  	
   			const test = productItems.map((item) => {  /* productItems의 배열을 받아 새로운 배열 만들어서 test에 대입 */
   				onlyValue = item.only ? "<span class='info_only'>ONLY</span>" : ''; /* item의 only가 참이면 span ONLY 주고, 아니면 공백 */
 				hotValue = item.hot ? "<span class='info_hot'>HOT</span>" : '' ; /* item의 hot이 참이면 span HOT 주고, 아니면 공백 */
 				priceValue ="<span class='price_current'>" + item.price +"원</span>" /* priceValue는 span + item.price + 원 + /span으로 나타냄 */
-
+				likeValue = "<span class='like_current'><p>&#128151;</p>" + item.like + ".0</span>"
 				
 	
 		return "<div class='product_item'><a href ='/product/productDetail?p_no="+item.p_no+"'><div class='product_item_img'><img src='"+item.image + "'/></div></a> <span class='product_item_name'>" +
-				item.title + "</span> <div class='product_item_price'>" +priceValue + "</div><span><div class='product_item_info'>"+ onlyValue + 
+				item.title + "</span> <div class='product_item_price'>" +priceValue + "</div><div class='product_item_like'>" + likeValue + "</div><span><div class='product_item_info'>"+ onlyValue + 
 				hotValue +"</div></span>"+ "</div>"}).join('');
   	  			
   	  		/* div class 'product_item' 정의, 아이템 클릭시 링크 'productlist?p_no="+item.p_no 이런식으로 넘김 / div class 'product_item_img' 정의 이미지 주소는 item.image임 */
@@ -156,9 +169,9 @@ const pListSection = document.getElementById('productList'); /* pListSection = p
   		
   		
  		const render = () => {  /* 호스팅이 지원x라서 맨 아래에 선언해야함 */
- 			bestList.innerHTML = updateProductFnc(bestProducts, '지금 인기있는 뉴밋',''); /* 모임 */ /* bestList내에 포함된 html요소 정의 */
- 			myselfList.innerHTML = updateProductFnc(myselfProducts, '나를 알아가는 시간','/main/myselflist?cateno=300'); /* 자기계발 */ /* myselfList내에 포함된 html요소 정의 */
- 			sportsList.innerHTML = updateProductFnc(sportsProducts, '같이 운동할까요?','/main/sportslist?cateno=100'); /* 운동  */ /* sportsList내에 포함된 html요소 정의 */
+ 			bestList.innerHTML = updateProductFnc(bestProducts, '지금 인기있는 뉴밋 &#128640;',''); /* 모임 */ /* bestList내에 포함된 html요소 정의 */
+ 			myselfList.innerHTML = updateProductFnc(myselfProducts, '나를 알아가는 시간 &#127804;','/main/myselflist?cateno=300'); /* 자기계발 */ /* myselfList내에 포함된 html요소 정의 */
+ 			sportsList.innerHTML = updateProductFnc(sportsProducts, '같이 운동할까요? &#128692;','/main/sportslist?cateno=100'); /* 운동  */ /* sportsList내에 포함된 html요소 정의 */
  		}
  	 render();
 }

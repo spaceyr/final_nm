@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -20,6 +20,7 @@
 			font-size: smaller;
 		}
 	</style>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 </head>
 <body>
 <div class="container">
@@ -182,5 +183,6 @@
 <br>- 연락처 : 02-512-3662
 </p>
 </div>
+<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
 </body>
 </html>
