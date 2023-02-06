@@ -11,8 +11,10 @@ import kr.co.jhta.dto.ProductDTO;
 @Repository
 @Mapper
 public interface ProductDAO {
-	
+	//전체리스트
 	List<ProductDTO> getAll();
+	//검수안된것만 가져오기
+	List<ProductDTO> selectInsepection();
 	
 	
 	List<ProductDTO> selectOneMj(String keyword,String from_date,String to_date,String inspection);
@@ -40,6 +42,8 @@ public interface ProductDAO {
 
 
 	List<ProductDTO> searchList(String title);
+	//검수확인 수정
+	void inspectionmodifyOne(int p_no,int inspection);
 
 
 }

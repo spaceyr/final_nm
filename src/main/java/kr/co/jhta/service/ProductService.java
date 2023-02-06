@@ -21,6 +21,10 @@ public class ProductService {
 		return dao.getAll();
 	}
 	
+	public List<ProductDTO> selectInsepection(){
+		return dao.selectInsepection();
+	}
+	
 	public List<ProductDTO> selectOneMj(String keyword,String from_date,String to_date,String inspection) {
 		return dao.selectOneMj(keyword,from_date, to_date, inspection);
 	}
@@ -75,6 +79,11 @@ public class ProductService {
 	public List<ProductDTO> selectOneJjim(String nickname) {
 
 		return dao.selectOneJjim(nickname);
+	}
+	
+	//검수확인 수정
+	public void inspectionmodifyOne(int p_no,int inspection) {
+		dao.inspectionmodifyOne(p_no, inspection);
 	}
 	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){

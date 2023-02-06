@@ -7,6 +7,10 @@
 	<select id="getAll" resultType="ProductDTO">
 		select * from product
 	</select>
+	<!-- 검수안된것만 리스트 -->
+	<select id="selectInsepection" resultType="ProductDTO">
+		select * from product where inspection = 1
+	</select>
 	
 	
 	<select id="selectOneMj" parameterType="String" resultType="ProductDTO">
@@ -31,11 +35,9 @@
 				and inspection = -1
 			</if>	
 	</select>
-	
+	<!-- 검수된것만리스트 -->
 	<select id="selectinspection" parameterType="int" resultType="ProductDTO">
 		select * from product where inspection = 0
-		
-				
 	</select>
 	
 	<insert id="insertOne" parameterType="ProductDTO">
@@ -62,4 +64,10 @@
 	<select id="selectOneJjim" resultType="ProductDTO" parameterType="String">
   		SELECT * FROM product P INNER JOIN jjim J ON P.p_no=J.p_no where J.nickname = #{nickname};
   	</select>
+  	<!-- 검수확인 수정 -->
+  	<update id="inspectionmodifyOne" parameterType="int">
+		UPDATE product
+		SET inspection = #{inspection} 
+		WHERE p_no = #{p_no}
+	</update>
 </mapper>
