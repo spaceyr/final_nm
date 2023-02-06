@@ -69,8 +69,10 @@ public class ProductDetailController {
 			
 			
 			System.out.println(dto2.getNickname());
+			
 			List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());
 			model.addAttribute("list", list);
+			
 			List<PayDTO> list2 = payservice.getPayAll();
 			model.addAttribute("list2",list2);
 			System.out.println("list2:"+list2);
