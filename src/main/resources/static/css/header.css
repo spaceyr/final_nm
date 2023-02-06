@@ -1,24 +1,42 @@
 @charset "UTF-8";
 @import './main.css';
 
+
 /*Header 부분 메뉴*/
+
 .top_menu {
   display: flex;
   align-items: center;
     justify-content: right;
-    padding-top: 25px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    background-color: #ffff;
+    color: #73777B;
 }
+.menu_group a{
+	text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 링크 색상 제거 */
+}
+
 .menu_group,.menu_user{
 	display: flex;
 	list-style:none;
 	font-weight: lighter;
 	font-size: 11px;
+	
 }
 .menu_user .far {
 	font-size: 23px;
+	color: #73777B;
+}
+
+.menu_user a{
+	text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 링크 색상 제거 */
 }
 .menu_group li{
-	margin-left:8px; 
+	text-decoration: none;
+	margin-left:8px;
 }
 .menu_user li{
 	margin-right:20px; 
