@@ -38,6 +38,7 @@
 				<span th:text="${dto.title}"></span><br>
 				</td>  
 			</tr> -->
+			<div th:text="${usersDTO.nickname}"></div>
 			 <tr th:each="dto3: ${list3}">
 				<td><span th:text="${dto3.nickname}"></span><br> 
 				<div th:switch="${dto3.rating}">

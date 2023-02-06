@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.UsersDTO;
+import kr.co.jhta.service.PayService;
 import kr.co.jhta.service.ProductService;
 import kr.co.jhta.service.UserService;
 
@@ -30,8 +32,11 @@ public class AdminController {
 	@Autowired
 	UserService userservice;
 	
+	
 	UsersDTO usersDTO;
 	
+	@Autowired
+	PayService payservice;
 	
 	 LocalDate now = LocalDate.now(); 
 	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
@@ -208,13 +213,21 @@ public class AdminController {
 	}
 	
 	@GetMapping("/mypage")
-	public String mypage(Authentication authentication,HttpServletRequest request,Model model){
+	public String mypage(Authentication authentication,HttpServletRequest request,Model model,
+			@ModelAttribute("dto2") PayDTO dto2){
 		//로그인객체전달
 		HttpSession session = request.getSession();
 		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
 				
 		model.addAttribute("usersDTO",usersDTO);
 		session.setAttribute("usersDTO", usersDTO);
+		
+		//결제내역
+		List<PayDTO> list2 = payservice.getPayAll();
+		model.addAttribute("list2",list2);
+		System.out.println("list2:"+list2);
+		
+		payservice.payAddOne(dto2);
 		
 		//찜한상품만 가져오기
 		List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());

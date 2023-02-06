@@ -19,12 +19,16 @@ import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.service.PayService;
 import kr.co.jhta.service.ProductDetailService;
+import kr.co.jhta.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 
 public class ProductDetailController {
+	
+	@Autowired
+	ProductService service;
 	
 	@Autowired
 	PayService payservice;
@@ -54,20 +58,22 @@ public class ProductDetailController {
 		@PostMapping("/mypage") 
 		public String payOk(Model model,
 							@ModelAttribute("dto2") PayDTO dto2,
-							@ModelAttribute("pdto") PayDTO pdto) {
+							@ModelAttribute("pdto") PayDTO pdto,
+							Authentication authentication,HttpServletRequest request) {
 			//로그인객체전달
-//			HttpSession session = request.getSession();
-//			UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-//					
-//			model.addAttribute("usersDTO",usersDTO);
-//			session.setAttribute("usersDTO", usersDTO);
+			HttpSession session = request.getSession();
+			UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+					
+			model.addAttribute("usersDTO",usersDTO);
+			session.setAttribute("usersDTO", usersDTO);
 			
 			
 			System.out.println(dto2.getNickname());
-			
-			List<PayDTO> list = payservice.getPayAll();
-			model.addAttribute("list",list);
-			System.out.println("list:"+list);
+			List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());
+			model.addAttribute("list", list);
+			List<PayDTO> list2 = payservice.getPayAll();
+			model.addAttribute("list2",list2);
+			System.out.println("list2:"+list2);
 			
 			payservice.payAddOne(dto2);
 			return "/mypage";
