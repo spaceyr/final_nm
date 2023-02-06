@@ -58,4 +58,8 @@
 	<select id="countProductLike" resultType="float" parameterType="String">
 		select AVG(P.like) FROM product P INNER JOIN users U ON P.nickname=U.nickname where P.nickname = #{nickname}
 	</select>
+	<!-- 찜한상품만가져오기 -->
+	<select id="selectOneJjim" resultType="ProductDTO" parameterType="String">
+  		SELECT * FROM product P INNER JOIN jjim J ON P.p_no=J.p_no where J.nickname = #{nickname};
+  	</select>
 </mapper>

@@ -33,4 +33,6 @@ public interface ProductDAO {
 	public int countProductReport(String nickname);
 	//상품 평점조회
 	public float countProductLike(String nickname);
+	//찜한상품만가져오기
+	List<ProductDTO> selectOneJjim(String nickname);
 }
