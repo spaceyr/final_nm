@@ -66,7 +66,12 @@ public class UserService implements UserDetailsService {
 	  userMapper.saveUsers(usersDTO); 
 	  }
 	 
-	
+	  	//
+	  	public boolean isIdCheck2(String name,String phone) {
+	  		return userMapper.isIdCheck2(name,phone);
+	  	}
+	  
+	  
 		//아이디 중복확인
 		public boolean isIdCheck(String id) {
 			return userMapper.isIdCheck(id);

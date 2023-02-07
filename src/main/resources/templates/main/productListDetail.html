@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div style=" float: right; ">
+		<img th:src="@{/image/advertisement/}+maplead.jpg" style="width: 300px; height:420px; position: fixed; right: 1px;" alt="" />
+	</div>
+	<main style="width: 900px;">
 	<div class="menu_bar">
 	<h2 class="menu_title">카테고리 <span class="chevron"></span></h2>
 
@@ -49,6 +53,7 @@
 	<br>
 	<br>
 	<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+	</main>
 	<script>
 	const title = document.querySelector('.menu_title');
 	const titleMenu = document.querySelector('.title_group');

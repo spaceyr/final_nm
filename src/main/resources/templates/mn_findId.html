@@ -78,13 +78,16 @@
 				data : sendData,
 				dataType : "text",
 				success : function(text) {
-					console.log(text)
-					if (text != null || text == "") {
-						 
-						alert("찾고자 하신 아이디는 <"+text+">입니다.")
+					console.log(text);
+					if (text != "null") {
+						
+						alert("찾고자 하신 아이디는 <<"+text+">>입니다.")
 						location.href="/login"
 					} else {
-						$("#errorid").html("해당정보가 없습니다.");
+						$("#errorId").html("해당정보가 없습니다.");
+						$("#idbutton").on("click",function(){
+							$("#errorId").hide();
+						})
 					}
 				},
 				error : function(xhr) {
@@ -116,7 +119,7 @@
 						id="phone" name="phone" placeholder="연락처를 입력하세요."
 						style="padding-top:15px; padding-bottom:15px;"></text>
 				</div>
-				<span id="errorId" style="color: red"></span>
+				<span id="errorId" style="color: red;"></span>
 				<br>
 				<button type="button" th:onclick="idSearch();" id="idbutton" style="padding-top:15px; padding-bottom:20px; ">
 					확인</button>

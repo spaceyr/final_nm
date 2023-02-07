@@ -74,4 +74,13 @@
   		WHERE email = #{email}
   		AND nickname = #{nickname}
   	</select>
+  	
+  	<!-- 아이디 중복확인 -->
+	<select id="isIdCheck2" parameterType="UsersDTO" resultType="boolean">
+		SELECT if(COUNT(1) = 1, 0, 1)
+		FROM users
+		WHERE name = #{name}
+		AND phone = #{phone}
+	</select>
+	
 </mapper>

@@ -184,8 +184,12 @@ public class UserController {
 	public String findId(@RequestParam("name") String name,@RequestParam("phone") String phone) {
 		System.out.println("name : "+name);
 		System.out.println("phone : "+phone);
-		if(userService.findId(name,phone) == null) {
-			return null; 
+		
+//		if(userService.findId(name,phone) == null) {
+		if(userService.isIdCheck2(name,phone) == true) {
+			boolean result1 = userService.isIdCheck2(name,phone);
+			System.out.println("result1 : "+result1);
+			return "null"; 
 		}else {
 			return userService.findId(name, phone);
 		}
