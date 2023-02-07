@@ -49,10 +49,10 @@ public class AdminController {
 	@GetMapping("/host")
 	public String host(Authentication authentication,HttpServletRequest request,Model model){
 		//로그인객체전달
+		if(authentication != null) {
 		HttpSession session = request.getSession();
 		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
 		System.out.println(authentication);
-		if(authentication != null) {
 			
 		
 		model.addAttribute("usersDTO",usersDTO);
@@ -251,8 +251,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/mypage")
-	public String mypage(Authentication authentication,HttpServletRequest request,Model model,
-			@ModelAttribute("dto2") PayDTO dto2){
+	public String mypage(Authentication authentication,HttpServletRequest request,Model model){
 		//로그인객체전달
 		HttpSession session = request.getSession();
 		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
@@ -265,7 +264,6 @@ public class AdminController {
 		model.addAttribute("list2",list2);
 		System.out.println("list2:"+list2);
 		
-		payservice.payAddOne(dto2);
 		
 		//찜한상품만 가져오기
 		List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());

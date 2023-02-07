@@ -41,10 +41,7 @@ public class PayController {
 		return "pay/payForm";
 	}
 //결제완료 페이지에서 '마이페이지' 이동 -> 결제내역 확인하기
-	@GetMapping("/mypage")
-	public String myPage() {
-		return "mypage";
-	}
+	
 	
 	
 	
