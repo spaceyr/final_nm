@@ -181,9 +181,15 @@
 				
 				<span style="width:150px; font-size: 20px; font-weight: bold; float: right;" th:text="|${#numbers.formatInteger(dto.price, 3, 'COMMA')}원|"></span>
 				
-				<div class="btn-group col text-center" role="group" aria-label="Basic outlined example" style="position: relative; left: 251px; top: 15px; ">
+				<div class="btn-group col text-center" role="group" aria-label="Basic outlined example" style="position: relative; left: 131px; top: 15px; ">
  			<a th:href="@{pay(p_no=${dto.p_no})}" style="text-decoration: none; color:white;"><button type="button" id="payment" onclick="" style="width: 130px;" >
 				참여하기
+				</button></a>
+				
+					</div>
+					<div class="btn-group col text-center" role="group" aria-label="Basic outlined example" style="position: relative; left: 151px; top: 15px; ">
+ 			<a th:href="@{pay(p_no=${dto.p_no})}" style="text-decoration: none; color:white;"><button type="button" id="payment" onclick="" style="width: 130px;" >
+				찜하기
 				</button></a>
 				
 					</div>
@@ -323,10 +329,10 @@
 	  
 
 	
-	<div>
-		<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+	
 		
-	</div>
+		<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+	
 	</div>
 </div>
 	

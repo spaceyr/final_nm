@@ -6,12 +6,29 @@
     <title>NewMeet</title>
 </head>
 	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+<script type="text/javascript">
+window.onload = function() {
+    //변수를 선언합니다.
+    var count = 0;
+    var image = document.getElementById('imgad');
+    var frames = [
+        'cafead.jpg','cosmeticad.jpg','detoxjuicead.jpg','megaboxad.jpg','maplead.jpg'
+    ];
+    //타이머 반복을 시작합니다.
+    setInterval(function() {
+        //  일정한 시간 간격으로 작업을 수행
+        image.src = "/image/advertisement/" + 
+                 frames[count % frames.length];
+        count = count +1;
 
+    }, 1000);
+};
+</script>
 <body>
 	<div style=" float: right; ">
-		<img th:src="@{/image/advertisement/}+maplead.jpg" style="width: 300px; height:420px; position: fixed; right: 1px;" alt="" />
+		<img th:src="@{/image/advertisement/}+maplead.jpg" id="imgad" style="width: 200px; height:320px; position: fixed; right: 25px;" alt="" />
 	</div>
-    <main style="width: 900px;">
+    <main>
         <div class="banner_container">
             <div class="banner_slide fade">
                 <a th:href="@{/main/grouplist(cateno=500)}"><img src="../image/banner/banner01.jpg"></a>
