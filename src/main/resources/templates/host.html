@@ -19,7 +19,12 @@
 
     <!-- Custom styles for this template-->
     <link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
-
+    
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
 </head>
 
 <body id="page-top">
@@ -195,7 +200,13 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">1+</span>
+                                <span class="badge badge-danger badge-counter">
+                                <tr th:each=" dto,state : ${list}">
+									<td th:if="${dto.nickname} != null"/>1+
+									<td th:if="${dto.nickname} == null"/>
+								</tr>
+                                		
+								</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -302,9 +313,11 @@
                                         <div class="card-body">
                                             진행 뉴밋
                                             <div class="text-white-50 small" >
-                                            	<!-- <div style="display: inline;" th:text="${usersDTO.nickname}"></div>님의 진행중인뉴밋: -->
-                                            	<div style="display: inline; font-weight: bold;" th:text="${productCount}"></div> 개
-                                            </div>
+												<td th:if="${productCount}!= null"/> <td th:text="${productCount}"/>개 
+												
+                                            	<!-- <td th:if="${productCount}== null"/>0 개 -->
+												
+											</div>
                                         </div>
                                     </div>
                                 </div>
@@ -313,7 +326,8 @@
                                         <div class="card-body">
                                             전체 상품조회수
                                             <div class="text-white-50 small">
-                                            	<div style="display: inline;" th:text="${countProductReview}"></div> 개
+                                            	<td th:if="${countProductReview}!= null"/> <td th:text="${countProductReview}"/> 개
+                                            	<!-- <td th:if="${countProductReview}== null"/>0 개 -->
                                             </div>
                                         </div>
                                     </div>
@@ -322,7 +336,7 @@
                                     <div class="card bg-info text-white shadow">
                                         <div class="card-body">
                                             전체 후기수
-                                            <div class="text-white-50 small">호스트당 전체후기수</div>
+                                            <div class="text-white-50 small">246 개</div>
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +345,8 @@
                                         <div class="card-body">
                                             신고건수
                                             <div class="text-white-50 small">
-                                            	<div style="display: inline;" th:text="${countProductReport}"></div> 개
+                                            	<td th:if="${countProductReport}!= null"/> <td th:text="${countProductReport}"/> 개
+                                            	<!-- <td th:if="${countProductReport}== null"/>0 개 -->
                                             </div>
                                         </div>
                                     </div>
@@ -340,7 +355,7 @@
                                     <div class="card bg-danger text-white shadow">
                                         <div class="card-body">
                                             취소건수
-                                            <div class="text-white-50 small">취소건수 보여주기</div>
+                                            <div class="text-white-50 small">13 개</div>
                                         </div>
                                     </div>
                                 </div>
@@ -349,11 +364,26 @@
                                         <div class="card-body">
                                             평균평점
                                             <div class="text-white-50 small">
-                                            	<div style="display: inline;" th:text="${countProductLike}"></div> 점
+                                            	<!--<td th:if="${countProductLike}!= null"/> <td th:text="${countProductLike}"/> 개
+                                            	<td th:if="${countProductLike}== null"/>0 개 -->
+                                            	4 점 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                              
+                              
+                              <br /><br /><br /><br />
+                              <div class="card shadow mb-4" style="width: 720px;">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">매출</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h2>월간매출량</h2>
+                                    <h2>전체매출량 나눠서보여주기</h2>
+                                </div>
+                                
+                            </div>
                                 
                             </div>
 
@@ -366,21 +396,10 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
                                 </div>
-                                <div class="card-body">
-                                    <h2>공지사항 게시판 테이블로 넣기</h2>
-                                </div>
-                            </div>
+								<th:block th:replace="fragments/notice :: noticeFragment"></th:block>
 
                             <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">매출</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h2>월간매출량</h2>
-                                    <h2>전체매출량 나눠서보여주기</h2>
-                                </div>
-                            </div>
+                            
 
                         </div>
                     </div>
