@@ -4,24 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 호스트별 리뷰 -->
 <mapper namespace="kr.co.jhta.dao.ReviewDAO">
-<!-- 	 <select id="getAll" resultType="ReviewProductDTO">
-		SELECT r.p_no, r.rating, r.regdate , r.image, r.contents, p.nickname, p.title
-		FROM review as r
-			INNER JOIN product as p
-			ON r.p_no = p.p_no
-			ORDER BY r_no desc
-	</select>  -->
-	
-
-<!-- 	<select id="getAllR" resultType="ReviewProductDTO">
-		SELECT r.r_no, r.regdate, r.contents, p.nickname, p.title
-		FROM review as r
-			INNER JOIN product as p
-			ON r.p_no = p.p_no
-			ORDER BY r_no desc
-	</select> -->
-	
-	
 <!-- 리뷰작성시 p_no값 넘겨받기 -->
 	<select id="getOne" parameterType="int" resultType="ReviewDTO">
 		SELECT *
@@ -50,9 +32,7 @@
 			ON r.p_no = p.p_no
 			limit #{startNo}, 10
 	</select>
-	
-	
-	
+
 <!-- 호스트 리뷰 조회 -->	
 	<select id="selectHost" parameterType="string" resultType="ReviewDTO">
 		SELECT  r_no,r.rating, r.regdate, r.contents, r.p_no, p.nickname, p.title

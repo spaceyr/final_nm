@@ -25,24 +25,37 @@
 .star {
 	color: #5b90f0;
 }
+.info_only {
+    margin-left: 0px;
+    margin-right: 6px;
+    border: solid 1px;
+    border-color: #5BC0F8;
+    border-radius: 3px;
+    padding: 1px 6px 3px;
+    font-size: 15px;
+    
+}
 </style>
 <body>
+		<h3 style="margin-left:300px; margin-bottom: 50px; color:purple; font-family:monospace;">다양한 후기를 만나보세요!🕊️</h3>
 	<div class="container">
 
 		<table class="table">
 			 <tr th:each="dto3: ${list3}">
-				<td><span th:text=${dto3.nickname}></span><br> 
-				<div th:text="${usersDTO.nickname}"></div>
+				<td>
+				<span class="info_only" th:text="${usersDTO.nickname}"></span>
 				<div th:switch="${dto3.rating}">
   						<span th:case="'1'" class="star">★</span>
   						<span th:case="'2'" class="star">★★</span>
   						<span th:case="'3'" class="star">★★★</span>
   						<span th:case="'4'" class="star">★★★★</span>
   						<span th:case="'5'" class="star">★★★★★</span>
-					  <span style="color:gray; font-size: 13px;" th:text="${dto3.regdate}"></span><br> 
+					  	<span style="color:gray; font-size: 13px;" th:text="${dto3.regdate}"></span><br> 
 				</div>	 
-					  <span th:text="${dto3.contents}"></span><br>
-					  <span ><a style="color:gray; font-size: 13px; text-decoration-line: none;" 
+						<span th:text="${dto3.contents}"></span><br><br>
+						<span th:text=${dto3.nickname} style="color:gray; font-size: 13px;"></span><br> 
+					  	<span><a style="color:gray; font-size: 13px; text-decoration-line: none;" 
+					  	
 					  th:href="@{product/productDetail(p_no=${dto3.p_no})}" th:text=${dto3.title}></a></span><br>
 				</td>
 			<tr>

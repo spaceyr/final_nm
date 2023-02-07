@@ -61,11 +61,8 @@ public class ProductDetailController {
 		public String payOk(Model model,
 							@ModelAttribute("dto2") PayDTO dto2,
 							@ModelAttribute("pdto") PayDTO pdto,
-							Authentication authentication,HttpServletRequest request
-							) {
+							Authentication authentication,HttpServletRequest request) {
 
-			
-			
 			//로그인객체전달
 			if(authentication != null) {
 			HttpSession session = request.getSession();
@@ -83,6 +80,7 @@ public class ProductDetailController {
 			System.out.println("list2:"+list2);
 			
 			payservice.payAddOne(dto2);
+			
 			return "/mypage";
 			}else {
 				return "/login";
@@ -96,6 +94,4 @@ public class ProductDetailController {
 			return "redirect:/main";
 		}
 		
-
-		
-}
+		}

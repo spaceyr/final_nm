@@ -34,47 +34,26 @@ public class BoardController {
 	@Autowired
 	ProductDetailService ps;
 
-//	@GetMapping("/review")
-//	public void review(Model model,@ModelAttribute("dto2") StarContentDTO dto2 ) {
-//	
-//		List<ReviewProductDTO> list = rs.getAllReview();
-////인서트문 직접 넣은값 화면에 출력
-//		model.addAttribute("list", list);
-//		System.out.println("list: "+list);
-//
-//
-//
-////저장한 내용 파라미터값 화면 출력
-//		StarContentDTO sc = rs.showSC(dto2);
-//		model.addAttribute("sc", sc);
-//		System.out.println(">>>>>>review.html");
-//	}
-//	
-
-	@GetMapping("board/review") // 주소창 이름
+	@GetMapping("/review") // 주소창 이름
 	public String list(Model model, @ModelAttribute("dto3") ReviewDTO dto3,
-			@RequestParam(name = "cp", defaultValue = "1") int currentPage,
-			Authentication authentication,HttpServletRequest request
-			) {
+			@RequestParam(name = "cp", defaultValue = "1") int currentPage, Authentication authentication,
+			HttpServletRequest request) {
 
-		//로그인객체전달
-				HttpSession session = request.getSession();
-				UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-						
-				model.addAttribute("usersDTO",usersDTO);
-				session.setAttribute("usersDTO", usersDTO);
-//		List<ReviewProductDTO> list = rs.getAllReview();
-//		model.addAttribute("list",list);	
-//		System.out.println("list: "+list );
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
 
-//리뷰 전체 조회
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+
+		//리뷰 전체 조회
 		int totalNumber = rs.getTotal();
 
 		int recordPerPage = 10;
 		Map<String, Object> map = PageUtil.getPageData(totalNumber, recordPerPage, currentPage);
 		int startNo = (int) map.get("startNo");
 		int endNo = (int) map.get("endNo");
-//									닉네임, 상품명 테이블 조인해야함.
+
 		List<ReviewDTO> list3 = rs.getRd(startNo, endNo);
 		model.addAttribute("list3", list3);
 		model.addAttribute("map", map);
@@ -107,12 +86,13 @@ public class BoardController {
 	}
 
 	
-//호스트별 리뷰 조회
-//	  @GetMapping("product/host") public String host(Model
-//	  model, @RequestParam("nickname")String nickname) { 
-//		  List<ReviewDTO> host =  rs.selectHost(nickname); model.addAttribute("host",host);
-//	  return "board/review";
-//	  }
-	
-	
+//	호스트별 리뷰 조회 
+//	 @GetMapping("/review") 
+//	 public String host(Model model, @RequestParam("nickname")String nickname) { 
+//		 List<ReviewDTO> host = rs.selectHost(nickname);
+//		 model.addAttribute("host",host); 
+//		 return "/review"; 
+//	 }
+	 
+
 }
