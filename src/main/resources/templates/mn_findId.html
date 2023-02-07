@@ -79,8 +79,8 @@
 				dataType : "text",
 				success : function(text) {
 					console.log(text)
-					if (text != null) {
-						var text 
+					if (text != null || text == "") {
+						 
 						alert("찾고자 하신 아이디는 <"+text+">입니다.")
 						location.href="/login"
 					} else {

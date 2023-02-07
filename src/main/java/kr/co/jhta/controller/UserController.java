@@ -168,14 +168,7 @@ public class UserController {
         
     }
     
-	/*
-	 * //로그아웃
-	 * 
-	 * @PostMapping("/logout") public String logout(HttpServletRequest request) {
-	 * HttpSession session = request.getSession(); session.invalidate();
-	 * 
-	 * return "redirect:/login"; }
-	 */
+	
 	
     
   //아이디찾기 페이지 이동
