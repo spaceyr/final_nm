@@ -189,6 +189,50 @@
                                 </form>
                             </div>
                         </li>
+                        
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">1+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">February 07, 2023</div>
+                                        <span class="font-weight-bold">
+                                        	<table
+												class="table table-striped">
+												<tr>
+													<th>번호</th>
+													<th>닉네임</th>
+													<th>반려사유</th>
+												</tr>
+
+												<tr th:each=" dto,state : ${list}">
+													<td th:text="${dto.p_no}"></td>
+													<td th:text="${dto.nickname}"></td>
+													<td th:text="${dto.message}"></td>
+												</tr>
+
+											</table>
+										</span>
+                                    </div>
+                                </a>
+                                
+                            </div>
+                        </li>
 
 
 

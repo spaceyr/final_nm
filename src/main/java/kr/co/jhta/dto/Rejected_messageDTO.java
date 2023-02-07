@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Rejected_messageDTO {
 	
-	private int p_no;
-	private String nickname;
-	private String message;
+	public int p_no;
+	public String nickname;
+	public String message;
 }

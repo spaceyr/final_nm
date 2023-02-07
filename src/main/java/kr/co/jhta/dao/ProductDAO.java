@@ -18,6 +18,8 @@ public interface ProductDAO {
 	List<ProductDTO> selectInsepection();
 	//검수반려된것만 가져오기
 	List<ProductDTO> rejectInsepection();
+	//반려메시지 불러오기
+	public List<Rejected_messageDTO> selectRejectmessage(String nickname);
 	
 	
 	List<ProductDTO> selectOneMj(String keyword,String from_date,String to_date,String inspection);

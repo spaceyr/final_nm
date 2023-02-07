@@ -51,8 +51,9 @@ public class AdminController {
 		//로그인객체전달
 		HttpSession session = request.getSession();
 		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-		
-		if(authentication.getPrincipal() != null) {
+		System.out.println(authentication);
+		if(authentication != null) {
+			
 		
 		model.addAttribute("usersDTO",usersDTO);
         session.setAttribute("usersDTO", usersDTO);
@@ -73,9 +74,15 @@ public class AdminController {
         float countProductLike = service.countProductLike(usersDTO.getNickname());
         model.addAttribute("countProductLike",countProductLike);
         
-		return "/host";
+        //반려메시지 전달
+        List<Rejected_messageDTO> list = service.selectRejectmessage(usersDTO.getNickname());
+		
+        model.addAttribute("list",list);
+        
+		return "host";
+		}else {
+			return "login";
 		}
-			return "/login";
 		
 	}
 	
@@ -86,7 +93,15 @@ public class AdminController {
     }
 	
 	@GetMapping("/newmeetForm")
-	public String newmeetForm(){
+	public String newmeetForm(Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		System.out.println(authentication);
+
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
 		return "newmeetForm";
 	}
 	

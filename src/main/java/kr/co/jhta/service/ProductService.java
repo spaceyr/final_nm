@@ -33,6 +33,10 @@ public class ProductService {
 	public List<ProductDTO> selectOneMj(String keyword,String from_date,String to_date,String inspection) {
 		return dao.selectOneMj(keyword,from_date, to_date, inspection);
 	}
+	//반려메시지 불러오기
+	public List<Rejected_messageDTO> selectRejectmessage(String nickname) {
+		return dao.selectRejectmessage(nickname);
+	}
 	
 	public List<ProductDTO> selectInspection(int inspection) {
 		return dao.selectInspection(inspection);
