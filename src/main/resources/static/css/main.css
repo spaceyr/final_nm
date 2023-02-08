@@ -23,6 +23,7 @@ margin:0;
 text-decoration:none;	
 }
 
+
 /* 이미지 배너 */
 .banner_container {
   width: 100%;
@@ -30,15 +31,18 @@ text-decoration:none;
   margin: auto;
   height: 330px;
 }
+
 .banner_container img{
   width: 100%;
   height: 300px;
    object-fit: cover;
 }
 
+
 .banner_slide {
   display: none;
 }
+
 
 .banner_prev, .banner_next {
   cursor: pointer;
@@ -89,10 +93,13 @@ text-decoration:none;
   animation-duration: 1.5s;
 }
 
+
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
 }
+
+
 
 /* category section */
 .category {

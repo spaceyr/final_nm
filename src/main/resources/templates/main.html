@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
        <link th:href="@{/css/main.css}" rel="stylesheet" />
+        <link th:href="@{/css/adimage.css}" rel="stylesheet" />
        <link rel="icon" th:href="@{/image/logo/favicon.ico}">
     <title>NewMeet</title>
 </head>
 	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 window.onload = function() {
     //변수를 선언합니다.
     var count = 0;
@@ -23,11 +24,8 @@ window.onload = function() {
 
     }, 1000);
 };
-</script>
+</script> -->
 <body>
-	<div style=" float: right; ">
-		<img th:src="@{/image/advertisement/}+maplead.jpg" id="imgad" style="width: 200px; height:320px; position: fixed; right: 25px;" alt="" />
-	</div>
     <main>
         <div class="banner_container">
             <div class="banner_slide fade">
@@ -45,9 +43,12 @@ window.onload = function() {
             <div class="banner_slide fade">
                 <a th:href="@{/main}"><img src="../image/banner/banner05.jpg"></a>
             </div> 
-
-            <a class="banner_prev" onclick="plusSlides(-1)">&#10094;</a> <a class="banner_next"
-                onclick="plusSlides(1)">&#10095;</a>
+            
+            <a class="banner_prev" onclick="plusSlides(-1)">&#10094;</a> 
+            <a class="banner_next" onclick="plusSlides(1)">&#10095;</a>
+                
+       
+                
             <div class="banner_dot_group">
                 <span class="banner_dot" onclick="currentSlide(1)"></span>
                 <span class="banner_dot" onclick="currentSlide(2)"></span>
@@ -56,7 +57,7 @@ window.onload = function() {
                 <span class="banner_dot" onclick="currentSlide(5)"></span>
             </div>
         </div>
-        
+         
         <section class="category">
         	<div class="category_menu_group">
         		<div class="category_menu"><a th:href="@{/main/sportslist(cateno=100)}"><div class="category_menu_img1"></div></a><span>운동</span></div>
@@ -66,15 +67,38 @@ window.onload = function() {
         		<div class="category_menu"><a th:href="@{/main/grouplist(cateno=500)}"><div class="category_menu_img5"></div></a><span>모임</span></div>
         	</div>
         </section>
-        
+        <div class="ad_container" >
+			<div class="ad_slide fade">
+                <a th:href="@{https://maplestory.nexon.com/Home/Main?utm_source=naver&utm_medium=search&utm_campaign=22winter2nd&utm_content=pcbrand_home}">
+                <img src="../image/advertisement/khali.png"></a>
+            </div>
+            <div class="ad_slide fade">
+                <a th:href="@{https://www.innisfree.com/kr/ko/EventView.do?eventSeq=2748&utm_source=naver&utm_medium=sabrdweb&utm_campaign=madit_conversion_al&utm_content=main&utm_trg=BSA&utm_term=%EC%9D%B4%EB%8B%88%EC%8A%A4%ED%94%84%EB%A6%AC}">
+                <img src="../image/advertisement/innisfree.png"></a>
+            </div>
+            <div class="ad_slide fade">
+                <a th:href="@{https://www.pocketsalad.co.kr/?cafe_mkt=google_kw&gclid=CjwKCAiAioifBhAXEiwApzCztnU4oCVGbBnF9bRrKbLKK4kHTSdQ-1YkDDGuqUXnoWELUJGZ-Qk2iRoCuGcQAvD_BwE}">
+                <img src="../image/advertisement/salad.png"></a>
+            </div>
+            <div class="ad_slide fade">
+                <a th:href="@{https://evesu11.cafe24.com/product/list.html?cate_no=936&n_media=122875&n_query=%ED%98%BC%EC%88%98%EC%B9%A8%EA%B5%AC&n_rank=24&n_ad_group=grp-a001-01-000000024036938&n_ad=nad-a001-01-000000226545018&n_keyword_id=nkw-a001-01-000004108382467&n_keyword=%ED%98%BC%EC%88%98%EC%B9%A8%EA%B5%AC&n_campaign_type=1&n_ad_group_type=1}">
+                <img src="../image/advertisement/bedding.png"></a>
+            </div>
+            <div class="ad_slide fade">
+                <a th:href="@{https://www.coffeebay.com/product/new_menu.php?n_media=27758&n_query=%EC%BB%A4%ED%94%BC%EB%B2%A0%EC%9D%B4&n_rank=1&n_ad_group=grp-a001-04-000000019459828&n_ad=nad-a001-04-000000222485652&n_keyword_id=nkw-a001-04-000003436572006&n_keyword=%EC%BB%A4%ED%94%BC%EB%B2%A0%EC%9D%B4&n_campaign_type=4&n_contract=tct-a001-04-000000000650365&n_ad_group_type=5}">
+                <img src="../image/advertisement/cafead.jpg"></a>
+            </div> 
+		</div>
      
       <th:block layout:fragment="productItems" th:include="@{/main/productItems}"></th:block>
 
 
    	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
     </main>
+     
 
 </body>
+
 
 <script>
     let slideIndex = 1;
@@ -104,6 +128,32 @@ window.onload = function() {
     }
     showSlides(slideIndex);
     setInterval(() => showSlides(slideIndex += 1), 4000);
+    
+    
+    
+    let slideIndex1 = 1;
+
+    const plusSlides1 = (n) => {
+        showSlides1(slideIndex1 += n);
+    }
+
+    const currentSlide1 = (n) => {
+        showSlides1(slideIndex1 = n);
+    }
+
+    const showSlides1 = (n) => {
+        let i;
+        let slides = document.getElementsByClassName("ad_slide");
+        if (n > slides.length) { slideIndex1 = 1 }
+        if (n < 1) { slideIndex1 = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+       
+        slides[slideIndex1 - 1].style.display = "block";
+    }
+    showSlides1(slideIndex1);
+    setInterval(() => showSlides1(slideIndex1 += 1), 3000);
 
 </script>
 

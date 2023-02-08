@@ -7,6 +7,36 @@ margin:0;
 text-decoration:none;	
 }
 
+
+ .ad_container{
+	float: right;
+	position: absolute;
+	right: 400px;
+	top: 370px;
+} 
+
+.ad_container img{
+	width: 280px;
+	height: 430px;
+	object-fit: cover;
+	margin-left: 50px;
+	position: fixed;
+	
+}
+.ad_slide{
+	display: none;
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
 /* 상품 section*/
 
 .product_container {
