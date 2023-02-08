@@ -84,10 +84,11 @@ public class ProductDetailController {
 		//로그인객체전달
 		if (authentication != null) {
 			HttpSession session = request.getSession();
-			UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-
+//			UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+			UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
 			model.addAttribute("usersDTO", usersDTO);
 			session.setAttribute("usersDTO", usersDTO);
+
 		
 		//찜전달
 			List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());

@@ -34,11 +34,11 @@ public interface ProductDAO {
 
 	
 	//	상품개수조회
-	public int countProduct(String nickname);
+	public Integer countProduct(String nickname);
 	//상품 조회수조회
-	public int countProductReview(String nickname);
+	public Integer countProductReview(String nickname);
 	//상품 신고수조회
-	public int countProductReport(String nickname);
+	public Integer countProductReport(String nickname);
 	//상품 평점조회
 	public float countProductLike(String nickname);
 
