@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.jhta.dao.ProductDAO;
+import kr.co.jhta.dto.ChartDTO;
+import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.Rejected_messageDTO;
 
@@ -103,6 +105,17 @@ public class ProductService {
 	//반려테이블 추가
 	public void rejectinsertOne(Rejected_messageDTO dto) {
 		dao.rejectinsertOne(dto);
+	}
+	
+	//판매상품조회
+	public List<PayDTO> salesList(String nickname) {
+
+		return dao.salesList(nickname);
+	}
+	//월별판매량조회
+	public List<ChartDTO> salesListmonth(String nickname) {
+		
+		return dao.salesListmonth(nickname);
 	}
 	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){

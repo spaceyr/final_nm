@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
-
+    
 </head>
 
 <body id="page-top">
@@ -69,7 +69,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/hostProductList">뉴밋목록</a>
                         <a class="collapse-item" href="/newmeetForm">뉴밋등록</a>
-                        <a class="collapse-item" href="/newmeetReject">뉴밋검수반려</a>
                         <a class="collapse-item" href="/reviewManage">후기관리</a>
                     </div>
                 </div>
@@ -98,25 +97,9 @@
 
             
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+            
 
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>dashboard</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -190,6 +173,56 @@
                                 </form>
                             </div>
                         </li>
+                        
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">
+                                <tr th:each=" dto,state : ${list}">
+									<td th:if="${dto.nickname} != null"/>1+
+									<td th:if="${dto.nickname} == null"/>
+								</tr>
+                                		
+								</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">February 07, 2023</div>
+                                        <span class="font-weight-bold">
+                                        	<table
+												class="table table-striped">
+												<tr>
+													<th>번호</th>
+													<th>닉네임</th>
+													<th>반려사유</th>
+												</tr>
+
+												<tr th:each=" dto,state : ${list}">
+													<td th:text="${dto.p_no}"></td>
+													<td th:text="${dto.nickname}"></td>
+													<td th:text="${dto.message}"></td>
+												</tr>
+
+											</table>
+										</span>
+                                    </div>
+                                </a>
+                                
+                            </div>
+                        </li>
 
 
 
@@ -199,9 +232,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">호스트ID</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/rabbit.jpeg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">[[${usersDTO.nickname}]]</span>
+                                <!-- <img class="img-profile rounded-circle"
+                                    src="image/profileimage/cs.png"> -->
+                                    
+                                <img class="img-profile rounded-circle" th:src="@{image/profileimage/}+${usersDTO.profileimage}" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -217,135 +252,42 @@
                     </ul>
 
                 </nav>
+                <!-- End of Topbar -->
 <!-- /////////////////////////////////////////////////////////////// 본문-->
-				<div class="container-fluid">
-				
-				<div
-					class="d-sm-flex align-items-center justify-content-between mb-4">
-					<h1 class="h3 mb-0 text-gray-800">뉴밋등록</h1>
-
-				</div>
-
-				<div class="card shadow mb-4">
+                <div class="card shadow mb-4">
                      <div class="card-body">
                      	
 
-								<div class="container">
-									<form action="newmeetForm" method="post" onsubmit="submitOk()">
-									
-									<!--  	<input type="hidden" class="form-control" name="p_no" value="">-->
-										<input type="hidden" class="form-control" name="report" value="0">
-										<input type="hidden" class="form-control" name="hits" value="0">
-										<input type="hidden" class="form-control" name="like" value="0">
-										<input type="hidden" class="form-control" name="inspection" value="1">
-										
-										<div class="form_group">
-											<label for="title">1.카테고리</label> 
-												<div>
-													<select class="form-select form-select-lg mb-3"
-														aria-label=".form-select-lg example" name="cateno" id="cateno">
-														<option selected>카테고리 종류를 선택해주세요</option>
-														<option value="100">운동</option>
-														<option value="200">여행</option>
-														<option value="300">자기계발</option>
-														<option value="400">문화생활</option>
-														<option value="500">모임</option>
-													</select>
-												</div>
-										</div>
-										
-										<div class="form_group">
-											<label for="title">2.상품명</label> <input type="text"
-												class="form-control" name="title" id="title">
-										</div>
-										
-										<div class="form_group">
-											<label for="title">3.내용(모임내용,간단한설명)</label> <input type="text"
-												class="form-control" name="contents" >
-										</div>
-										
-										<label for="title">4.상품이미지</label><br />
-										<div class="input-group mb-3">
-											<input type="file" class="form-control" id="inputGroupFile02"
-												name="image"> <label class="input-group-text"
-												for="inputGroupFile02">Upload</label>
-										</div>
-										
-										<label for="title">5.상품상세이미지(여러장선택가능)</label><br />
-										<div class="input-group mb-3">
-											<input type="file" class="form-control" id="inputGroupFile02"
-												name="detail_image" multiple="multiple"> <label class="input-group-text"
-												for="inputGroupFile02">Upload</label>
-										</div>
-										
-										<div class="form_group">
-											<label for="title">6.가격</label> <input type="text"
-												class="form-control" name="price" id="cateno">
-										</div>
-										<div class="form_group">
-											<label for="title">7.모임장소</label> <input type="text"
-												class="form-control" name="location" id="address_kakao" readonly="readonly">
-										
-										<div class="form_group">
-											<label for="title">8.모임인원</label> <input type="text"
-												class="form-control" name="person" id="person">
-										</div>
-										<div class="form_group">
-											<label for="title">9.모임마감기한</label> <input type="date"
-												class="form-control" name="period">
-										</div>
-										<div class="form_group">
-											<label for="title">10.모임난이도</label> 
-											<div style="padding-left: 50px">
-													<div class="form-check">
-														<input class="form-check-input" type="radio"
-															name="level" id="exampleRadios1" value="1"
-															checked> <label class="form-check-label"
-															for="exampleRadios1"> 1(매우쉬움) </label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio"
-															name="level" id="exampleRadios2" value="2">
-														<label class="form-check-label" for="exampleRadios2">
-															2(쉬움) </label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio"
-															name="level" id="exampleRadios3" value="3"> 
-														<label class="form-check-label"
-															for="exampleRadios3"> 3(보통) </label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio"
-															name="level" id="exampleRadios1" value="4"
-															checked> <label class="form-check-label"
-															for="exampleRadios1"> 4(어려움) </label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio"
-															name="level" id="exampleRadios2" value="5">
-														<label class="form-check-label" for="exampleRadios2">
-															5(매우어려움) </label>
-													</div>
-											</div>
-										</div>
-										<div class="form_group">
-											<label for="title">11.등록자 닉네임</label> <input type="text"
-												class="form-control" name="nickname" th:value="${usersDTO.nickname}">
-										</div>
-										<br />	<br />	
-										<div class="d-grid gap-2">
-											<button class="btn btn-primary" type="submit">검수요청</button>
-										</div>
-									</form>
-								</div>
+						<div class="container" style="font-size: 20px; font-weight: bold;">
+						전체 판매현황
+						</div><br>
+						
+						<table class="table table-striped">
+							<tr>
+								<th>번호</th>
+								<th>판매자</th>
+								<th>결제번호</th>
+								<th>가격</th>
+								<th>결제일자</th>
+								<th>결제방법</th>
+								<th>결제상태</th>
+							</tr>
+							
+							<tr th:each=" dto2,state : ${list2}">
+								<td th:text="${dto2.p_no}"></td>
+								<td th:text="${dto2.nickname}"></td>
+								<td th:text="${dto2.pay_no}"></td>
+								<td th:text="${dto2.price}"></td>
+								<td th:text="${dto2.pay_date}"></td>
+								<td th:text="${dto2.pay_method}"></td>
+								<td th:text="${dto2.pay_status}"></td>
+							</tr>
+
+						</table>		
 
                      </div>
                 </div>
-				</div>
 
-
-                
 <!-- /////////////////////////////////////////////////////////////// 본문-->
 
             <!-- Footer -->
@@ -406,50 +348,6 @@
     <script src="/bootstrap/js/demo/chart-area-demo.js"></script>
     <script src="/bootstrap/js/demo/chart-pie-demo.js"></script>
 
-	<!-- 카카오지도 -->
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script>
-			window.onload = function() {
-				document
-						.getElementById("address_kakao")
-						.addEventListener(
-								"click",
-								function() { //주소입력칸을 클릭하면
-									//카카오 지도 발생
-									new daum.Postcode(
-											{
-												oncomplete : function(data) { //선택시 입력값 세팅
-													document
-															.getElementById("address_kakao").value = data.address; // 주소 넣기
-													/* document
-															.querySelector(
-																	"input[name=address_detail]")
-															.focus(); //상세입력 포커싱 */
-												}
-											}).open();
-								});
-			}
-		</script>
-		<script>
-			function submitO() {
-				
-				alert("검수요청 완료");
-
-			}
-		</script> 
-		<script>
-					$('form').on('submit', function() {
-						if (document.getElementById('cateno').value == '') {
-							e.preventDefault()//제출완료 페이지로 넘어가는 것 방지
-							alert('아이디를 입력하세요')
-						}
-						if (document.getElementById('title').value == '') {
-							e.preventDefault()
-							alert('비밀번호를 입력하세요')
-						}
-						
-					});
-		</script>
-		</body>
+</body>
 
 </html>
