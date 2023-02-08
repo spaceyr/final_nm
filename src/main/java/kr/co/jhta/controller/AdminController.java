@@ -59,20 +59,20 @@ public class AdminController {
         session.setAttribute("usersDTO", usersDTO);
         
         //상품개수 전달
-        int productCount = service.countProduct(usersDTO.getNickname());
+        Integer productCount = service.countProduct(usersDTO.getNickname());
         model.addAttribute("productCount",productCount);
         
         //상품조회수 전달
-        int countProductReview = service.countProductReview(usersDTO.getNickname());
+        Integer countProductReview = service.countProductReview(usersDTO.getNickname());
         model.addAttribute("countProductReview",countProductReview);
         
         //상품신고수 전달
-        int countProductReport = service.countProductReport(usersDTO.getNickname());
+        Integer countProductReport = service.countProductReport(usersDTO.getNickname());
         model.addAttribute("countProductReport",countProductReport);
         
         //상품평점 전달
-        float countProductLike = service.countProductLike(usersDTO.getNickname());
-        model.addAttribute("countProductLike",countProductLike);
+        //float countProductLike = service.countProductLike(usersDTO.getNickname());
+        //model.addAttribute("countProductLike",countProductLike);
         
         //반려메시지 전달
         List<Rejected_messageDTO> list = service.selectRejectmessage(usersDTO.getNickname());

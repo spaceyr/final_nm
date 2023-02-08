@@ -58,17 +58,17 @@ public class ProductService {
 	
 
 	//유저당 상품개수조회
-	public int countProduct(String nickname) {
+	public Integer countProduct(String nickname) {
 
 		return dao.countProduct(nickname);
 	}
 	//유저당 상품조회수조회
-	public int countProductReview(String nickname) {
+	public Integer countProductReview(String nickname) {
 
 		return dao.countProductReview(nickname);
 	}
 	//유저당 상품신고수조회
-	public int countProductReport(String nickname) {
+	public Integer countProductReport(String nickname) {
 		
 		return dao.countProductReport(nickname);
 	}

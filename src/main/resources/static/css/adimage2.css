@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+body {
+	box-sizing: border-box;
+	width: 900px;
+	margin: 0 auto;
+	position: relative;
+	background-color: #FDFDFE;
+}
+
+ .ad_container{
+	float: right;
+	position: absolute;
+	right: 0px;
+	top: 240px;
+} 
+
+.ad_container img{
+	width: 280px;
+	height: 430px;
+	object-fit: cover;
+	margin-left: 50px;
+	position: fixed;
+	
+}
+.ad_slide{
+	display: none;
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
