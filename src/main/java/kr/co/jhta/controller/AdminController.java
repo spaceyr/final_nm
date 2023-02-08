@@ -254,11 +254,11 @@ public class AdminController {
 	public String mypage(Authentication authentication,HttpServletRequest request,Model model){
 		//로그인객체전달
 		HttpSession session = request.getSession();
-		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-				
+		//UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
+		
 		model.addAttribute("usersDTO",usersDTO);
 		session.setAttribute("usersDTO", usersDTO);
-		
 		//결제내역
 		List<PayDTO> list2 = payservice.getPayAll();
 		model.addAttribute("list2",list2);

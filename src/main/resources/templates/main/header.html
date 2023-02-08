@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,8 +15,12 @@
 
 <body>
 	<section class="top_menu">
+
+	
 		<ul class="menu_group">
-			<li><a th:href="@{/login}">로그인</a></li>
+		 	<li><a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a></li> 
+ 			<li sec:authorize="isAuthenticated()" th:text="${session.usersDTO.nickname}+'님 환영합니다'"></li>
+			<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></li>
 			<li><a th:href="@{/auth1?username=&password=}">회원가입</a></li>
 			<li><a th:href="@{/board/notice}">공지사항</a></li>
 			<li><a th:href="@{/host}">호스트센터</a></li>
