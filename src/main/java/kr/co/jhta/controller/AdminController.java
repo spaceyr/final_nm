@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.Rejected_messageDTO;
+import kr.co.jhta.dto.ReviewDTO;
 import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.service.PayService;
 import kr.co.jhta.service.ProductService;
+import kr.co.jhta.service.ReviewService;
 import kr.co.jhta.service.UserService;
 
 @Controller
@@ -38,6 +40,9 @@ public class AdminController {
 	
 	@Autowired
 	PayService payservice;
+	
+	@Autowired
+	ReviewService rs;
 	
 	 LocalDate now = LocalDate.now(); 
 	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
@@ -251,8 +256,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/mypage")
-	public String mypage(Authentication authentication,HttpServletRequest request,Model model){
+	public String mypage(Model model, @ModelAttribute("dto2") PayDTO dto2, @ModelAttribute("pdto") PayDTO pdto,
+			Authentication authentication, HttpServletRequest request, @ModelAttribute("rdto") ReviewDTO rdto) {
+		
 		//로그인객체전달
+		if (authentication != null) {
 		HttpSession session = request.getSession();
 		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
 				
@@ -260,14 +268,21 @@ public class AdminController {
 		session.setAttribute("usersDTO", usersDTO);
 		
 		//결제내역
-		List<PayDTO> list2 = payservice.getPayAll();
+		List<PayDTO> list2 = payservice.getPayAll(usersDTO.getNickname());
 		model.addAttribute("list2",list2);
 		System.out.println("list2:"+list2);
 		
+		//후기내역전달
+		List<ReviewDTO> list3 = rs.getReview(usersDTO.getNickname());
+		model.addAttribute("list3",list3);
 		
 		//찜한상품만 가져오기
 		List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());
 		model.addAttribute("list", list);
 		return "mypage";
+	
+	} else {
+		return "/login";
+		}
 	}
 }

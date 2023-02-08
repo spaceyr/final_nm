@@ -5,14 +5,15 @@
   
   <mapper namespace="kr.co.jhta.dao.PayDAO">
   	<insert id="payAddOne" parameterType="PayDTO">
-		INSERT INTO orders(nickname, p_no, price, pay_method, pay_date, pay_status)
-		VALUES (#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1)
+		INSERT INTO orders(nickname, p_no, price, pay_method, pay_date, pay_status, customer)
+		VALUES (#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1, #{customer})
 	</insert>
 	<select id="getPayAll" resultType="PayDTO">
 		SELECT * 
 		FROM orders as o
 			INNER JOIN product as p
 			ON o.p_no = p.p_no
+			WHERE o.customer = #{customer}
 			ORDER BY pay_no desc
 	</select>
 	<delete id="deletePay" parameterType="int">

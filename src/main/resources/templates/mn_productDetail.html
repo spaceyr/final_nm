@@ -130,19 +130,9 @@
 		});
 	});
 	</script>
-
-	
-	
-
-	
-
 	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 </head>
-	
-
 <body>
-
-	
 	<div th:each="dto : ${list }">
 	
 	<div id="container" >
@@ -150,33 +140,17 @@
 		<div id="1pg" style="margin-top:50px;"></div>
 		<div style=" float:left;">
 			<div><img th:src="@{/image/mainimage/}+${dto.image}" style="width: 250px; height:300px;" /></div>
-
 		</div>
-
-
-		
-
 	 <div style="float:right; margin:auto; height: 300px; width:630px;" class="shadow p-3 mb-5 bg-body rounded">
-
-			
 
 				<h3 class="pname_big" style="color: #5b90f0; font-size: 24px;" th:text="${dto.title}"></h3>
 				<hr />
 				<table class="table table-hover" >
 
 					<tr>
-
-				
-						
-						<!-- <td style="font-size: 20px;" th:text="|이 상품은 ${dto.nickname}님이 주관합니다!|"></td> -->
-						<td><a th:href="@{review(nickname=${dto.nickname})}" th:text="|host:  ${dto.nickname} |"></a></td>
-						
+						<td><a style="text-decoration:none; font-size:23px;" th:href="@{review(nickname=${dto.nickname})}" th:text="${dto.nickname}"></a></td>
 					</tr>
-
-					
-
 				</table>
-
 				<img th:src="@{/image/logo/}+niceday.png" style="width: 170px; padding-left: 30px; position: relative; left: 10px; top: -10px;" alt="" />
 				
 				<span style="width:150px; font-size: 20px; font-weight: bold; float: right;" th:text="|${#numbers.formatInteger(dto.price, 3, 'COMMA')}원|"></span>
@@ -193,18 +167,8 @@
 				</button></a>
 				
 					</div>
-		
-			
-		 
-
-	</div>
-	
-
 </div>
-
-	
-
-
+</div>
 
 	<div id="2pg" style="width: 95%; height: 150px; margin-left:auto; margin-right:auto; position:relative; top:50px; clear: both;" class="border-top">
 		<br>

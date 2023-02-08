@@ -13,7 +13,7 @@ public interface PayDAO {
 
 	void payAddOne(PayDTO dto2);
 
-	List<PayDTO> getPayAll();
+	List<PayDTO> getPayAll(String nickname);
 
 	void deletePay(int pay_no);
 
