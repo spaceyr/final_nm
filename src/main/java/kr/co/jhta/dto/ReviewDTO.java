@@ -17,6 +17,7 @@ public class ReviewDTO {
 	private int p_no;
 
 	private String nickname;
+	private String writer;
 
 	private String contents;
 	private String rating;

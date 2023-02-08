@@ -62,7 +62,15 @@ public class BoardController {
 
 //리뷰 작성시 p_no값 넘겨받음
 	@GetMapping("board/write")
-	public String writeForm(@RequestParam("p_no") int p_no, Model model) {
+	public String writeForm(@RequestParam("p_no") int p_no, Model model,
+			Authentication authentication, HttpServletRequest request) {
+		//로그인객체전달
+					HttpSession session = request.getSession();
+					UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+
+					model.addAttribute("usersDTO", usersDTO);
+					session.setAttribute("usersDTO", usersDTO);
+					
 		List<ProductDTO> list = ps.selectOne(p_no);
 		model.addAttribute("list", list);
 
@@ -72,27 +80,44 @@ public class BoardController {
 
 //리뷰 작성완료시 db에 저장
 	@PostMapping("board/write")
-	public String writeOk(@ModelAttribute("dto2") StarContentDTO dto2) {
+	public String writeOk(@ModelAttribute("dto2") StarContentDTO dto2,
+			Authentication authentication,
+			HttpServletRequest request, 
+			Model model
+			) {
+		//로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
 		System.out.println(dto2.getRating());
+		
 		rs.addStar(dto2);
 		log.info(">>>>>>>>>>" + dto2);
 		return "/main";
 	}
 
-// 공지사항
+//공지사항
 	@GetMapping("board/notice")
 	public String notice() {
 		return "board/notice";
 	}
 
-	
+//후기삭제
+		@GetMapping("review/delete")
+		public String deleteReview(@RequestParam("r_no") int r_no) {
+			rs.deleteReview(r_no);
+			return "redirect:/mypage";
+		}
 //	호스트별 리뷰 조회 
-//	 @GetMapping("/review") 
-//	 public String host(Model model, @RequestParam("nickname")String nickname) { 
-//		 List<ReviewDTO> host = rs.selectHost(nickname);
-//		 model.addAttribute("host",host); 
-//		 return "/review"; 
-//	 }
+	 @GetMapping("/product/review") 
+	 public String host(Model model, @RequestParam("nickname")String nickname) { 
+		 List<ReviewDTO> host = rs.selectHost(nickname);
+		 model.addAttribute("host",host); 
+		 return "review"; 
+	 }
 	 
 
 }

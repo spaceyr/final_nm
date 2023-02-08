@@ -16,6 +16,8 @@ public class StarContentDTO {
 	private Date regdate;
 	private int rating;
 	private int p_no;
+	private String nickname;
+	private String writer;
 
 
 }

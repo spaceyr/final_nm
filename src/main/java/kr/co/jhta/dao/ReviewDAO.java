@@ -29,4 +29,9 @@ public interface ReviewDAO {
 //호스트별 리뷰 조회
 	List<ReviewDTO> selectHost(String nickname);
 
+//후기내역전달
+	List<ReviewDTO> getReview(String nickname);
+
+	void deleteReview(int r_no);
+
 }

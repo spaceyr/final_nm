@@ -1,7 +1,9 @@
 package kr.co.jhta.controller;
 
 
+import java.util.Map;
 import java.util.UUID;
+import java.util.jar.Attributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.nimbusds.oauth2.sdk.Response;
 
 import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.service.EmailService;
@@ -144,7 +148,7 @@ public class UserController {
 
     //로그인
     @RequestMapping("/user_access")
-    public String userAccess(Authentication authentication, HttpServletRequest request,Model model) {
+    public String userAccess(Authentication authentication, HttpServletRequest request) {
     	log.info("test");
     	HttpSession session = request.getSession();
         //Authentication 객체를 통해 유저 정보를 가져올 수 있다.
@@ -154,16 +158,36 @@ public class UserController {
         UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();  //userDetail 객체를 가져옴
         System.out.println("로그인부분 usersDTO : "+usersDTO);
         
-        model.addAttribute("usersDTO",usersDTO);
+        
         session.setAttribute("usersDTO", usersDTO);
         return "main";
         }else {
-        	DefaultOAuth2User usersDTO = (DefaultOAuth2User) authentication.getPrincipal();  //userDetail 객체를 가져옴
-            System.out.println("로그인부분 usersDTO : "+usersDTO);
+        	DefaultOAuth2User usersDTO1 = (DefaultOAuth2User) authentication.getPrincipal();  //userDetail 객체를 가져옴
+            System.out.println("로그인부분2 usersDTO1 : "+usersDTO1);
             
-            model.addAttribute("usersDTO",usersDTO);
+           
+            Map <String, Object> response = (Map <String, Object>) usersDTO1.getAttribute("response");
+            System.out.println("response : "+response);
+            
+            if(response!=null) {
+            UsersDTO usersDTO = new UsersDTO();
+            usersDTO.setNickname((String)(response.get("nickname")));
+            usersDTO.setCoupon(3000);
+            
+            System.out.println("usersDTO.getNickname : "+usersDTO.getNickname());
+            System.out.println("usersDTO.getCoupon : "+usersDTO.getCoupon());
             session.setAttribute("usersDTO", usersDTO);
             return "main";
+            }else {
+            	
+            	Map <String, Object> kakao = (Map <String, Object>) usersDTO1.getAttribute("properties");
+            	System.out.println("kakao : "+kakao);
+            	UsersDTO usersDTO = new UsersDTO();
+            	usersDTO.setNickname((String)(kakao.get("nickname")));
+            	usersDTO.setCoupon(3000);
+        		session.setAttribute("usersDTO", usersDTO);
+        		return "main";
+            }
         }
         
     }

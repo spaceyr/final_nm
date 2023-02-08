@@ -61,23 +61,15 @@
 		
 
 		<form action="/board/write" method="post">
+			 <input type="hidden" th:value="${usersDTO.nickname}" name="writer" id="writer"></input> 
+			<div th:each="dto2:${list}"> 
+			<input type="hidden" th:value="${dto2.nickname}" name="nickname" id="nickname"></input>  
 			
-		<!--  <div class="mb-3">
-				<label for="nickname" class="col-form-label">닉네임</label> <input
-					type="hidden" name="nickname" id="nickName" value=""/>
-
-			</div>
-			<div class="mb-3">
-				<label for="title" class="col-form-label">제목</label> <input
-					type="text" name="title" id="title" value=""/>
-			</div> -->
-			<!-- <div class="mb-3">
-				<label for="p_no" class="col-form-label">상품번호</label> <input
-					type="text" name="p_no" id="p_no" value=""/>
-			</div> -->
-			<div th:each="dto:${list}">
+			<!-- <span th:text="${dto2.nickname}"></span>
+			<span th:text="${usersDTO.nickname}"></span> -->
+			
 			<div class="mb-3"> 
-				<input type="hidden" th:value="${dto.p_no}" name="p_no" id="p_no"></input>
+				<input type="hidden" th:value="${dto2.p_no}" name="p_no" id="p_no"></input>
 			</div> 
 			</div>
 			<div class="mb-3">

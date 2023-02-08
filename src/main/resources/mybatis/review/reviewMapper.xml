@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 호스트별 리뷰 -->
+
 <mapper namespace="kr.co.jhta.dao.ReviewDAO">
 <!-- 리뷰작성시 p_no값 넘겨받기 -->
-	<select id="getOne" parameterType="int" resultType="ReviewDTO">
+	<select id="getOne" parameterType="int" resultType="ProductDTO">
 		SELECT *
-		FROM review
+		FROM product
 		WHERE p_no = #{p_no}
 	</select>
 <!-- p_no값 받아와서 내용, 평점값 가져옴 -->
 	<insert id="addS" parameterType="StarContentDTO" >
-		INSERT INTO review (p_no,contents, regdate, rating)
-		VALUES (#{p_no},#{contents}, date_format(now(),'%Y-%m-%d'), #{rating})
+		INSERT INTO review (p_no,contents, regdate, rating, writer, nickname)
+		VALUES (#{p_no},#{contents}, date_format(now(),'%Y-%m-%d'), #{rating},#{writer},#{nickname})
 	</insert>
 
 <!-- 한페이지당 게시물 10개씩 -->
@@ -24,8 +24,8 @@
 
 <!-- 현재 보여지는 부분 -->
 	<select id="showR" parameterType="StartEnd" resultType="ReviewDTO" >
-		SELECT  r_no,r.rating, r.regdate, r.contents, r.p_no, p.nickname, p.title
-			FROM (SELECT r_no, rating, date_format(now(), '%Y-%m-%d') regdate, image, contents, p_no
+		SELECT r_no,r.rating, r.regdate, r.contents, r.p_no, p.nickname, p.title, r.writer
+			FROM (SELECT r_no, rating, date_format(now(), '%Y-%m-%d') regdate, image, contents, p_no, nickname, writer
 				FROM  review 
 				ORDER BY r_no desc) as r
 			INNER JOIN product as p
@@ -35,11 +35,26 @@
 
 <!-- 호스트 리뷰 조회 -->	
 	<select id="selectHost" parameterType="string" resultType="ReviewDTO">
-		SELECT  r_no,r.rating, r.regdate, r.contents, r.p_no, p.nickname, p.title
-		FROM review as r
+		SELECT r_no,r.rating, r.regdate, r.contents, r.p_no, p.nickname, p.title, r.writer
+			FROM (SELECT r_no, rating, date_format(now(), '%Y-%m-%d') regdate, image, contents, p_no, nickname, writer
+				FROM  review 
+				ORDER BY r_no desc) as r
 			INNER JOIN product as p
 			ON r.p_no = p.p_no
-			WHERE nickname like concat ('%',#{nickname},'%')
+			WHERE p.nickname like concat ('%',#{nickname},'%')
 			ORDER BY r_no desc
 	</select>
+<!-- 리뷰내역전달 -->
+	<select id="getReview" parameterType="String" resultType="ReviewDTO">
+		SELECT p.title, r.regdate, r.contents, r.r_no, r.writer
+			FROM product p
+				INNER JOIN review r
+				ON p.p_no=r.p_no
+			WHERE r.writer = #{writer}
+	</select>
+<!-- 후기 삭제 -->
+	 <delete id="deleteReview" parameterType="int" >
+		DELETE FROM review
+  		WHERE r_no = #{r_no}
+	</delete> 
 </mapper>

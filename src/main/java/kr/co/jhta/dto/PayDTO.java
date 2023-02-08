@@ -15,4 +15,5 @@ public class PayDTO {
 	private int pay_no;
 	private int pay_status;
 	private int price;
+	private String customer;
 }

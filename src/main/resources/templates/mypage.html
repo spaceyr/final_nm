@@ -7,7 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script type="text/javascript">
 function refund() {
-	if(confirm("환불하시겠습니까?")) {
+	if(confirm("구매한 상품을 환불하시겠습니까?")) {
 		console.log("완료");
 		alert("환불 완료");
 	}else{
@@ -16,6 +16,14 @@ function refund() {
 		return "/mypage";
 	}
 	
+}
+
+function delwrite() {
+	if(confirm("작성한 후기를 삭제하시겠습니까?")) {
+		alert("삭제 완료");
+	}else{
+		alert("삭제 취소");
+	}
 }
 </script>
 </head>
@@ -68,7 +76,7 @@ function refund() {
 											<img th:src="@{/image/mainimage/} + ${dto.image}"></a> 
 										</div>
 									</a> <span class="product_item_name" th:text="${dto.title}"></span>
-									<div class="product_item_price" th:text="${dto.price}+원">
+									<div class="product_item_price" th:text="${#numbers.formatInteger(dto.price, 3, 'COMMA')}+원">
 									</div>
 									<p>
 										&#128151; <span class="product_item_like"
@@ -170,65 +178,35 @@ function refund() {
                 </div>
 		</div>
 		
-		<!-- 내활동탭 -->
-		<!-- <div class="card shadow mb-4">
-                     <div class="card-body" >
+		
+		<hr style="width: 900px;">
+		<div class="container-fluid">
+				
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+
+				</div>
+<!--  =========================================================== -->
+<!--  =================== 결제내역 ================ -->
+        <h4 class="blog-post-title mb-1" style="color: gray;">내활동</h4><br /><br />
+				<div class="card shadow mb-4">
+                     <div class="card-body">
                      	
 
 								<div class="container">
-									<h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">내활동</h1>
-									<br />
-
-								<div class="accordion" id="accordionExample">
-									<div class="accordion-item">
-										<h2 class="accordion-header" id="headingOne">
-											<button class="accordion-button" type="button"
-												data-bs-toggle="collapse" data-bs-target="#collapseOne"
-												aria-expanded="true" aria-controls="collapseOne">
-												결제내역</button>
-										</h2>
-										<div id="collapseOne" class="accordion-collapse collapse show"
-											aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-											<div class="accordion-body">
-												결제내역 table로 가져와서 보여주기
-											</div>
-										</div>
-									</div>
-									<div class="accordion-item">
-										<a href="https://www.frip.co.kr/invite-friends" style="text-decoration: none;"><h2 class="accordion-header" id="headingTwo">
-											<button class="accordion-button collapsed" type="button">
-												친구초대 3000원쿠폰받기</button></a>
-										</h2>
-										<div id="collapseTwo" class="accordion-collapse collapse"
-											aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-											
-										</div>
-									</div>
-									
-								</div>
-								
+      <article class="blog-post">
+					
+        					<h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">결제내역</h1>
+									<!-- 카드안쪽 -->
+						<div class="product_container product_cont2">
 							
 
-				</div>
-				</div>
-				</div> -->
-		
-		<hr style="width: 900px;">
-		
-      <article class="blog-post">
-        <h4 class="blog-post-title mb-1" style="color: gray;">내활동</h4><br /><br />
-        
-<!--  =========================================================== -->
-<!--  =================== 결제내역, 후기작성 관리  ================ -->
-       
-      <h6 class="blog-post-title mb-1" style="color: gray;">결제내역</h6>
-        <table class="table">
+	<table class="table">
         <tr>
         	<td>상품명</td>
         	<td>결제일</td>
         	<td></td>
         	<td></td>
-        	
         </tr>
        <tr th:each="pdto: ${list2}">
         <td th:text="${pdto.title}"></td>
@@ -242,9 +220,42 @@ function refund() {
 	</span>
 
        </table>
-  <!--  =========================================================== -->  
+       
+       </div>
+        <br>
+       <!--  =================== 후기관리 ================ -->
+       <h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">후기내역</h1>
+      <div class="product_container product_cont2">
+							
+
+	<table class="table">
+        <tr>
+        	<td>상품명</td>
+        	<td>작성일</td>
+        	<td>내용</td>
+        	<td></td>
+        	
+        </tr>
+       <tr th:each="rdto: ${list3}">
+        	<td th:text="${rdto.title}"></td>
+        	<td th:text="${rdto.regdate}"></td>
+        	<td th:text="${rdto.contents}"></td>
+			<td><a th:href="@{/review/delete(r_no=${rdto.r_no})}" 
+				th:text="삭제" onclick="delwrite()" class="btn btn-outline-danger btn-sm"></a></td>
+	
+		</tr>
+       </table>
+       
+       </div>
+       </div>
+</div>
+		</div>
+		</div>
+ <!--  =========================================================== -->  
+
+
         
-								<div class="accordion" id="accordionExample">
+<div class="accordion" id="accordionExample">
 									
         <hr style="width: 900px;">
         
