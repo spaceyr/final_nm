@@ -35,6 +35,11 @@ public class MainController {
 		return "main";
 	}
 	
+	@GetMapping("/")
+	public String main2() {
+		return "main";
+	}
+	
 
 	// 운동 리스트 페이지 
 	@GetMapping("/main/sportslist")
