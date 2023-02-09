@@ -88,4 +88,14 @@
 	<insert id="rejectinsertOne" parameterType="Rejected_messageDTO">
   		insert into rejected_message values(#{p_no}, #{nickname}, #{message} )
   	</insert>
+  	
+  	<!-- 판매상품리스트가져오기 -->
+	<select id="salesList" resultType="PayDTO" parameterType="String">
+  		SELECT * FROM orders where nickname = #{nickname};
+  	</select>
+  	
+  	<!-- 차트값 -->
+	<select id="salesListmonth" resultType="ChartDTO" parameterType="String">
+  		SELECT DATE_FORMAT(pay_date,'%Y-%m') m, sum(price) as price FROM orders where nickname = #{nickname} GROUP BY m
+  	</select>
 </mapper>
