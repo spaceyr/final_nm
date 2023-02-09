@@ -365,14 +365,14 @@ public class AdminController {
 		session.setAttribute("usersDTO", usersDTO);
 		
 		
-		List<ProductDTO> list = service.rejectInsepection();
+		List<ProductDTO> list2 = service.rejectInsepection();
 		
-		model.addAttribute("list", list);
+		model.addAttribute("list2", list2);
 		
 		//반려메시지 전달
-        List<Rejected_messageDTO> list2 = service.selectRejectmessage(usersDTO.getNickname());
+        List<Rejected_messageDTO> list = service.selectRejectmessage(usersDTO.getNickname());
 		
-        model.addAttribute("list2",list2);
+        model.addAttribute("list",list);
 		
 		return "newmeetReject";
 	}
