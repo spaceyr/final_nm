@@ -39,7 +39,10 @@ public interface UsersMapper {
 	UsersDTO getMemberFindByEmail(String email,String nickname);
 
 	
-	void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id);
+	/*
+	 * void hostmodifyOne(String nickname, String email, String phone, String field,
+	 * String profileimage,String id);
+	 */
 
 	boolean isIdCheck2(String name, String phone);
 }

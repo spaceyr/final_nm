@@ -205,7 +205,16 @@ public class AdminController {
 	}
 	
 	@GetMapping("/editProfile")
-	public String editProfile(){
+	public String editProfile(Authentication authentication,HttpServletRequest request,Model model){
+		
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		System.out.println(authentication);
+			
+		
+		model.addAttribute("usersDTO",usersDTO);
+        session.setAttribute("usersDTO", usersDTO);
+		
 		return "editProfile";
 	}
 	
@@ -217,7 +226,7 @@ public class AdminController {
 								@RequestParam("profileimage")String profileimage,
 								@RequestParam("id")String id){
 		
-		userservice.hostmodifyOne(nickname, email, phone, field, profileimage,id);
+		service.hostmodifyOne(nickname, email, phone, field, profileimage, id);
 		
 		return "editProfile";
 	}
@@ -250,7 +259,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/reviewManage")
-	public String reviewManage(){
+	public String reviewManage(Model model){
+		
+		List<ReviewDTO> list = service.showAllReview();
+		
+		model.addAttribute("list",list);
 		
 		return "reviewManage";
 	}

@@ -98,4 +98,15 @@
 	<select id="salesListmonth" resultType="ChartDTO" parameterType="String">
   		SELECT DATE_FORMAT(pay_date,'%Y-%m') m, sum(price) as price FROM orders where nickname = #{nickname} GROUP BY m
   	</select>
+  	<!-- 호스트정보 수정 -->
+  	<update id="hostmodifyOne" parameterType="String">
+				UPDATE users
+				SET nickname=#{nickname}, email=#{email}, phone=#{phone}, field=#{field}, profileimage=#{profileimage}
+				WHERE id = #{id}
+	</update>
+	<!-- 리뷰전체 -->
+	<select id="showAllReview" resultType="ReviewDTO">
+		select * from review
+	</select>
+	
 </mapper>

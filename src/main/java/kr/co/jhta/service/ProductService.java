@@ -10,6 +10,7 @@ import kr.co.jhta.dto.ChartDTO;
 import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.Rejected_messageDTO;
+import kr.co.jhta.dto.ReviewDTO;
 
 
 @Service
@@ -116,6 +117,16 @@ public class ProductService {
 	public List<ChartDTO> salesListmonth(String nickname) {
 		
 		return dao.salesListmonth(nickname);
+	}
+	
+	// host프로필수정
+	public void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,
+			String id) {
+		dao.hostmodifyOne(nickname, email, phone, field, field, id);
+	}
+	
+	public List<ReviewDTO> showAllReview(){
+		return dao.showAllReview();
 	}
 	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){

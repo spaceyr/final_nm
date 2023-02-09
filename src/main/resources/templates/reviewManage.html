@@ -267,8 +267,23 @@
 							검색목록
 						</div>
 						
-						<table>
-							목록
+						<table class="table table-striped">
+							<tr>
+								<th>상품번호</th>
+								<th>평점</th>
+								<th>작성날짜</th>
+								<th>내용</th>
+								<th>작성자</th>
+							</tr>
+							
+							<tr th:each=" dto,state : ${list}">
+								<td th:text="${dto.p_no}"></td>
+								<td th:text="${dto.rating}"></td>
+								<td th:text="${dto.regdate}"></td>
+								<td th:text="${dto.contents}"></td>
+								<td th:text="${dto.writer}"></td>
+							</tr>
+
 						</table>		
 
                      </div>
