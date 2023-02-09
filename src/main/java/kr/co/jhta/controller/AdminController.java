@@ -448,7 +448,7 @@ public class AdminController {
 		return "mypage";
 	
 	} else {
-		return "/login";
+		return "/login/login";
 		}
 	}
 }

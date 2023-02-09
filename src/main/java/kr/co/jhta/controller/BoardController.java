@@ -19,9 +19,10 @@ import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.ReviewDTO;
 import kr.co.jhta.dto.StarContentDTO;
 import kr.co.jhta.dto.UsersDTO;
-import kr.co.jhta.dto.util.PageUtil;
+
 import kr.co.jhta.service.ProductDetailService;
 import kr.co.jhta.service.ReviewService;
+import kr.co.jhta.util.PageUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

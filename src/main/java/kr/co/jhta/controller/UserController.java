@@ -49,13 +49,13 @@ public class UserController {
      //로그인 페이지
     @GetMapping("/login")  
     public String login(){
-        return "login";
+        return "/login/login";
     }
 
     //회원가입 페이지 1단계
     @GetMapping("/auth1")
     public String auth1() {
-        return "mn_auth1";
+        return "/login/mn_auth1";
     }
     
     
@@ -76,7 +76,7 @@ public class UserController {
        System.out.println("이메일 : " +email);
        model.addAttribute("email",email);
        
-       return "signup";
+       return "/login/signup";
     }
    	
    	//회원가입 진행
@@ -141,7 +141,7 @@ public class UserController {
     @GetMapping("/access_denied")
     public String accessDenied(Model model) {
     	model.addAttribute("fail","아이디와 비밀번호를 확인해주세요.");
-        return "/login";
+        return "/login/login";
     }
 
     
@@ -198,7 +198,7 @@ public class UserController {
   //아이디찾기 페이지 이동
   	@GetMapping("/findId")
   	public String findId() {
-  		return "mn_findId";
+  		return "/login/mn_findId";
   	}
   	
   	
@@ -223,7 +223,7 @@ public class UserController {
   	//비밀번호찾기 페이지 이동
   	@GetMapping("/findPw")
   	public String findPw() {
-  		return "mn_findPw";
+  		return "/login/mn_findPw";
   	}
   	
   	//비밀번호 찾기 작동
@@ -268,19 +268,19 @@ public class UserController {
   	//이용약관 글
   	@GetMapping("/tac")
   	public String tac() {
-  		return "termsAndConditions";
+  		return "/main/termsAndConditions";
   	}
   	
   	//개인정보 처리글
   	@GetMapping("/privacy")
   	public String privacy() {
-  		return "privacy";
+  		return "/main/privacy";
   	}
   	
   	//위치정보 서비스 글
   	@GetMapping("/locationService")
   	public String locationService() {
-  		return "locationService";
+  		return "/main/locationService";
   	}
     
 }
