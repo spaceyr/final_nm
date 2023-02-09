@@ -108,5 +108,16 @@
 	<select id="showAllReview" resultType="ReviewDTO">
 		select * from review
 	</select>
+	<!-- 검색리뷰 -->
+	<select id="selectOneReview" parameterType="String" resultType="ReviewDTO">
+		select * from review where 1=1 
+		
+			<if test="contents !=''">
+				and contents like CONCAT('%',#{contents},'%')
+			</if>
+			<if test="writer !=''">
+				and writer>=#{writer}
+			</if>
+	</select>
 	
 </mapper>

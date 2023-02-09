@@ -66,5 +66,8 @@ public interface ProductDAO {
 	
 	// 전체리스트
 	List<ReviewDTO> showAllReview();
+	
+	//검색리뷰
+	List<ReviewDTO> selectOneReview(String contents,String writer);
 
 }

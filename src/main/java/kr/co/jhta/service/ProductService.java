@@ -124,9 +124,13 @@ public class ProductService {
 			String id) {
 		dao.hostmodifyOne(nickname, email, phone, field, field, id);
 	}
-	
+	//리뷰전체조회
 	public List<ReviewDTO> showAllReview(){
 		return dao.showAllReview();
+	}
+	//리뷰검색조회
+	public List<ReviewDTO> selectOneReview(String contents,String writer) {
+		return dao.selectOneReview(contents,writer);
 	}
 	
 	/*public List<BoardDTO> selectAll(int startNo, int endNo){

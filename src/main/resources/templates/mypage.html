@@ -44,7 +44,73 @@ function delwrite() {
 				<div th:text="${usersDTO.nickname}"></div>
 			</h2>
 			<p>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-secondary" href="#" style="font-size: 10px; ">프로필수정 »</a>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-secondary" href="/editProfile" style="font-size: 10px; " data-bs-toggle="modal" data-bs-target="#staticBackdrop">프로필수정 »</a>
+
+				<!-- Modal -->
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h1 class="modal-title fs-5" id="staticBackdropLabel">프로필수정</h1>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <div class="container">
+									<form action="/mypageOk" method="post">
+
+									
+										
+										<div class="form_group">
+											<label for="title">1.유저명</label> <input type="text"
+												class="form-control" name="nickname">
+										</div>
+										
+										<div class="form_group">
+											<label for="title">2.이메일</label> <input type="text"
+												class="form-control" name="email">
+										</div>
+										
+										<div class="form_group">
+											<label for="title">3.연락처 (선택)</label> <input type="text"
+												class="form-control" name="phone">
+										</div>
+										
+										<div class="form_group">
+											<label for="title">4.자기소개 (선택)</label> 
+										<textarea data-v-ce0d5466=""
+											placeholder="간단한 자기소개를 입력해 주세요." name="field" wrap="soft"
+											class="form-control form-control" maxlength="500"
+											id="__BVID__916"
+											style="resize: none; overflow-y: scroll; height: 89px;">
+										</textarea><br />
+										<div><div style="font-weight: bold;">소개 예시보기</div> <br />뉴밋 크루(회원)에게 회원님을 소개해 주세요. 회원님만의 개성을 담거나, 신뢰감을 줄
+											수 있는 사항들을 입력하시면 뉴밋활동에 도움이 됩니다. <br /><br /> <div style="color: red;">* 성격,MBTI,취미,이상형 등 *<br /> 개인
+											연락처(전화번호, 카카오톡 ID, 개인 SNS, 홈페이지 등은 입력할 수 없습니다.</div></div>
+										</div><br />
+										
+										<label for="title">5.프로필사진</label><br />
+										<div class="input-group mb-3">
+											<input type="file" class="form-control" id="profileimage"
+												name="profileimage" multiple="multiple"> <label class="input-group-text"
+												for="inputGroupFile02">Upload</label>
+										</div>
+										<input type="hidden" th:value="${usersDTO.id}" name="id">
+										
+										
+										<!-- <br />	<br />	
+										<div class="d-grid gap-2">
+											<button class="btn btn-primary" type="submit">프로필수정</button>
+										</div> -->
+								</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        <button type="submit" class="btn btn-primary">정보변경</button>
+									</form>
+				      </div>
+				    </div>
+				  </div>
+				</div>
 			</p>
 		</div>
 		<br />
