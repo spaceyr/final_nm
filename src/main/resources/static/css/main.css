@@ -138,21 +138,21 @@ text-decoration:none;
 	font-size: 15px;
 } 
 .category_menu_img1 {
-   background-image: url("../image/sport.png");
+   background-image: url("../image/icon/sport.png");
    background-size: 40px;
    background-position: top 2px;
 }
 .category_menu_img2 {
-	background-image: url("../image/travel.png");
+	background-image: url("../image/icon/travel.png");
 	background-size: 45px;
 }
 .category_menu_img3 {
-	background-image: url("../image/book.png");
+	background-image: url("../image/icon/book.png");
 	background-size: 40px;
 	background-position: top 2px;
 }
 .category_menu_img4 {
-	background-image: url("../image/art.png");
+	background-image: url("../image/icon/art.png");
 	background-size: 40px;
 	background-position: top 2px;
 }
