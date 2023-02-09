@@ -1,0 +1,103 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+</head>
+<body>
+<div>
+  <!-- <canvas id="myChart"></canvas> -->
+  <!-- <div th:text="${json}"></div> 제이쿼리로 가져오기 -->
+
+
+				<h5 style="text-align: center;">유저별 그래프</h5>
+<canvas id="logNameChart" style="width: 600px; height: 400px;"></canvas> 
+</div>
+<script th:inline="javascript">
+	
+		
+	/*<![CDATA[*/
+	var jsonData = '[[${json}]]';
+	/*]]>*/	
+	
+	var jsonObject = JSON.stringify(jsonData);
+	var jData = JSON.parse(jsonObject);
+
+	var labelList = new Array();
+	var valueList = new Array();
+	var colorList = new Array();
+
+	for (var i = 0; i < jData.length; i++) {
+		var d = jData[i];
+		labelList.push(d.m);
+		valueList.push(d.price);
+		colorList.push(colorize());
+	}
+
+	var data = {
+		labels : labelList,
+		datasets : [ {
+			backgroundColor : colorList,
+			data : valueList
+		} ],
+		options : {
+			title : {
+				display : true,
+				text : '월별 판매량'
+			}
+		}
+	};
+
+	var ctx1 = document.getElementById('logNameChart').getContext('2d');
+	new Chart(ctx1, {
+		type : 'pie',
+		data : data
+	});
+
+	function colorize() {
+		var r = Math.floor(Math.random() * 200);
+		var g = Math.floor(Math.random() * 200);
+		var b = Math.floor(Math.random() * 200);
+		var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
+		return color;
+	}
+
+	
+	
+</script> 
+<!-- <script>
+
+/*<![CDATA[*/
+var jsonData = '[[${json}]]';
+/*]]>*/	
+
+var jsonObject = JSON.stringify(jsonData);
+var jData = JSON.parse(jsonObject);
+const labels = ['January','February','March','April','May','June'];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+
+const config = {
+  type: 'bar',
+  data,
+  options: {}
+};
+
+</script>
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script> -->
+
+
+
+</html>

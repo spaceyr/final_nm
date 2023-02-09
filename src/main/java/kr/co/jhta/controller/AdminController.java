@@ -2,7 +2,9 @@ package kr.co.jhta.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,12 +18,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import kr.co.jhta.dto.ChartDTO;
 import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.Rejected_messageDTO;
+import kr.co.jhta.dto.ReviewDTO;
 import kr.co.jhta.dto.UsersDTO;
 import kr.co.jhta.service.PayService;
 import kr.co.jhta.service.ProductService;
+import kr.co.jhta.service.ReviewService;
 import kr.co.jhta.service.UserService;
 
 @Controller
@@ -38,6 +47,9 @@ public class AdminController {
 	
 	@Autowired
 	PayService payservice;
+	
+	@Autowired
+	ReviewService rs;
 	
 	 LocalDate now = LocalDate.now(); 
 	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
@@ -57,6 +69,8 @@ public class AdminController {
 		
 		model.addAttribute("usersDTO",usersDTO);
         session.setAttribute("usersDTO", usersDTO);
+        
+        
         
         //상품개수 전달
         Integer productCount = service.countProduct(usersDTO.getNickname());
@@ -87,10 +101,83 @@ public class AdminController {
 	}
 	
 	
-	@GetMapping("/dashboard")
-    public String home(){
-        return "dashboard";
+	@GetMapping("/allSales")
+    public String allSales(Authentication authentication,HttpServletRequest request,Model model){
+		//로그인객체전달
+				if(authentication != null) {
+				HttpSession session = request.getSession();
+				UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+				System.out.println(authentication);
+					
+				
+				model.addAttribute("usersDTO",usersDTO);
+		        session.setAttribute("usersDTO", usersDTO);
+		        
+		        
+		        
+		        //반려메시지 전달
+		        List<Rejected_messageDTO> list = service.selectRejectmessage(usersDTO.getNickname());
+				
+		        model.addAttribute("list",list);
+		        
+		        //판매리스트 전달
+		        List<PayDTO> list2 = service.salesList(usersDTO.getNickname());
+		        
+		        model.addAttribute("list2",list2);
+		        
+				return "allSales";
+				}else {
+					return "login";
+				}
+		
     }
+	
+	@GetMapping("/monthlySales")
+	public String monthlySales(Authentication authentication,HttpServletRequest request,Model model){
+		//로그인객체전달
+		if(authentication != null) {
+			HttpSession session = request.getSession();
+			UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+			System.out.println(authentication);
+			
+			
+			model.addAttribute("usersDTO",usersDTO);
+			session.setAttribute("usersDTO", usersDTO);
+			
+			
+			
+			//반려메시지 전달
+			List<Rejected_messageDTO> list = service.selectRejectmessage(usersDTO.getNickname());
+			
+			model.addAttribute("list",list);
+			
+			//json 으로
+			List<ChartDTO> logNameList = service.salesListmonth(usersDTO.getNickname());
+
+			Gson gson = new Gson();
+			JsonArray jArray = new JsonArray();
+					
+			Iterator<ChartDTO> it = logNameList.iterator();
+			while(it.hasNext()) {
+				ChartDTO curVO = it.next();
+				JsonObject object = new JsonObject();
+				String m = curVO.getM();
+				int price = curVO.getPrice();
+				
+			    object.addProperty("m", m);
+				object.addProperty("price", price);
+				jArray.add(object);
+			}
+					
+			String json = gson.toJson(jArray);
+			model.addAttribute("json", json);
+			
+			return "monthlySales";
+		}else {
+			return "login";
+		}
+		
+	}
 	
 	@GetMapping("/newmeetForm")
 	public String newmeetForm(Authentication authentication,HttpServletRequest request,Model model){
@@ -173,6 +260,61 @@ public class AdminController {
 		return "hostWithd";
 	}
 	
+	@GetMapping("/chartjs")
+	public String chartjs(Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		System.out.println(authentication);	
+
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
+		
+		//json 으로
+		List<ChartDTO> logNameList = service.salesListmonth(usersDTO.getNickname());
+
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+				
+		Iterator<ChartDTO> it = logNameList.iterator();
+		while(it.hasNext()) {
+			ChartDTO curVO = it.next();
+			JsonObject object = new JsonObject();
+			String m = curVO.getM();
+			int price = curVO.getPrice();
+			
+		    object.addProperty("m", m);
+			object.addProperty("price", price);
+			jArray.add(object);
+		}
+				
+		String json = gson.toJson(jArray);
+		model.addAttribute("json", json);
+		
+		return "chartjs";
+	}
+	
+	@GetMapping("/charttest")
+	public String charttest(Locale locale,Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		System.out.println(authentication);	
+		
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
+		Gson gson = new Gson();
+		
+		List<ChartDTO> list = service.salesListmonth(usersDTO.getNickname());
+		
+		
+		
+		
+		return "charttest";
+	}
+	
 	@GetMapping("/manage")
 	public String manage(Authentication authentication,HttpServletRequest request,Model model){
 		// 로그인객체전달
@@ -189,6 +331,30 @@ public class AdminController {
 		return "manage";
 	}
 	
+	@GetMapping("/noticeForm")
+	public String noticeForm(Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+
+		return "noticeForm";
+	}
+	
+	@GetMapping("/adForm")
+	public String adForm(Authentication authentication,HttpServletRequest request,Model model){
+		// 로그인객체전달
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		
+		model.addAttribute("usersDTO", usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
+		
+		return "adForm";
+	}
+	
 	@GetMapping("/newmeetReject")
 	public String newmeetReject(Authentication authentication,HttpServletRequest request,Model model){
 		// 로그인객체전달
@@ -202,6 +368,11 @@ public class AdminController {
 		List<ProductDTO> list = service.rejectInsepection();
 		
 		model.addAttribute("list", list);
+		
+		//반려메시지 전달
+        List<Rejected_messageDTO> list2 = service.selectRejectmessage(usersDTO.getNickname());
+		
+        model.addAttribute("list2",list2);
 		
 		return "newmeetReject";
 	}
@@ -251,8 +422,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/mypage")
-	public String mypage(Authentication authentication,HttpServletRequest request,Model model){
+	public String mypage(Model model, @ModelAttribute("dto2") PayDTO dto2, @ModelAttribute("pdto") PayDTO pdto,
+			Authentication authentication, HttpServletRequest request, @ModelAttribute("rdto") ReviewDTO rdto) {
+		
 		//로그인객체전달
+		if (authentication != null) {
 		HttpSession session = request.getSession();
 		//UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
@@ -260,14 +434,21 @@ public class AdminController {
 		model.addAttribute("usersDTO",usersDTO);
 		session.setAttribute("usersDTO", usersDTO);
 		//결제내역
-		List<PayDTO> list2 = payservice.getPayAll();
+		List<PayDTO> list2 = payservice.getPayAll(usersDTO.getNickname());
 		model.addAttribute("list2",list2);
 		System.out.println("list2:"+list2);
 		
+		//후기내역전달
+		List<ReviewDTO> list3 = rs.getReview(usersDTO.getNickname());
+		model.addAttribute("list3",list3);
 		
 		//찜한상품만 가져오기
 		List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());
 		model.addAttribute("list", list);
 		return "mypage";
+	
+	} else {
+		return "/login";
+		}
 	}
 }

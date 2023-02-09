@@ -49,5 +49,15 @@ public class ReviewService {
 		return dao.selectHost(nickname);
 	}
 
+// 후기내역전달
+	public List<ReviewDTO> getReview(String nickname) {
+		return dao.getReview(nickname);
+	}
+
+	public void deleteReview(int r_no) {
+		dao.deleteReview(r_no);
+		
+	}
+
 
 }

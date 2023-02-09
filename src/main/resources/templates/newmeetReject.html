@@ -41,12 +41,11 @@
 												th:src="@{/image/mainimage/} + ${dto.image}"></a>
 										</div>
 									</a> <span class="product_item_name" th:text="${dto.title}"></span>
-									<div class="product_item_price" th:text="${dto.price}+원">
-									</div>
-									<p>
-										&#128151; <span class="product_item_like"
-											th:text="${dto.like}"></span>
-									</p>
+									
+									<div th:each="dto2 : ${list2 }">
+									<div style="font-weight: bold;display: inline; ">반려사유 : </div> <div style="display: inline;" th:text="${dto2.message}"/>
+									</div><br />
+									<a href="/newmeetForm"><button type="button" class="btn btn-outline-secondary">수정하기</button></a>
 									<span>
 										<div class="product_item_info">
 											<!-- <form action="/newmeetInspection" method="post" >

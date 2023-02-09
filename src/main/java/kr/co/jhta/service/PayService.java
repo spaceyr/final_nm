@@ -21,8 +21,8 @@ public class PayService {
 		//dao.testAdd(dto);
 	}
 
-	public List<PayDTO> getPayAll() {
-		return dao.getPayAll();
+	public List<PayDTO> getPayAll(String nickname) {
+		return dao.getPayAll(nickname);
 	}
 
 	public void deletePay(int pay_no) {

@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import kr.co.jhta.dto.ChartDTO;
+import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.Rejected_messageDTO;
 
@@ -54,5 +56,9 @@ public interface ProductDAO {
 	//검수반려시 반려테이블에추가
 	void rejectinsertOne(Rejected_messageDTO dto);
 
+	//판매상품리스트가져오기
+	List<PayDTO> salesList(String nickname);
+	//원별판매상량가져오기
+	List<ChartDTO> salesListmonth(String nickname);
 
 }
