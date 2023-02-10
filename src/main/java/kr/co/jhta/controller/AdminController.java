@@ -205,7 +205,16 @@ public class AdminController {
 	}
 	
 	@GetMapping("/editProfile")
-	public String editProfile(){
+	public String editProfile(Authentication authentication,HttpServletRequest request,Model model){
+		
+		HttpSession session = request.getSession();
+		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		System.out.println(authentication);
+			
+		
+		model.addAttribute("usersDTO",usersDTO);
+        session.setAttribute("usersDTO", usersDTO);
+		
 		return "editProfile";
 	}
 	
@@ -217,7 +226,7 @@ public class AdminController {
 								@RequestParam("profileimage")String profileimage,
 								@RequestParam("id")String id){
 		
-		userservice.hostmodifyOne(nickname, email, phone, field, profileimage,id);
+		service.hostmodifyOne(nickname, email, phone, field, profileimage, id);
 		
 		return "editProfile";
 	}
@@ -250,7 +259,24 @@ public class AdminController {
 	}
 	
 	@GetMapping("/reviewManage")
-	public String reviewManage(){
+	public String reviewManage(Model model){
+		
+		/*
+		 * List<ReviewDTO> list = service.showAllReview();
+		 * 
+		 * model.addAttribute("list",list);
+		 */
+		
+		return "reviewManage";
+	}
+	
+	@PostMapping("/reviewManage")
+	public String reviewManageOk(@RequestParam(value = "contents",required = false)String contents,
+			@RequestParam(value = "writer",required = false)String writer, Model model){
+		
+		List<ReviewDTO> list = service.selectOneReview(contents, writer);
+		
+		model.addAttribute("list", list);	
 		
 		return "reviewManage";
 	}
@@ -449,6 +475,47 @@ public class AdminController {
 	
 	} else {
 		return "/login/login";
+		}
+	}
+	
+	@PostMapping("/mypageOk")
+	public String mypageOk(Model model, @ModelAttribute("dto2") PayDTO dto2, @ModelAttribute("pdto") PayDTO pdto,
+			Authentication authentication, HttpServletRequest request, @ModelAttribute("rdto") ReviewDTO rdto,
+							@RequestParam("nickname")String nickname,
+							@RequestParam("email")String email,
+							@RequestParam("phone")String phone,
+							@RequestParam("field")String field,
+							@RequestParam("profileimage")String profileimage,
+							@RequestParam("id")String id) {
+		
+		//로그인객체전달
+		if (authentication != null) {
+			HttpSession session = request.getSession();
+			//UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+			UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
+			
+			model.addAttribute("usersDTO",usersDTO);
+			session.setAttribute("usersDTO", usersDTO);
+			//결제내역
+			List<PayDTO> list2 = payservice.getPayAll(usersDTO.getNickname());
+			model.addAttribute("list2",list2);
+			System.out.println("list2:"+list2);
+			
+			//후기내역전달
+			List<ReviewDTO> list3 = rs.getReview(usersDTO.getNickname());
+			model.addAttribute("list3",list3);
+			
+			//찜한상품만 가져오기
+			List<ProductDTO> list = service.selectOneJjim(usersDTO.getNickname());
+			model.addAttribute("list", list);
+			
+			//프로필수정
+			service.hostmodifyOne(nickname, email, phone, field, profileimage, id);
+			
+			return "mypage";
+			
+		} else {
+			return "/login";
 		}
 	}
 }

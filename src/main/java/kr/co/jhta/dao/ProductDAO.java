@@ -9,6 +9,7 @@ import kr.co.jhta.dto.ChartDTO;
 import kr.co.jhta.dto.PayDTO;
 import kr.co.jhta.dto.ProductDTO;
 import kr.co.jhta.dto.Rejected_messageDTO;
+import kr.co.jhta.dto.ReviewDTO;
 
 /*인터페이스 임플만들필요없이 인터페이스로 바로맵퍼로연결*/
 @Repository
@@ -60,5 +61,13 @@ public interface ProductDAO {
 	List<PayDTO> salesList(String nickname);
 	//원별판매상량가져오기
 	List<ChartDTO> salesListmonth(String nickname);
+	
+	void hostmodifyOne(String nickname, String email, String phone, String field, String profileimage,String id);
+	
+	// 전체리스트
+	List<ReviewDTO> showAllReview();
+	
+	//검색리뷰
+	List<ReviewDTO> selectOneReview(String contents,String writer);
 
 }

@@ -89,38 +89,6 @@
                 </div>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            
-
-            
-
-
-            
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>dashboard</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -232,19 +200,19 @@
                      	
 
 								<div class="container">
-									<form action="ItemServiceOK.jsp" method="get">
+									<form action="reviewManage" method="post">
 
 									
 										
 										<div class="form_group">
 											<label for="title">내용</label> <input type="text"
-												class="form-control" name="pname" placeholder="입력한 내용으로 후기가 검색됩니다.">
+												class="form-control" name="contents" placeholder="입력한 내용으로 후기가 검색됩니다.">
 										</div>
 										<br />
 										
 										<div class="form_group">
-											<label for="title">ID</label> <input type="text"
-												class="form-control" name="ctgno" placeholder="ID와 정확히 일치하는 후기가 검색됩니다.">
+											<label for="title">작성자</label> <input type="text"
+												class="form-control" name="writer" placeholder="장성자 ID와 정확히 일치하는 후기가 검색됩니다.">
 										</div>
 										<br />
 										
@@ -267,8 +235,23 @@
 							검색목록
 						</div>
 						
-						<table>
-							목록
+						<table class="table table-striped">
+							<tr>
+								<th>상품번호</th>
+								<th>평점</th>
+								<th>작성날자</th>
+								<th>내용</th>
+								<th>작성자</th>
+							</tr>
+							
+							<tr th:each=" dto,state : ${list}">
+								<td th:text="${dto.p_no}"></td>
+								<td th:text="${dto.rating}"></td>
+								<td th:text="${dto.regdate}"></td>
+								<td th:text="${dto.contents}"></td>
+								<td th:text="${dto.writer}"></td>
+							</tr>
+
 						</table>		
 
                      </div>
