@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 //.antMatchers("/user_access").authenticated()
                .antMatchers("/user_access").hasAnyRole("USER","MEMBER","ADMIN")
                 .antMatchers("/manage").hasRole("ADMIN")
-                .antMatchers("/host").hasRole("MEMBER")
+                .antMatchers("/host").hasAnyRole("MEMBER","ADMIN")
                .antMatchers("/login").anonymous()
                // GUEST USER MEMBER ADMIN
                 .and()
