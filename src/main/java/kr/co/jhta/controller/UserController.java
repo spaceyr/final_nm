@@ -170,10 +170,19 @@ public class UserController {
             System.out.println("response : "+response);
             
             if(response!=null) {
-            UsersDTO usersDTO = new UsersDTO();
-            usersDTO.setNickname((String)(response.get("nickname")));//로그인과 회원가입이 다름.
+            	System.out.println("response1 : "+response.get("nickname"));
+            	String nickname = (String)response.get("nickname");
+            	System.out.println("nickname : "+nickname);
+            
+            UsersDTO usersDTO = userService.getSocialInfo(nickname);
+            
+            
+            
+            
+            //usersDTO.setNickname((String)(response.get("nickname")));//로그인과 회원가입이 다름.
 //            //usersDTO.setCoupon(3000);
-//            
+            //usersDTO.setEmail((String)(response.get("email")));  
+
             System.out.println("usersDTO : "+usersDTO);
             System.out.println("usersDTO.getNickname : "+usersDTO.getNickname());
 //            System.out.println("usersDTO.getCoupon : "+usersDTO.getCoupon());
@@ -183,8 +192,14 @@ public class UserController {
             	
             	Map <String, Object> kakao = (Map <String, Object>) usersDTO1.getAttribute("properties");
             	System.out.println("kakao : "+kakao);
-            	UsersDTO usersDTO = new UsersDTO();
-            	usersDTO.setNickname((String)(kakao.get("nickname")));
+            	System.out.println("kakaonickname : "+kakao.get("nickname"));
+            	String nickname = (String)kakao.get("nickname");
+            	System.out.println("nickname : "+nickname);
+            	
+            	UsersDTO usersDTO = userService.getSocialInfo(nickname);
+            	System.out.println("kakao usersDTO : "+usersDTO);
+            	
+            	//usersDTO.setNickname((String)(kakao.get("nickname")));
             	//usersDTO.setCoupon(3000);
         		session.setAttribute("usersDTO", usersDTO);
         		return "main";

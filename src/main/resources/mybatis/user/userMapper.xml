@@ -83,4 +83,12 @@
 		AND phone = #{phone}
 	</select>
 	
+	
+	<!-- 임시확인 -->
+	<select id="getSocial" parameterType="String" resultType="UsersDTO">
+		SELECT *
+		FROM users
+		WHERE nickname = #{nickname}
+	</select>
+	
 </mapper>

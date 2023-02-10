@@ -42,8 +42,8 @@ public class BoardController {
 
 		// 로그인객체전달
 		HttpSession session = request.getSession();
-		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-
+//		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
 		model.addAttribute("usersDTO", usersDTO);
 		session.setAttribute("usersDTO", usersDTO);
 

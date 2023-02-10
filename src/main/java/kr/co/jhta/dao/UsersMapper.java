@@ -45,4 +45,6 @@ public interface UsersMapper {
 	 */
 
 	boolean isIdCheck2(String name, String phone);
+
+	UsersDTO getSocial(String nickname);
 }

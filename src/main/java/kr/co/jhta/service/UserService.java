@@ -129,8 +129,13 @@ public class UserService implements UserDetailsService {
 				        System.out.println(e.getCode());
 				      }
 				}
+
+				
 	
-	
+				//임시 정보갖기
+				public UsersDTO getSocialInfo(String nickname) {
+					return userMapper.getSocial(nickname);
+				}
 	
 
 }
