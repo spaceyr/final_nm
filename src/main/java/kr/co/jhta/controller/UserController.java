@@ -171,11 +171,12 @@ public class UserController {
             
             if(response!=null) {
             UsersDTO usersDTO = new UsersDTO();
-            usersDTO.setNickname((String)(response.get("nickname")));
-            usersDTO.setCoupon(3000);
-            
+            usersDTO.setNickname((String)(response.get("nickname")));//로그인과 회원가입이 다름.
+//            //usersDTO.setCoupon(3000);
+//            
+            System.out.println("usersDTO : "+usersDTO);
             System.out.println("usersDTO.getNickname : "+usersDTO.getNickname());
-            System.out.println("usersDTO.getCoupon : "+usersDTO.getCoupon());
+//            System.out.println("usersDTO.getCoupon : "+usersDTO.getCoupon());
             session.setAttribute("usersDTO", usersDTO);
             return "main";
             }else {
@@ -184,7 +185,7 @@ public class UserController {
             	System.out.println("kakao : "+kakao);
             	UsersDTO usersDTO = new UsersDTO();
             	usersDTO.setNickname((String)(kakao.get("nickname")));
-            	usersDTO.setCoupon(3000);
+            	//usersDTO.setCoupon(3000);
         		session.setAttribute("usersDTO", usersDTO);
         		return "main";
             }
