@@ -46,8 +46,10 @@ public class BoardController {
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
 		model.addAttribute("usersDTO", usersDTO);
 		session.setAttribute("usersDTO", usersDTO);
-
+		
+		System.out.println("리뷰페이지 GetMapping usersDTO : "+usersDTO);
 		//리뷰 전체 조회
+		
 		int totalNumber = rs.getTotal();
 
 		int recordPerPage = 10;
@@ -59,6 +61,7 @@ public class BoardController {
 		model.addAttribute("list3", list3);
 		model.addAttribute("map", map);
 		return "board/review";
+		
 	}
 
 //리뷰 작성시 p_no값 넘겨받음
@@ -66,11 +69,12 @@ public class BoardController {
 	public String writeForm(@RequestParam("p_no") int p_no, Model model,
 			Authentication authentication, HttpServletRequest request) {
 		//로그인객체전달
-					HttpSession session = request.getSession();
-					UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-
-					model.addAttribute("usersDTO", usersDTO);
-					session.setAttribute("usersDTO", usersDTO);
+		HttpSession session = request.getSession();
+		//UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
+		
+		model.addAttribute("usersDTO",usersDTO);
+		session.setAttribute("usersDTO", usersDTO);
 					
 		List<ProductDTO> list = ps.selectOne(p_no);
 		model.addAttribute("list", list);
@@ -88,9 +92,10 @@ public class BoardController {
 			) {
 		//로그인객체전달
 		HttpSession session = request.getSession();
-		UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
-
-		model.addAttribute("usersDTO", usersDTO);
+		//UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
+		
+		model.addAttribute("usersDTO",usersDTO);
 		session.setAttribute("usersDTO", usersDTO);
 		
 		System.out.println(dto2.getRating());

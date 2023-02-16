@@ -12,8 +12,12 @@
 	</select>
 <!-- p_no값 받아와서 내용, 평점값 가져옴 -->
 	<insert id="addS" parameterType="StarContentDTO" >
-		INSERT INTO review (p_no,contents, regdate, rating, writer, nickname)
+<!-- 
+ 		INSERT INTO review (p_no,contents, regdate, rating, writer, nickname)
 		VALUES (#{p_no},#{contents}, date_format(now(),'%Y-%m-%d'), #{rating},#{writer},#{nickname})
+ -->
+ 		INSERT INTO review (r_no,p_no,contents, regdate, rating, writer, nickname)
+		VALUES (null,#{p_no},#{contents}, date_format(now(),'%Y-%m-%d'), #{rating},#{writer},#{nickname})
 	</insert>
 
 <!-- 한페이지당 게시물 10개씩 -->

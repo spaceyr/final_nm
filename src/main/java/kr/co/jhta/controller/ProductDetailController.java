@@ -58,7 +58,9 @@ public class ProductDetailController {
 			HttpSession session = request.getSession();
 			//UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();
 			UsersDTO usersDTO = (UsersDTO) session.getAttribute("usersDTO");
+			System.out.println("usersDTO : "+usersDTO);
 			
+			if(usersDTO != null) {
 			model.addAttribute("usersDTO", usersDTO);
 			session.setAttribute("usersDTO", usersDTO);
 		
@@ -66,7 +68,10 @@ public class ProductDetailController {
 
 		model.addAttribute("list", list);
 		return "pay/payDetail";// 보여지는 페이지 이동
-
+			}else {
+				model.addAttribute("fail","로그인이 필요합니다.");
+				return "/login/login";
+			}
 	}
 
 
@@ -81,7 +86,11 @@ public class ProductDetailController {
 	@PostMapping("/mypage")
 	public String payOk(Model model, @ModelAttribute("dto2") PayDTO dto2, @ModelAttribute("pdto") PayDTO pdto,
 			Authentication authentication, HttpServletRequest request, @ModelAttribute("rdto") ReviewDTO rdto) {
-
+		
+		System.out.println("dto2 : "+dto2);
+		System.out.println("pdto : "+pdto);
+		System.out.println("rdto : "+rdto);
+		
 		//로그인객체전달
 		if (authentication != null) {
 			HttpSession session = request.getSession();
@@ -110,7 +119,7 @@ public class ProductDetailController {
 			return "/mypage";
 
 		} else {
-			return "/login";
+			return "/login/login";
 		}
 
 	}

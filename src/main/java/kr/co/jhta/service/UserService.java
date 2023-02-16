@@ -28,7 +28,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService implements UserDetailsService { //시큐리티에서 유저 정보를 쓰기 위한 인터페이스
 
 	
 	private final UsersMapper userMapper; //매퍼 받아와서

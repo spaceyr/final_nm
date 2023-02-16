@@ -151,8 +151,11 @@ public class UserController {
     public String userAccess(Authentication authentication, HttpServletRequest request) {
     	log.info("test");
     	HttpSession session = request.getSession();
-        //Authentication 객체를 통해 유저 정보를 가져올 수 있다.
+        //Authentication 객체를 통해 유저 정보를 가져올 수 있다. 일반로그인쪽
+//(시큐리티 정보예시)	UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	
     	Object obj = (Object)authentication.getPrincipal();
+    	System.out.println("authentication : "+authentication);
         if(obj instanceof UsersDTO) {
         	
         UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();  //userDetail 객체를 가져옴
@@ -162,7 +165,9 @@ public class UserController {
         session.setAttribute("usersDTO", usersDTO);
         return "main";
         }else {
-        	DefaultOAuth2User usersDTO1 = (DefaultOAuth2User) authentication.getPrincipal();  //userDetail 객체를 가져옴
+        	//소셜로그인쪽.
+        	DefaultOAuth2User usersDTO1 = (DefaultOAuth2User) authentication.getPrincipal();
+        	System.out.println("authentication2 : "+authentication);
             System.out.println("로그인부분2 usersDTO1 : "+usersDTO1);
             
            

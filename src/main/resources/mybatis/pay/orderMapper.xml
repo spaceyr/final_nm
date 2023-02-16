@@ -5,8 +5,11 @@
   
   <mapper namespace="kr.co.jhta.dao.PayDAO">
   	<insert id="payAddOne" parameterType="PayDTO">
-		INSERT INTO orders(nickname, p_no, price, pay_method, pay_date, pay_status, customer)
+<!-- 	INSERT INTO orders(nickname, p_no, price, pay_method, pay_date, pay_status, customer)
 		VALUES (#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1, #{customer})
+-->
+		INSERT INTO orders(pay_no,nickname, p_no, price, pay_method, pay_date, pay_status, customer)
+		VALUES (null,#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1, #{customer})		
 	</insert>
 	<select id="getPayAll" resultType="PayDTO">
 		SELECT * 

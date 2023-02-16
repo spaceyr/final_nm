@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .oauth2Login().loginPage("/login")//csrf()올리고 여기부터 3줄 추가
                 .defaultSuccessUrl("/user_access")
                 .userInfoEndpoint()
-    			.userService(userDetailService)
+    			.userService(userDetailService) ///소셜로그인할때 회원가입까지
         .and();
         
     		http.sessionManagement()

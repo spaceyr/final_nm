@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class CustomOAuth2UserDetailService extends DefaultOAuth2UserService{
-	
+															//소셜로그인
 	@Autowired
 	UserService userService;
 	
