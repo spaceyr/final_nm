@@ -30,15 +30,12 @@ public class MainController {
         return "Hello Spring Boot";
     
 	}
-	@GetMapping("/main")
+	@RequestMapping("/main")
 	public String main() {
 		return "main";
 	}
 	
-	@GetMapping("/")
-	public String main2() {
-		return "main";
-	}
+	
 	
 
 	// 운동 리스트 페이지 

@@ -318,7 +318,7 @@ form .signin__btn:hover {
 
 					});
 </script>
-<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+<th:block layout:fragment="header" th:include="@{main/header}"></th:block>
 </head>
 
 <body>
@@ -334,7 +334,7 @@ form .signin__btn:hover {
 		</ul>
 
 		<!-- Form -->
-		<form th:action="@{/login_proc}" method="post">
+		<form th:action="@{login_proc}" method="post">
 			<!-- id input -->
 			<div class="first-input input__block first-input__block">
 				<input type="text" placeholder="아이디 6~20자리" class="input" name="username" id="id" />
@@ -377,7 +377,7 @@ form .signin__btn:hover {
 	</div>
 
 
-<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+<th:block layout:fragment="footer" th:include="@{main/footer}"></th:block>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
        <link rel="icon" th:href="@{/image/logo/favicon.ico}">
     <title>NewMeet</title>
 </head>
-	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+	<th:block layout:fragment="header" th:include="@{main/header}"></th:block>
 <!-- <script type="text/javascript">
 window.onload = function() {
     //변수를 선언합니다.
@@ -36,19 +36,19 @@ window.onload = function() {
     <main>
         <div class="banner_container">
             <div class="banner_slide fade">
-                <a th:href="@{/main/grouplist(cateno=500)}"><img src="../image/banner/banner01.jpg"></a>
+                <a th:href="@{main/grouplist(cateno=500)}"><img src="../image/banner/banner01.jpg"></a>
             </div>
             <div class="banner_slide fade">
-                <a th:href="@{/main/triplist(cateno=200)}"><img src="../image/banner/banner02.jpg"></a>
+                <a th:href="@{main/triplist(cateno=200)}"><img src="../image/banner/banner02.jpg"></a>
             </div>
             <div class="banner_slide fade">
-                <a th:href="@{/main/myselflist(cateno=300)}"><img src="../image/banner/banner03.jpg"></a>
+                <a th:href="@{main/myselflist(cateno=300)}"><img src="../image/banner/banner03.jpg"></a>
             </div>
             <div class="banner_slide fade">
-                <a th:href="@{/main/sportslist(cateno=100)}"><img src="../image/banner/banner04.jpg"></a>
+                <a th:href="@{main/sportslist(cateno=100)}"><img src="../image/banner/banner04.jpg"></a>
             </div>
             <div class="banner_slide fade">
-                <a th:href="@{/main}"><img src="../image/banner/banner05.jpg"></a>
+                <a th:href="@{main}"><img src="../image/banner/banner05.jpg"></a>
             </div> 
             
             <a class="banner_prev" onclick="plusSlides(-1)">&#10094;</a> 
@@ -67,11 +67,11 @@ window.onload = function() {
          
         <section class="category">
         	<div class="category_menu_group">
-        		<div class="category_menu"><a th:href="@{/main/sportslist(cateno=100)}"><div class="category_menu_img1"></div></a><span>운동</span></div>
-        		<div class="category_menu"><a th:href="@{/main/triplist(cateno=200)}"><div class="category_menu_img2"></div></a><span>여행</span></div>
-        		<div class="category_menu"><a th:href="@{/main/myselflist(cateno=300)}"><div class="category_menu_img3"></div></a><span>자기계발</span></div>
-        		<div class="category_menu"><a th:href="@{/main/artlist(cateno=400)}"><div class="category_menu_img4"></div></a><span>문화생활</span></div>
-        		<div class="category_menu"><a th:href="@{/main/grouplist(cateno=500)}"><div class="category_menu_img5"></div></a><span>모임</span></div>
+        		<div class="category_menu"><a th:href="@{main/sportslist(cateno=100)}"><div class="category_menu_img1"></div></a><span>운동</span></div>
+        		<div class="category_menu"><a th:href="@{main/triplist(cateno=200)}"><div class="category_menu_img2"></div></a><span>여행</span></div>
+        		<div class="category_menu"><a th:href="@{main/myselflist(cateno=300)}"><div class="category_menu_img3"></div></a><span>자기계발</span></div>
+        		<div class="category_menu"><a th:href="@{main/artlist(cateno=400)}"><div class="category_menu_img4"></div></a><span>문화생활</span></div>
+        		<div class="category_menu"><a th:href="@{main/grouplist(cateno=500)}"><div class="category_menu_img5"></div></a><span>모임</span></div>
         	</div>
         </section>
         <div class="ad_container" >
@@ -97,10 +97,10 @@ window.onload = function() {
             </div> 
 		</div>
      
-      <th:block layout:fragment="productItems" th:include="@{/main/productItems}"></th:block>
+      <th:block layout:fragment="productItems" th:include="@{main/productItems}"></th:block>
 
 
-   	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+   	 <th:block layout:fragment="footer" th:include="@{main/footer}"></th:block>
     </main>
      
 

@@ -151,8 +151,11 @@ public class UserController {
     public String userAccess(Authentication authentication, HttpServletRequest request) {
     	log.info("test");
     	HttpSession session = request.getSession();
-        //Authentication 객체를 통해 유저 정보를 가져올 수 있다.
+        //Authentication 객체를 통해 유저 정보를 가져올 수 있다. 일반로그인쪽
+//(시큐리티 정보예시)	UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	
     	Object obj = (Object)authentication.getPrincipal();
+    	System.out.println("authentication : "+authentication);
         if(obj instanceof UsersDTO) {
         	
         UsersDTO usersDTO = (UsersDTO) authentication.getPrincipal();  //userDetail 객체를 가져옴
@@ -162,7 +165,9 @@ public class UserController {
         session.setAttribute("usersDTO", usersDTO);
         return "main";
         }else {
-        	DefaultOAuth2User usersDTO1 = (DefaultOAuth2User) authentication.getPrincipal();  //userDetail 객체를 가져옴
+        	//소셜로그인쪽.
+        	DefaultOAuth2User usersDTO1 = (DefaultOAuth2User) authentication.getPrincipal();
+        	System.out.println("authentication2 : "+authentication);
             System.out.println("로그인부분2 usersDTO1 : "+usersDTO1);
             
            
@@ -170,10 +175,19 @@ public class UserController {
             System.out.println("response : "+response);
             
             if(response!=null) {
-            UsersDTO usersDTO = new UsersDTO();
-            usersDTO.setNickname((String)(response.get("nickname")));//로그인과 회원가입이 다름.
+            	System.out.println("response1 : "+response.get("nickname"));
+            	String nickname = (String)response.get("nickname");
+            	System.out.println("nickname : "+nickname);
+            
+            UsersDTO usersDTO = userService.getSocialInfo(nickname);
+            
+            
+            
+            
+            //usersDTO.setNickname((String)(response.get("nickname")));//로그인과 회원가입이 다름.
 //            //usersDTO.setCoupon(3000);
-//            
+            //usersDTO.setEmail((String)(response.get("email")));  
+
             System.out.println("usersDTO : "+usersDTO);
             System.out.println("usersDTO.getNickname : "+usersDTO.getNickname());
 //            System.out.println("usersDTO.getCoupon : "+usersDTO.getCoupon());
@@ -183,8 +197,14 @@ public class UserController {
             	
             	Map <String, Object> kakao = (Map <String, Object>) usersDTO1.getAttribute("properties");
             	System.out.println("kakao : "+kakao);
-            	UsersDTO usersDTO = new UsersDTO();
-            	usersDTO.setNickname((String)(kakao.get("nickname")));
+            	System.out.println("kakaonickname : "+kakao.get("nickname"));
+            	String nickname = (String)kakao.get("nickname");
+            	System.out.println("nickname : "+nickname);
+            	
+            	UsersDTO usersDTO = userService.getSocialInfo(nickname);
+            	System.out.println("kakao usersDTO : "+usersDTO);
+            	
+            	//usersDTO.setNickname((String)(kakao.get("nickname")));
             	//usersDTO.setCoupon(3000);
         		session.setAttribute("usersDTO", usersDTO);
         		return "main";
