@@ -30,7 +30,8 @@ public class MainController {
         return "Hello Spring Boot";
     
 	}
-	@RequestMapping("/main")
+
+	@GetMapping("main")
 	public String main() {
 		return "main";
 	}

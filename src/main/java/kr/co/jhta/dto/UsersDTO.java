@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UsersDTO implements UserDetails{
+public class UsersDTO implements UserDetails{ //시큐리티에서 사용자 정보를 담기 위한 인터페이스
 	
 	@NotBlank(message = "닉네임을 입력해주세요")
 	@Pattern(regexp = "/^[\\w\\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/", message = "사용할 수 없는 닉네임입니다.")

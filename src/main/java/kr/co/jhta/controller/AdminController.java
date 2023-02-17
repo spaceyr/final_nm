@@ -474,6 +474,7 @@ public class AdminController {
 		return "mypage";
 	
 	} else {
+		model.addAttribute("fail","로그인이 필요합니다.");
 		return "/login/login";
 		}
 	}
@@ -515,7 +516,7 @@ public class AdminController {
 			return "mypage";
 			
 		} else {
-			return "/login";
+			return "/login/login";
 		}
 	}
 }
