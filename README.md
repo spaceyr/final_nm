@@ -6,7 +6,7 @@
 
 - **운영체제**: Windows10,11
 - **개발도구**: Eclipse, Bootstrap, eXERD, sqldeveloper
-- **Language**: HTML, CSS, Java, Java-Script, Thymeleaf
+- **Language**: HTML, CSS, Java, Javacript, Thymeleaf
 - **Library**: Junit, Jquery
 - **Cloud**: AWS
 - **Framework & tool**: Spring, MyBatis, thymeleaf
