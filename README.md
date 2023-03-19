@@ -1,15 +1,13 @@
 
-
+# NEWMEET 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/106422700/226165899-75f6a9b7-a04b-4c79-82c8-8d55ed6cc7e2.png" width="300px" height="250px"/>
 
+
 </p>
 
+취미 생활에 대한 정보를 얻음과 동시에 수익 창출까지 아우를 수 있는 '뉴밋'이라는 서비스를  
 
-# NEWMEET
-
-**사회적 거리두기의 영향으로 인해 규모가 커진 밀키트 판매 수요가 외식 물가 상승 등의 이유로 급등하였습니다. 
-이에 따라 수요층이 확대된 밀키트의 판매를 기획하고 주 이용고객으로 1인 가구인 20~30대인 젊은 층과 새로 유입된 중장년층까지 신선하고 다양한 요리를 쉽게 인터넷을 통해 구매할 수 있도록 밀키트 판매  ‘Fresh Kit’  페이지를 구현하였습니다.  **
 
 
 
@@ -17,7 +15,7 @@
 
 - **운영체제**: Windows10,11
 - **개발도구**: Eclipse, Bootstrap, eXERD, sqldeveloper
-- **Language**: HTML, CSS, Java, Java-Script, thymeleaf
+- **Language**: HTML, CSS, Java, Java-Script, Thymeleaf
 - **Library**: Junit, Jquery
 - **Cloud**: AWS
 - **Framework & tool**: Spring, MyBatis, thymeleaf
